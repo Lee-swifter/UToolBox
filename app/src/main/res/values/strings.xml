@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UToolBox</string>
+    <string name="main_activity">MainActivity</string>
+    <string name="ready_exit">再次点击退出应用</string>
 </resources>
