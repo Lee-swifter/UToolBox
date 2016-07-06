@@ -17,10 +17,11 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/guillo_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="PLACEHOLDER"
+        android:layout_margin="30dip"
         android:gravity="center"/>
 
 </LinearLayout>

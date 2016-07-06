@@ -6,6 +6,8 @@ import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -14,6 +16,7 @@ import com.yalantis.guillotine.animation.GuillotineAnimation;
 import java.lang.ref.WeakReference;
 
 import lic.swifter.box.R;
+import lic.swifter.box.adapter.ToolsAdapter;
 import lic.swifter.box.databinding.ActivityMainBinding;
 import lic.swifter.box.util.ToastUtil;
 
@@ -22,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
     private final int RIPPLE_DURATION = 250;
     private final int TIME_EXIT = 2000;
 
-    private final int WHAT_MESSAGE_EXIT = 1001;
+    private static final int WHAT_MESSAGE_EXIT = 1001;
 
     private GuillotineAnimation guillo;
     private View guillioView;
+    private RecyclerView recycler;
+    private ToolsAdapter toolsAdapter;
     private boolean readyExit;
 
     private MainHandler handler;
@@ -63,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setTitle(null);
 
         guillioView = LayoutInflater.from(this).inflate(R.layout.guillio, main.rootFrameLayout, false);
+        recycler = (RecyclerView) guillioView.findViewById(R.id.guillo_recycler);
         main.rootFrameLayout.addView(guillioView);
 
         guillo = new GuillotineAnimation.GuillotineBuilder(guillioView, guillioView.findViewById(R.id.guillo_image_close), main.guilloImageOpen)
@@ -72,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         handler = new MainHandler(this);
+
+        toolsAdapter = new ToolsAdapter(this);
+        recycler.setLayoutManager(new GridLayoutManager(this, 3));
+        recycler.setAdapter(toolsAdapter);
     }
 
     @Override
