@@ -1,43 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_frame_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/guillotine_background_dark">
 
-    <FrameLayout
-        android:id="@+id/root_frame_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/guillotine_background_dark">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar"
+            app:contentInsetStart="0dp">
+
+            <ImageView
+                android:id="@+id/guillo_image_open"
+                style="@style/ImageView.Hamburger"
+                android:src="@drawable/ic_menu_90" />
+
+            <lic.swifter.box.widget.CanaroTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/main_activity"
+                android:textSize="@dimen/guillotine_item_text_size" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/fragment_place_holder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                style="@style/Toolbar"
-                app:contentInsetStart="0dp">
-
-                <ImageView
-                    android:id="@+id/guillo_image_open"
-                    style="@style/ImageView.Hamburger"
-                    android:src="@drawable/ic_menu_90" />
-
-                <lic.swifter.box.widget.CanaroTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/main_activity"
-                    android:textSize="@dimen/guillotine_item_text_size" />
-
-            </android.support.v7.widget.Toolbar>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="PLACEHOLDER" />
-
-        </LinearLayout>
-    </FrameLayout>
-</layout>
+    </LinearLayout>
+</FrameLayout>

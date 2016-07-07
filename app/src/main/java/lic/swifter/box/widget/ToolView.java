@@ -1,14 +1,20 @@
 package lic.swifter.box.widget;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import lic.swifter.box.R;
+import lic.swifter.box.util.DisplayUtil;
 
 /**
  *
@@ -32,12 +38,19 @@ public class ToolView extends LinearLayout {
 
         setOrientation(VERTICAL);
         setGravity(Gravity.CENTER);
+        final int padding = DisplayUtil.dip2px(context, 10);
+        setPadding(padding, padding, padding,padding);
+
         LayoutInflater.from(context).inflate(R.layout.item_tool, this);
         image = (ImageView) findViewById(R.id.item_tool_image);
         text = (TextView) findViewById(R.id.item_tool_name);
+
+        TypedValue typedValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(R.attr.selectableItemBackground, typedValue, true);
+        setBackgroundResource(typedValue.resourceId);
     }
 
-    public void setImageAndText(int drawableRes, int stringRes) {
+    public void setImageAndText(@DrawableRes int drawableRes, @StringRes int stringRes) {
         image.setImageResource(drawableRes);
         text.setText(stringRes);
     }
