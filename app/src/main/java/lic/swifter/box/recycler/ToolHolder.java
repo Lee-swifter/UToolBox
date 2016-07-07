@@ -1,4 +1,4 @@
-package lic.swifter.box.util;
+package lic.swifter.box.recycler;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

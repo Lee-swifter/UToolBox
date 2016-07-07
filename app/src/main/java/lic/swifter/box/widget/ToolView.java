@@ -4,8 +4,10 @@ import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,6 +44,10 @@ public class ToolView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.item_tool, this);
         image = (ImageView) findViewById(R.id.item_tool_image);
         text = (TextView) findViewById(R.id.item_tool_name);
+
+        TypedValue typedValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(R.attr.selectableItemBackground, typedValue, true);
+        setBackgroundResource(typedValue.resourceId);
     }
 
     public void setImageAndText(@DrawableRes int drawableRes, @StringRes int stringRes) {

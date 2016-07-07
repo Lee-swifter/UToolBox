@@ -1,4 +1,4 @@
-package lic.swifter.box.util;
+package lic.swifter.box.data;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;

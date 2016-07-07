@@ -1,4 +1,4 @@
-package lic.swifter.box.util;
+package lic.swifter.box.recycler;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,12 +13,12 @@ import android.view.View;
 /**
  * Created by lic on 16-7-7.
  */
-public class DividerItemDecoration extends RecyclerView.ItemDecoration {
+public class Divider extends RecyclerView.ItemDecoration {
 
     private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
     private Drawable mDivider;
 
-    public DividerItemDecoration(Context context) {
+    public Divider(Context context) {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);
         a.recycle();
