@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="80dip"
-    android:layout_height="150dip"
-    android:gravity="center">
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
     <ImageView
         android:id="@+id/item_tool_image"
         android:layout_width="60dip"
@@ -10,6 +7,5 @@
     <TextView
         android:id="@+id/item_tool_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dip"/>
+        android:layout_height="wrap_content"/>
 </merge>

@@ -18,6 +18,7 @@ import java.lang.ref.WeakReference;
 import lic.swifter.box.R;
 import lic.swifter.box.adapter.ToolsAdapter;
 import lic.swifter.box.databinding.ActivityMainBinding;
+import lic.swifter.box.util.DividerItemDecoration;
 import lic.swifter.box.util.ToastUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolsAdapter = new ToolsAdapter(this);
         recycler.setLayoutManager(new GridLayoutManager(this, 3));
+        recycler.addItemDecoration(new DividerItemDecoration(this ));
         recycler.setAdapter(toolsAdapter);
     }
 
