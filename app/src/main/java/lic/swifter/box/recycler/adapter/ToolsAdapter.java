@@ -1,19 +1,17 @@
 package lic.swifter.box.recycler.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 import lic.swifter.box.R;
-import lic.swifter.box.recycler.DragCallback;
 import lic.swifter.box.recycler.ToolHolder;
 
 /**
  *
  * Created by Swifter on 2016/7/6.
  */
-public class ToolsAdapter extends RecyclerView.Adapter<ToolHolder> implements DragCallback.ItemTouchHelperAdapter {
+public class ToolsAdapter extends RecyclerView.Adapter<ToolHolder> {
 
     private OnItemClickListener onItemClickListener;
 
@@ -35,19 +33,8 @@ public class ToolsAdapter extends RecyclerView.Adapter<ToolHolder> implements Dr
             public void onClick(View view) {
             if(onItemClickListener != null)
                 onItemClickListener.onItemClickListener(holder.getAdapterPosition());
-
             }
         });
-    }
-
-    @Override
-    public void onItemMove(int fromPosition, int toPosition) {
-        notifyItemMoved(fromPosition, toPosition);
-    }
-
-    @Override
-    public void onItemDismiss(int position) {
-        notifyItemRemoved(position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

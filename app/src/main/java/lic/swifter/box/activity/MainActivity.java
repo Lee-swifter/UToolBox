@@ -3,12 +3,15 @@ package lic.swifter.box.activity;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Transition;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -17,9 +20,12 @@ import android.widget.ImageView;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Map;
 
 import lic.swifter.box.R;
 import lic.swifter.box.data.ToolData;
+import lic.swifter.box.fragment.BaseFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
 import lic.swifter.box.recycler.Divider;
 import lic.swifter.box.recycler.adapter.ToolsAdapter;
@@ -46,8 +52,10 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
     private ToolsAdapter toolsAdapter;
 
     private boolean readyExit;
+    private int currentIndex = -1;
 
     private MainHandler handler;
+    private Map<Integer, BaseFragment> fragmentMap;
 
     private static class MainHandler extends Handler {
 
@@ -102,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 .setClosedOnStart(false)
                 .build();
 
+        fragmentMap = new HashMap<>();
         initRecyclerView();
     }
 
@@ -111,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
         recycler.setLayoutManager(new GridLayoutManager(this, 3));
         recycler.addItemDecoration(new Divider(this));
         recycler.setAdapter(toolsAdapter);
-
     }
 
     @Override
@@ -128,11 +136,28 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
 
     @Override
     public void onItemClickListener(int position) {
-        changeFragment(null);
+        Log.i("swifter", "current = "+currentIndex+"; position = "+position);
+        guillo.close();
+        if(currentIndex == position)
+            return ;
+
+        currentIndex = position;
+        changeFragment(currentIndex);
     }
 
-    private void changeFragment(ToolData toolData) {
+    private void changeFragment(int index) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_place_holder, IPQueryFragment.newInstance("1", "2")).commit();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        switch (index) {
+            case 0: //IP 查询
+                if(fragmentMap.get(index) == null) {
+                    fragmentMap.put(index, new IPQueryFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(index));
+                break;
+            default:
+                break;
+        }
+        transaction.commit();
     }
 }
