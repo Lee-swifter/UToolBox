@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -23,7 +22,6 @@ import lic.swifter.box.R;
 import lic.swifter.box.data.ToolData;
 import lic.swifter.box.fragment.IPQueryFragment;
 import lic.swifter.box.recycler.Divider;
-import lic.swifter.box.recycler.DragCallback;
 import lic.swifter.box.recycler.adapter.ToolsAdapter;
 import lic.swifter.box.util.FindUtil;
 import lic.swifter.box.util.ToastUtil;
@@ -114,11 +112,6 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
         recycler.addItemDecoration(new Divider(this));
         recycler.setAdapter(toolsAdapter);
 
-//        TODO: unsuitable for this app;
-//        DragCallback callback = new DragCallback();
-//        callback.setItemTouchHelperAdapter(toolsAdapter);
-//        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
-//        touchHelper.attachToRecyclerView(recycler);
     }
 
     @Override

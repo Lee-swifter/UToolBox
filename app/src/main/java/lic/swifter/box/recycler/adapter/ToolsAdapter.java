@@ -2,6 +2,7 @@ package lic.swifter.box.recycler.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 
 import lic.swifter.box.R;
@@ -27,11 +28,15 @@ public class ToolsAdapter extends RecyclerView.Adapter<ToolHolder> implements Dr
     }
 
     @Override
-    public void onBindViewHolder(ToolHolder holder, final int position) {
+    public void onBindViewHolder(final ToolHolder holder, int position) {
         holder.view.setImageAndText(R.drawable.ip_icon, R.string.ip);
-        holder.view.setOnClickListener(view -> {
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
             if(onItemClickListener != null)
-                onItemClickListener.onItemClickListener(position);
+                onItemClickListener.onItemClickListener(holder.getAdapterPosition());
+
+            }
         });
     }
 
