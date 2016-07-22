@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lic.swifter.box.R;
-import lic.swifter.box.data.ToolData;
 import lic.swifter.box.fragment.BaseFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
 import lic.swifter.box.recycler.Divider;

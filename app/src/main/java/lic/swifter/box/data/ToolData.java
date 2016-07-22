@@ -18,4 +18,5 @@ public class ToolData {
         this.iconRes = iconRes;
         this.nameRes = nameRes;
     }
+
 }
