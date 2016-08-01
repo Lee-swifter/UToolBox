@@ -9,6 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import lic.swifter.box.R;
+import lic.swifter.box.api.ApiHelper;
+import lic.swifter.box.api.JuheApi;
+import lic.swifter.box.api.model.IpLocation;
+import lic.swifter.box.api.model.Result;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class IPQueryFragment extends BaseFragment {
 
@@ -42,6 +49,20 @@ public class IPQueryFragment extends BaseFragment {
     }
 
     private void queryIp() {
+        JuheApi juheApi = ApiHelper.getJuhe();
+        Call<Result<IpLocation>> call = juheApi.queryIp("www.bilibili.com", JuheApi.APP_KEY_IP);
+        call.enqueue(new Callback<Result<IpLocation>>() {
+            @Override
+            public void onResponse(Call<Result<IpLocation>> call, Response<Result<IpLocation>> response) {
+                Log.i("taylor", "onResponse... response = "+response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Call<Result<IpLocation>> call, Throwable t) {
+                t.printStackTrace();
+                Log.i("taylor", "onFailure...");
+            }
+        });
 
     }
 
