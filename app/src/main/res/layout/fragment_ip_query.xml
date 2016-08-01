@@ -12,9 +12,49 @@
             android:id="@+id/ip_input_text"
             android:layout_width="match_parent"
             android:layout_height="50dip"
-            android:hint="@string/input_ip_or_domain"
             android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.:/"
-            />
+            android:hint="@string/input_ip_or_domain" />
     </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dip"
+        android:layout_margin="3dip">
+
+        <ProgressBar
+            android:id="@+id/ip_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ip_result_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <lic.swifter.box.widget.CanaroTextView
+                android:id="@+id/ip_result_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:textSize="18sp" />
+
+            <lic.swifter.box.widget.CanaroTextView
+                android:id="@+id/ip_result_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dip"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ip_record_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dip" />
 
 </LinearLayout>
