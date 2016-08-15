@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -21,7 +20,6 @@ import com.yalantis.guillotine.animation.GuillotineAnimation;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
 import lic.swifter.box.R;
 import lic.swifter.box.fragment.BaseFragment;
@@ -112,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
         fragmentMap = new HashMap<>();
         initRecyclerView();
 
-        test();
     }
 
     private void initRecyclerView() {
@@ -143,24 +140,6 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
 
         currentIndex = position;
         changeFragment(currentIndex);
-    }
-
-    private void test() {
-        Vector<Object> vector = new Vector<>();
-        vector.add("aa");
-        vector.add("bb");
-
-
-        String[] strs = vector.toArray(new String[1]);
-
-        Object a = "aa";
-        String b = (String) a;
-
-//        Object[] ar = new Object[]{"aa", "bb"};
-//        String[] br = (String[]) ar;
-
-        Log.i("swifter", "type of strs = "+strs);
-        Log.i("swifter", "type of toArray() = "+vector.toArray());
     }
 
     private void changeFragment(int index) {
