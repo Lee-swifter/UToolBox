@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import lic.swifter.box.R;
-import lic.swifter.box.recycler.ToolHolder;
+import lic.swifter.box.recycler.holder.ToolHolder;
 
 /**
  *

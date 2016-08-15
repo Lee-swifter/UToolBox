@@ -137,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
 
     @Override
     public void onItemClickListener(int position) {
-        Log.i("swifter", "current = "+currentIndex+"; position = "+position);
         guillo.close();
         if(currentIndex == position)
             return ;

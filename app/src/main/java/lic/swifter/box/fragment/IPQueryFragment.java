@@ -1,5 +1,8 @@
 package lic.swifter.box.fragment;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -17,6 +21,8 @@ import lic.swifter.box.api.ApiHelper;
 import lic.swifter.box.api.JuheApi;
 import lic.swifter.box.api.model.IpLocation;
 import lic.swifter.box.api.model.Result;
+import lic.swifter.box.db.BoxContract;
+import lic.swifter.box.db.BoxDbHelper;
 import lic.swifter.box.widget.CanaroTextView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +43,8 @@ public class IPQueryFragment extends BaseFragment {
     @Bind(R.id.ip_record_list)
     RecyclerView recyclerView;
 
+    private String searchString;
+
     public IPQueryFragment() {
     }
 
@@ -55,7 +63,13 @@ public class IPQueryFragment extends BaseFragment {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_UP) {
-                    queryIp(inputEditText.getText().toString());
+                    searchString = inputEditText.getText().toString();
+                    queryIp(searchString);
+
+                    InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if(imm != null)
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                     return true;
                 }
                 return false;
@@ -63,25 +77,52 @@ public class IPQueryFragment extends BaseFragment {
         });
     }
 
-    private void queryIp(String ip) {
-        //TODO: display when progress.
+    private void queryIp(final String ip) {
+        fadeInView(progress);
+        fadeOutView(resultWrapper);
 
         JuheApi juheApi = ApiHelper.getJuhe();
         Call<Result<IpLocation>> call = juheApi.queryIp(ip);
         call.enqueue(new Callback<Result<IpLocation>>() {
             @Override
             public void onResponse(Call<Result<IpLocation>> call, Response<Result<IpLocation>> response) {
-                IpLocation ipLocation = response.body().result;
+                if (response.isSuccessful()) {
+                    IpLocation ipLocation = response.body().result;
+
+                    resultAreaText.setText(ipLocation.area);
+                    resultLocationText.setText(ipLocation.location);
+                    resultLocationText.setVisibility(View.VISIBLE);
+
+                    saveInDb(ipLocation.area, ipLocation.location);
+                } else {
+                    resultAreaText.setText(R.string.response_error);
+                    resultLocationText.setVisibility(View.GONE);
+                }
+                fadeOutView(progress);
+                fadeInView(resultWrapper);
 
             }
 
             @Override
             public void onFailure(Call<Result<IpLocation>> call, Throwable t) {
                 t.printStackTrace();
+
+                resultAreaText.setText(R.string.net_failure);
+                resultLocationText.setVisibility(View.GONE);
+                fadeOutView(progress);
+                fadeInView(resultWrapper);
             }
         });
     }
 
-
+    private long saveInDb(String area, String location) {
+        SQLiteDatabase sqLiteDatabase = BoxDbHelper.getInstance(getContext()).getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(BoxContract.IpEntry.COLUMN_NAME_SEARCH_DATA, searchString);
+        values.put(BoxContract.IpEntry.COLUMN_NAME_SEARCH_TIME_STAMP, System.currentTimeMillis());
+        values.put(BoxContract.IpEntry.COLUMN_NAME_RESULT_AREA, area);
+        values.put(BoxContract.IpEntry.COLUMN_NAME_RESULT_LOCATION, location);
+        return sqLiteDatabase.insert( BoxContract.IpEntry.TABLE_NAME, "null", values);
+    }
 
 }
