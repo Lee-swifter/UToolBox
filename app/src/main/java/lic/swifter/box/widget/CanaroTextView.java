@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import lic.swifter.box.BoxApp;
+
 /**
  *
  * Created by lic on 16-7-4.
@@ -19,6 +21,7 @@ public class CanaroTextView extends TextView {
 
     public CanaroTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        setTypeface(BoxApp.canaroFont);
     }
 
 }

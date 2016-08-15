@@ -1,5 +1,6 @@
 package lic.swifter.box.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -56,6 +58,11 @@ public class IPQueryFragment extends BaseFragment {
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_UP) {
                     queryIp(inputEditText.getText().toString());
+
+                    InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if(imm != null)
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                     return true;
                 }
                 return false;
@@ -63,25 +70,39 @@ public class IPQueryFragment extends BaseFragment {
         });
     }
 
-    private void queryIp(String ip) {
-        //TODO: display when progress.
+    private void queryIp(final String ip) {
+        fadeInView(progress);
 
         JuheApi juheApi = ApiHelper.getJuhe();
         Call<Result<IpLocation>> call = juheApi.queryIp(ip);
         call.enqueue(new Callback<Result<IpLocation>>() {
             @Override
             public void onResponse(Call<Result<IpLocation>> call, Response<Result<IpLocation>> response) {
-                IpLocation ipLocation = response.body().result;
+                if (response.isSuccessful()) {
+                    IpLocation ipLocation = response.body().result;
 
+                    resultAreaText.setText(ipLocation.area);
+                    resultLocationText.setText(ipLocation.location);
+                    resultLocationText.setVisibility(View.VISIBLE);
+                } else {
+                    resultAreaText.setText(R.string.response_error);
+                    resultLocationText.setVisibility(View.GONE);
+                }
+                fadeOutView(progress);
+                fadeInView(resultWrapper);
             }
 
             @Override
             public void onFailure(Call<Result<IpLocation>> call, Throwable t) {
                 t.printStackTrace();
+
+                resultAreaText.setText(R.string.net_failure);
+                resultLocationText.setVisibility(View.GONE);
+                fadeOutView(progress);
+                fadeInView(resultWrapper);
             }
         });
     }
-
 
 
 }

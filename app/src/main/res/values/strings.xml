@@ -3,7 +3,10 @@
     <string name="main_activity">MainActivity</string>
     <string name="ready_exit">再次点击退出应用</string>
 
-    <string name="ip">IP查询</string>
+    <string name="response_error">数据返回异常</string>
+    <string name="net_failure">网络错误，请检查网络连接</string>
 
+    <string name="ip">IP查询</string>
     <string name="input_ip_or_domain">请输入ip地址或域名</string>
+
 </resources>
