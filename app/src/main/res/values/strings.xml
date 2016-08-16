@@ -6,6 +6,17 @@
     <string name="net_failure">网络错误，请检查网络连接</string>
 
     <string name="ip">IP查询</string>
+    <string name="today_in_history">历史上的今天</string>
+    <string name="news">新闻</string>
+    <string name="wx_carefully_chosen">微信精选</string>
+    <string name="qa_robot">问答机器人</string>
+    <string name="exchange_rate">汇率</string>
+    <string name="weather_forecast">天气预报</string>
+    <string name="mobile_number_attr">手机号码归属地</string>
+    <string name="id_inquiry">身份证查询</string>
+    <string name="qq_number_query">QQ号码测吉凶</string>
+    <string name="jokes_collection">笑话大全</string>
+
     <string name="input_ip_or_domain">请输入ip地址或域名</string>
 
 </resources>

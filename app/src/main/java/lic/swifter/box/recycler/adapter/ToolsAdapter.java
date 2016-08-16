@@ -4,11 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import lic.swifter.box.R;
+import lic.swifter.box.data.FragmentsFlag;
+import lic.swifter.box.data.ToolsCollection;
 import lic.swifter.box.recycler.holder.ToolHolder;
 
 /**
- *
  * Created by Swifter on 2016/7/6.
  */
 public class ToolsAdapter extends RecyclerView.Adapter<ToolHolder> {
@@ -22,17 +22,17 @@ public class ToolsAdapter extends RecyclerView.Adapter<ToolHolder> {
 
     @Override
     public int getItemCount() {
-        return 10;
+        return ToolsCollection.tools.length;
     }
 
     @Override
     public void onBindViewHolder(final ToolHolder holder, int position) {
-        holder.view.setImageAndText(R.drawable.ip_icon, R.string.ip);
+        holder.view.setImageAndText(ToolsCollection.tools[position]);
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            if(onItemClickListener != null)
-                onItemClickListener.onItemClickListener(holder.getAdapterPosition());
+                if (onItemClickListener != null)
+                    onItemClickListener.onItemClickListener(ToolsCollection.tools[holder.getAdapterPosition()].flag);
             }
         });
     }
@@ -42,6 +42,6 @@ public class ToolsAdapter extends RecyclerView.Adapter<ToolHolder> {
     }
 
     public interface OnItemClickListener {
-        void onItemClickListener(int position);
+        void onItemClickListener(FragmentsFlag flag);
     }
 }

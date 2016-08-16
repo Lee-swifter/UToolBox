@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -17,7 +16,10 @@ import android.widget.TextView;
 
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
+import java.util.HashMap;
+
 import lic.swifter.box.R;
+import lic.swifter.box.data.FragmentsFlag;
 import lic.swifter.box.fragment.BaseFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
 import lic.swifter.box.recycler.adapter.ToolsAdapter;
@@ -35,9 +37,9 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
     private RecyclerView recycler;
     private GuillotineAnimation guillo;
 
-    private int currentIndex = -1;
+    private FragmentsFlag currentFlag ;
 
-    private SparseArray<BaseFragment> fragmentMap;
+    private HashMap<FragmentsFlag, BaseFragment> fragmentMap;
 
     private long exitTimeStamp;
 
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 .setClosedOnStart(false)
                 .build();
 
-        fragmentMap = new SparseArray<>();
+        fragmentMap = new HashMap<>();
         initRecyclerView();
 
     }
@@ -96,24 +98,24 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
     }
 
     @Override
-    public void onItemClickListener(int position) {
+    public void onItemClickListener(FragmentsFlag flag) {
         guillo.close();
-        if(currentIndex == position)
+        if(currentFlag == flag)
             return ;
 
-        currentIndex = position;
-        changeFragment(currentIndex);
+        currentFlag = flag;
+        changeFragment(currentFlag);
     }
 
-    private void changeFragment(int index) {
+    private void changeFragment(FragmentsFlag flag) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        switch (index) {
-            case 0: //IP 查询
-                if(fragmentMap.get(index) == null) {
-                    fragmentMap.put(index, new IPQueryFragment());
+        switch (flag) {
+            case IpQueryFragment: //IP 查询
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new IPQueryFragment());
                 }
-                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(index));
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.ip);
                 break;
             default:

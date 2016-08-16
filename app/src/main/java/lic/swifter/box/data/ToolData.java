@@ -14,9 +14,12 @@ public class ToolData {
     @StringRes
     public int nameRes;
 
-    public ToolData(@DrawableRes int iconRes, @StringRes int nameRes) {
+    public FragmentsFlag flag;
+
+    public ToolData(@DrawableRes int iconRes, @StringRes int nameRes, FragmentsFlag flag) {
         this.iconRes = iconRes;
         this.nameRes = nameRes;
+        this.flag = flag;
     }
 
 }

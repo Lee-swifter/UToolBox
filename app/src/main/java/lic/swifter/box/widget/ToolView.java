@@ -1,19 +1,16 @@
 package lic.swifter.box.widget;
 
 import android.content.Context;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import lic.swifter.box.R;
+import lic.swifter.box.data.ToolData;
 import lic.swifter.box.util.DisplayUtil;
 
 /**
@@ -50,8 +47,8 @@ public class ToolView extends LinearLayout {
         setBackgroundResource(typedValue.resourceId);
     }
 
-    public void setImageAndText(@DrawableRes int drawableRes, @StringRes int stringRes) {
-        image.setImageResource(drawableRes);
-        text.setText(stringRes);
+    public void setImageAndText(ToolData toolData) {
+        image.setImageResource(toolData.iconRes);
+        text.setText(toolData.nameRes);
     }
 }
