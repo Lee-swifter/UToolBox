@@ -22,7 +22,7 @@ public class ToolsAdapter extends RecyclerView.Adapter<ToolHolder> {
 
     @Override
     public int getItemCount() {
-        return 20;
+        return 10;
     }
 
     @Override

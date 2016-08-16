@@ -18,7 +18,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dip"
+        android:layout_height="110dip"
         android:layout_margin="3dip">
 
         <ProgressBar
@@ -52,10 +52,14 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="@color/guillotine_background" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ip_record_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="3dip" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -16,6 +16,8 @@ import android.view.View;
  */
 public class GridDivider extends RecyclerView.ItemDecoration {
 
+    public static final int BOTH = 2;
+
     private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
     private Drawable mDivider;
     private int mOrientation;
@@ -34,7 +36,9 @@ public class GridDivider extends RecyclerView.ItemDecoration {
     }
 
     public void setOrientation(int orientation) {
-        if (orientation != LinearLayoutManager.HORIZONTAL && orientation != LinearLayoutManager.VERTICAL) {
+        if (orientation != LinearLayoutManager.HORIZONTAL
+                && orientation != LinearLayoutManager.VERTICAL
+                && orientation != BOTH) {
             throw new IllegalArgumentException("invalid orientation");
         }
         mOrientation = orientation;

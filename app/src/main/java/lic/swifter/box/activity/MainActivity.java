@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
@@ -31,22 +32,14 @@ import lic.swifter.box.util.ToastUtil;
 
 public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnItemClickListener {
 
-    private final int RIPPLE_DURATION = 250;
-    private final int TIME_EXIT = 2000;
+    private static final int RIPPLE_DURATION = 250;
+    private static final int TIME_EXIT = 2000;
 
     private static final int WHAT_MESSAGE_EXIT = 1001;
 
-    private FrameLayout rootFrame;
-    private Toolbar toolBar;
-    private ImageView openImage;
-    private FrameLayout placeHolder;
-
-    private View guillioView;
-    private ImageView closeImage;
+    private TextView titleText;
     private RecyclerView recycler;
-
     private GuillotineAnimation guillo;
-    private ToolsAdapter toolsAdapter;
 
     private boolean readyExit;
     private int currentIndex = -1;
@@ -85,21 +78,21 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
     }
 
     private void initView() {
-        rootFrame = FindUtil.$(this, R.id.root_frame_layout);
-        toolBar = FindUtil.$(rootFrame, R.id.toolbar);
-        openImage = FindUtil.$(rootFrame, R.id.guillo_image_open);
-        placeHolder = FindUtil.$(rootFrame, R.id.fragment_place_holder);
+        FrameLayout rootFrame = FindUtil.$(this, R.id.root_frame_layout);
+        Toolbar toolBar = FindUtil.$(rootFrame, R.id.toolbar);
+        ImageView openImage = FindUtil.$(rootFrame, R.id.guillo_image_open);
+        titleText = FindUtil.$(rootFrame, R.id.title_text);
 
         setSupportActionBar(toolBar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
             actionBar.setTitle(null);
 
-        guillioView = LayoutInflater.from(this).inflate(R.layout.guillio, rootFrame, false);
+        View guillioView = LayoutInflater.from(this).inflate(R.layout.guillio, rootFrame, false);
         rootFrame.addView(guillioView);
 
         recycler = FindUtil.$(guillioView, R.id.guillo_recycler);
-        closeImage = FindUtil.$(guillioView, R.id.guillo_image_close);
+        ImageView closeImage = FindUtil.$(guillioView, R.id.guillo_image_close);
 
         guillo = new GuillotineAnimation.GuillotineBuilder(guillioView, closeImage, openImage)
                 .setStartDelay(RIPPLE_DURATION)
@@ -113,10 +106,10 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
     }
 
     private void initRecyclerView() {
-        toolsAdapter = new ToolsAdapter();
+        ToolsAdapter toolsAdapter = new ToolsAdapter();
         toolsAdapter.setOnItemClickListener(this);
         recycler.setLayoutManager(new GridLayoutManager(this, 3));
-        recycler.addItemDecoration(new GridDivider(this));
+        recycler.addItemDecoration(new GridDivider(this, GridDivider.BOTH));
         recycler.setAdapter(toolsAdapter);
     }
 
@@ -151,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                     fragmentMap.put(index, new IPQueryFragment());
                 }
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(index));
+                titleText.setText(R.string.ip);
                 break;
             default:
                 break;
