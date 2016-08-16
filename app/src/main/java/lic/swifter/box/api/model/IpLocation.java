@@ -5,6 +5,7 @@ package lic.swifter.box.api.model;
  */
 public class IpLocation {
 
+    public long timeStamp;
     public String searchText;
 
     public String area;

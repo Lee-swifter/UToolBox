@@ -24,7 +24,7 @@ import java.util.Map;
 import lic.swifter.box.R;
 import lic.swifter.box.fragment.BaseFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
-import lic.swifter.box.recycler.Divider;
+import lic.swifter.box.recycler.divider.GridDivider;
 import lic.swifter.box.recycler.adapter.ToolsAdapter;
 import lic.swifter.box.util.FindUtil;
 import lic.swifter.box.util.ToastUtil;
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
         toolsAdapter = new ToolsAdapter();
         toolsAdapter.setOnItemClickListener(this);
         recycler.setLayoutManager(new GridLayoutManager(this, 3));
-        recycler.addItemDecoration(new Divider(this));
+        recycler.addItemDecoration(new GridDivider(this));
         recycler.setAdapter(toolsAdapter);
     }
 

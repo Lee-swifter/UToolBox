@@ -18,7 +18,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="170dip"
+        android:layout_height="120dip"
         android:layout_margin="3dip">
 
         <ProgressBar
@@ -40,15 +40,15 @@
                 android:id="@+id/ip_result_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
-                android:textSize="18sp" />
+                android:layout_margin="5dip"
+                android:textSize="16sp" />
 
             <lic.swifter.box.widget.CanaroTextView
                 android:id="@+id/ip_result_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dip"
-                android:textSize="18sp" />
+                android:layout_margin="5dip"
+                android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
 

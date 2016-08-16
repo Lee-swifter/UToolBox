@@ -30,6 +30,7 @@ public class IpResultHolder extends RecyclerView.ViewHolder {
         TypedValue typedValue = new TypedValue();
         itemView.getContext().getTheme().resolveAttribute(R.attr.selectableItemBackground, typedValue, true);
         itemView.setBackgroundResource(typedValue.resourceId);
+        itemView.setClickable(true);
     }
 
     public void setData(IpLocation ipLocation) {

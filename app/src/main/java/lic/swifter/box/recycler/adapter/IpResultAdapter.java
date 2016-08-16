@@ -37,4 +37,9 @@ public class IpResultAdapter extends RecyclerView.Adapter<IpResultHolder> {
     public int getItemCount() {
         return ipList.size();
     }
+
+    public void addFirst(IpLocation ipLocation) {
+        ipList.add(0, ipLocation);
+        notifyItemInserted(0);
+    }
 }
