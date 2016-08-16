@@ -28,6 +28,8 @@ import lic.swifter.box.api.model.IpLocation;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.db.BoxContract;
 import lic.swifter.box.db.BoxDbHelper;
+import lic.swifter.box.mvp.presenter.IpQueryPresenter;
+import lic.swifter.box.mvp.view.IpQueryView;
 import lic.swifter.box.recycler.divider.GridDivider;
 import lic.swifter.box.recycler.adapter.IpResultAdapter;
 import lic.swifter.box.widget.CanaroTextView;
@@ -35,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class IPQueryFragment extends BaseFragment {
+public class IPQueryFragment extends BaseFragment implements IpQueryView {
 
     @Bind(R.id.ip_input_text)
     TextInputEditText inputEditText;
@@ -54,6 +56,8 @@ public class IPQueryFragment extends BaseFragment {
     private IpResultAdapter adapter;
     private IpLocation currentResult;
 
+    private IpQueryPresenter presenter;
+
     public IPQueryFragment() {
     }
 
@@ -62,6 +66,7 @@ public class IPQueryFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_ip_query, container, false);
         ButterKnife.bind(this, rootView);
+        presenter = new IpQueryPresenter(this);
 
         initView();
         return rootView;
@@ -89,12 +94,16 @@ public class IPQueryFragment extends BaseFragment {
         });
     }
 
-    private void queryIp(final String ip) {
+    @Override
+    public void beforeQuery() {
         fadeInView(progress);
         fadeOutView(resultWrapper);
 
         if(currentResult != null)
             adapter.addFirst(currentResult);
+    }
+
+    private void queryIp(final String ip) {
 
         JuheApi juheApi = ApiHelper.getJuhe();
         Call<Result<IpLocation>> call = juheApi.queryIp(ip);

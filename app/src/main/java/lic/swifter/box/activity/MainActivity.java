@@ -1,8 +1,6 @@
 package lic.swifter.box.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -18,7 +16,6 @@ import android.widget.TextView;
 
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
-import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,38 +32,15 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
     private static final int RIPPLE_DURATION = 250;
     private static final int TIME_EXIT = 2000;
 
-    private static final int WHAT_MESSAGE_EXIT = 1001;
-
     private TextView titleText;
     private RecyclerView recycler;
     private GuillotineAnimation guillo;
 
-    private boolean readyExit;
     private int currentIndex = -1;
 
-    private MainHandler handler;
     private Map<Integer, BaseFragment> fragmentMap;
 
-    private static class MainHandler extends Handler {
-
-        private WeakReference<MainActivity> activityWrapper;
-
-        MainHandler(MainActivity activity) {
-            activityWrapper = new WeakReference<>(activity);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            MainActivity activity = activityWrapper.get();
-            if (activity != null) {
-                switch (msg.what) {
-                    case WHAT_MESSAGE_EXIT:
-                        activity.readyExit = false;
-                        break;
-                }
-            }
-        }
-    }
+    private long exitTimeStamp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
         setContentView(R.layout.activity_main);
 
         initView();
-        handler = new MainHandler(this);
     }
 
     private void initView() {
@@ -115,14 +88,12 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
 
     @Override
     public void onBackPressed() {
-        if (!readyExit) {
+        if (exitTimeStamp + TIME_EXIT > System.currentTimeMillis())
+            super.onBackPressed();
+        else {
+            exitTimeStamp = System.currentTimeMillis();
             ToastUtil.showShort(this, R.string.ready_exit);
-
-            readyExit = true;
-            handler.sendEmptyMessageDelayed(WHAT_MESSAGE_EXIT, TIME_EXIT);
-            return;
         }
-        super.onBackPressed();
     }
 
     @Override

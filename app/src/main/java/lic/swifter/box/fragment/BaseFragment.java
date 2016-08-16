@@ -1,14 +1,12 @@
 package lic.swifter.box.fragment;
 
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
 /**
+ * Fragment 基类，使用基类便于处理公共操作
  * Created by lic on 16-7-7.
  */
 public abstract class BaseFragment extends Fragment {
