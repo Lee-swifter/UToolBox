@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -16,16 +17,14 @@ import android.widget.TextView;
 
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import lic.swifter.box.R;
 import lic.swifter.box.fragment.BaseFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
-import lic.swifter.box.recycler.divider.GridDivider;
 import lic.swifter.box.recycler.adapter.ToolsAdapter;
+import lic.swifter.box.recycler.divider.GridDivider;
 import lic.swifter.box.util.FindUtil;
 import lic.swifter.box.util.ToastUtil;
+
 
 public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnItemClickListener {
 
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
 
     private int currentIndex = -1;
 
-    private Map<Integer, BaseFragment> fragmentMap;
+    private SparseArray<BaseFragment> fragmentMap;
 
     private long exitTimeStamp;
 
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 .setClosedOnStart(false)
                 .build();
 
-        fragmentMap = new HashMap<>();
+        fragmentMap = new SparseArray<>();
         initRecyclerView();
 
     }
