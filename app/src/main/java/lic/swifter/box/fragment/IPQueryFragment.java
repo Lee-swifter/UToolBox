@@ -37,7 +37,7 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
     CanaroTextView resultAreaText;
     @Bind(R.id.ip_result_location)
     CanaroTextView resultLocationText;
-    @Bind(R.id.ip_result_result)
+    @Bind(R.id.ip_result_wrapper)
     LinearLayout resultWrapper;
     @Bind(R.id.ip_record_list)
     RecyclerView recyclerView;
@@ -59,6 +59,12 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
 
         initView();
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        ButterKnife.unbind(this);
+        super.onDestroyView();
     }
 
     private void initView() {
