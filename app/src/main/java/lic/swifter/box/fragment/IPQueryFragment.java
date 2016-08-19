@@ -118,8 +118,8 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
             case NET_REQUEST_FAILURE:
                 resultAreaText.setText(R.string.net_failure);
                 resultLocationText.setVisibility(View.GONE);
-                fadeOutView(progress);
-                fadeInView(resultWrapper);
+
+                gotResponse();
                 break;
         }
     }

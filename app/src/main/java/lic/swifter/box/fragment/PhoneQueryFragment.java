@@ -152,6 +152,8 @@ public class PhoneQueryFragment extends BaseFragment implements PhoneQueryView {
                 resultCompany.setVisibility(View.GONE);
                 resultAreaCode.setVisibility(View.GONE);
                 resultZip.setVisibility(View.GONE);
+
+                gotResponse();
                 break;
             default:
                 break;

@@ -126,8 +126,7 @@ public class IDQueryFragment extends BaseFragment implements IdQueryView {
                 resultGender.setVisibility(View.GONE);
                 resultBirthday.setVisibility(View.GONE);
 
-                fadeInView(resultWrapper);
-                fadeOutView(progressBar);
+                gotResponse();
                 break;
         }
     }
