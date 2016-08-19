@@ -10,8 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class BoxDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "box.db";
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "box.db";
 
     private static final String TEXT_TYPE = " TEXT";
     private static final String TIME_STAMP_TYPE = " TIMESTAMP";
@@ -20,15 +20,27 @@ public class BoxDbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_IP_ENTRIES =
             "CREATE TABLE " + BoxContract.IpEntry.TABLE_NAME + " (" +
                     BoxContract.IpEntry._ID + " INTEGER PRIMARY KEY," +
-                    BoxContract.IpEntry.COLUMN_NAME_SEARCH_DATA + TEXT_TYPE + COMMA_SEP +
                     BoxContract.IpEntry.COLUMN_NAME_SEARCH_TIME_STAMP + TIME_STAMP_TYPE + COMMA_SEP +
+                    BoxContract.IpEntry.COLUMN_NAME_SEARCH_DATA + TEXT_TYPE + COMMA_SEP +
                     BoxContract.IpEntry.COLUMN_NAME_RESULT_AREA + TEXT_TYPE + COMMA_SEP +
                     BoxContract.IpEntry.COLUMN_NAME_RESULT_LOCATION + TEXT_TYPE +
             " )";
 
+    private static final String SQL_CREATE_ID_ENTRIES =
+            "CREATE TABLE " + BoxContract.IdEntry.TABLE_NAME + " (" +
+                    BoxContract.IdEntry._ID + " INTEGER PRIMARY KEY," +
+                    BoxContract.IdEntry.COLUMN_NAME_SEARCH_TIME_STAMP + TIME_STAMP_TYPE + COMMA_SEP +
+                    BoxContract.IdEntry.COLUMN_NAME_SEARCH_ID_NUMBER + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.IdEntry.COLUMN_NAME_RESULT_AREA + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.IdEntry.COLUMN_NAME_RESULT_BIRTHDAY + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.IdEntry.COLUMN_NAME_RESULT_SEX + TEXT_TYPE +
+                    " )";
+
     private static final String SQL_DELETE_IP_ENTRIES =
             "DROP TABLE IF EXISTS " + BoxContract.IpEntry.TABLE_NAME;
 
+    private static final String SQL_DELETE_ID_ENTRIES =
+            "DROP TABLE IF EXISTS " + BoxContract.IdEntry.TABLE_NAME;
 
     private static BoxDbHelper instance;
 
@@ -53,11 +65,13 @@ public class BoxDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(SQL_CREATE_IP_ENTRIES);
+        sqLiteDatabase.execSQL(SQL_CREATE_ID_ENTRIES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL(SQL_DELETE_IP_ENTRIES);
+        sqLiteDatabase.execSQL(SQL_DELETE_ID_ENTRIES);
         onCreate(sqLiteDatabase);
     }
 

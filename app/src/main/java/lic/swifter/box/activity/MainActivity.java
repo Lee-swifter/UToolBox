@@ -21,6 +21,7 @@ import java.util.HashMap;
 import lic.swifter.box.R;
 import lic.swifter.box.data.FragmentsFlag;
 import lic.swifter.box.fragment.BaseFragment;
+import lic.swifter.box.fragment.IDQueryFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
 import lic.swifter.box.recycler.adapter.ToolsAdapter;
 import lic.swifter.box.recycler.divider.GridDivider;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
     private RecyclerView recycler;
     private GuillotineAnimation guillo;
 
-    private FragmentsFlag currentFlag ;
+    private FragmentsFlag currentFlag;
 
     private HashMap<FragmentsFlag, BaseFragment> fragmentMap;
 
@@ -118,6 +119,12 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.ip);
                 break;
+            case IdQueryFragment: //身份证查询
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new IDQueryFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
+                titleText.setText(R.string.id_inquiry);
             default:
                 break;
         }

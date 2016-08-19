@@ -33,7 +33,7 @@ public class IpQueryPresenter implements NetPresenter<String>, DbPresenter<IpLoc
     }
 
     @Override
-    public void query(String ip) {
+    public void query(final String ip) {
         ipQueryView.beforeQuery(ip);
         if(lastResult != null && lastResult.result != null)
             ipQueryView.insertLastResult(lastResult.result);
@@ -43,15 +43,20 @@ public class IpQueryPresenter implements NetPresenter<String>, DbPresenter<IpLoc
         call.enqueue(new Callback<Result<IpLocation>>() {
             @Override
             public void onResponse(Call<Result<IpLocation>> call, Response<Result<IpLocation>> response) {
-                if (response.isSuccessful())
-                    if(response.body().resultcode == 200) {
-                        lastResult = response.body();
+                if (response.isSuccessful()) {
+                    lastResult = response.body();
+                    if (lastResult.resultcode == 200) {
+                        lastResult.result.ip = ip;
                         ipQueryView.afterQuery(NetQueryType.NET_RESPONSE_SUCCESS, lastResult);
                         saveToDb(lastResult.result);
-                    } else
-                        ipQueryView.afterQuery(NetQueryType.NET_RESPONSE_ERROR_REASON, response.body());
-                else
+                    } else {
+                        ipQueryView.afterQuery(NetQueryType.NET_RESPONSE_ERROR_REASON, lastResult);
+                        lastResult = null;
+                    }
+                } else {
                     ipQueryView.afterQuery(NetQueryType.NET_RESPONSE_ERROR, null);
+                    lastResult = null;
+                }
 
                 ipQueryView.gotResponse();
             }
@@ -60,6 +65,7 @@ public class IpQueryPresenter implements NetPresenter<String>, DbPresenter<IpLoc
             public void onFailure(Call<Result<IpLocation>> call, Throwable t) {
                 t.printStackTrace();
                 ipQueryView.afterQuery(NetQueryType.NET_REQUEST_FAILURE, null);
+                lastResult = null;
             }
         });
     }
@@ -71,7 +77,7 @@ public class IpQueryPresenter implements NetPresenter<String>, DbPresenter<IpLoc
             public void run() {
                 SQLiteDatabase sqLiteDatabase = BoxDbHelper.getInstance(ipQueryView.getContext()).getWritableDatabase();
                 ContentValues values = new ContentValues();
-                values.put(BoxContract.IpEntry.COLUMN_NAME_SEARCH_DATA, ipLocation.searchText);
+                values.put(BoxContract.IpEntry.COLUMN_NAME_SEARCH_DATA, ipLocation.ip);
                 values.put(BoxContract.IpEntry.COLUMN_NAME_SEARCH_TIME_STAMP, System.currentTimeMillis());
                 values.put(BoxContract.IpEntry.COLUMN_NAME_RESULT_AREA, ipLocation.area);
                 values.put(BoxContract.IpEntry.COLUMN_NAME_RESULT_LOCATION, ipLocation.location);
@@ -94,8 +100,8 @@ public class IpQueryPresenter implements NetPresenter<String>, DbPresenter<IpLoc
                 if(cursor.moveToFirst()) {
                     do{
                         IpLocation currentRecord = new IpLocation();
-                        currentRecord.timeStamp = cursor.getInt(cursor.getColumnIndexOrThrow(BoxContract.IpEntry.COLUMN_NAME_SEARCH_TIME_STAMP));
-                        currentRecord.searchText = cursor.getString(cursor.getColumnIndexOrThrow(BoxContract.IpEntry.COLUMN_NAME_SEARCH_DATA));
+                        currentRecord.timeStamp = cursor.getLong(cursor.getColumnIndexOrThrow(BoxContract.IpEntry.COLUMN_NAME_SEARCH_TIME_STAMP));
+                        currentRecord.ip = cursor.getString(cursor.getColumnIndexOrThrow(BoxContract.IpEntry.COLUMN_NAME_SEARCH_DATA));
                         currentRecord.area = cursor.getString(cursor.getColumnIndexOrThrow(BoxContract.IpEntry.COLUMN_NAME_RESULT_AREA));
                         currentRecord.location = cursor.getString(cursor.getColumnIndexOrThrow(BoxContract.IpEntry.COLUMN_NAME_RESULT_LOCATION));
                         list.add(currentRecord);

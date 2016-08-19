@@ -42,9 +42,7 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
     @Bind(R.id.ip_record_list)
     RecyclerView recyclerView;
 
-    private String searchString;
     private IpResultAdapter adapter;
-
     private IpQueryPresenter presenter;
 
     public IPQueryFragment() {
@@ -74,7 +72,7 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_UP) {
-                    searchString = inputEditText.getText().toString();
+                    String searchString = inputEditText.getText().toString();
 
                     presenter.query(searchString);
 
@@ -104,8 +102,6 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
     public void afterQuery(NetQueryType type, Result<IpLocation> response) {
         switch (type) {
             case NET_RESPONSE_SUCCESS:
-                response.result.searchText = searchString;
-
                 resultAreaText.setText(response.result.area);
                 resultLocationText.setText(response.result.location);
                 resultLocationText.setVisibility(View.VISIBLE);

@@ -6,16 +6,9 @@ package lic.swifter.box.api.model;
 public class IpLocation {
 
     public long timeStamp;
-    public String searchText;
+    public String ip;
 
     public String area;
     public String location;
 
-    @Override
-    public String toString() {
-        return "IpLocation{" +
-                "area='" + area + '\'' +
-                ", location='" + location + '\'' +
-                '}';
-    }
 }
