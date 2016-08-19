@@ -129,12 +129,7 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
         fadeOutView(progress);
         fadeInView(resultWrapper);
     }
-
-    @Override
-    public Context getContext() {
-        return super.getContext();
-    }
-
+    
     @Override
     public void afterReadResults(List<IpLocation> resultList) {
         adapter = new IpResultAdapter(resultList);

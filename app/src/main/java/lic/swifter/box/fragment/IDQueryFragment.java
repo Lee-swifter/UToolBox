@@ -144,11 +144,6 @@ public class IDQueryFragment extends BaseFragment implements IdQueryView {
     }
 
     @Override
-    public Context getContext() {
-        return super.getContext();
-    }
-
-    @Override
     public void afterReadResults(List<IdResult> resultList) {
         adapter = new IdResultAdapter(resultList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
