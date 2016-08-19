@@ -7,6 +7,7 @@
     <string name="net_failure">网络错误，请检查网络连接</string>
 
     <string name="ip">IP查询</string>
+    <string name="today_history">历史上今天</string>
     <string name="today_in_history">历史上的今天</string>
     <string name="news">新闻</string>
     <string name="wx_carefully_chosen">微信精选</string>
@@ -20,6 +21,7 @@
 
     <string name="area_code_string">区号： %1$s</string>
     <string name="zip_string">邮编： %1$s</string>
+    <string name="date_format_string">%1$d年%2$d月%3$d日</string>
 
     <string name="input_ip_or_domain">请输入ip地址或域名</string>
     <string name="input_id_number_hint">请输入身份证号</string>

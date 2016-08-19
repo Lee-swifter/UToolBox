@@ -7,5 +7,6 @@ package lic.swifter.box.data;
 public enum FragmentsFlag {
     IpQueryFragment,
     IdQueryFragment,
-    PhoneQueryFragment
+    PhoneQueryFragment,
+    TodayHistoryFragment
 }

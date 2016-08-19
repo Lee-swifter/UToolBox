@@ -15,4 +15,11 @@
         <item name="android:layout_marginBottom">@dimen/abc_action_bar_overflow_padding_start_material</item>
     </style>
 
+    <style name="PageTodayTextView" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">10dip</item>
+    </style>
+
 </resources>
