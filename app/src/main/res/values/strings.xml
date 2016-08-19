@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">UToolBox</string>
     <string name="ready_exit">再次点击退出应用</string>
 
@@ -12,12 +13,16 @@
     <string name="qa_robot">问答机器人</string>
     <string name="exchange_rate">汇率</string>
     <string name="weather_forecast">天气预报</string>
-    <string name="mobile_number_attr">手机号码归属地</string>
+    <string name="mobile_number_attr">手机号查询</string>
     <string name="id_inquiry">身份证查询</string>
     <string name="qq_number_query">QQ号码测吉凶</string>
     <string name="jokes_collection">笑话大全</string>
 
+    <string name="area_code_string">区号： %1$s</string>
+    <string name="zip_string">邮编： %1$s</string>
+
     <string name="input_ip_or_domain">请输入ip地址或域名</string>
     <string name="input_id_number_hint">请输入身份证号</string>
+    <string name="input_phone_number_hint">请输入手机号码</string>
 
 </resources>

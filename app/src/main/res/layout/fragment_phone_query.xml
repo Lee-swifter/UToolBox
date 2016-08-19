@@ -10,11 +10,11 @@
         android:layout_margin="3dip">
 
         <EditText
-            android:id="@+id/id_input_text"
+            android:id="@+id/phone_input_text"
             android:layout_width="match_parent"
             android:layout_height="50dip"
-            android:digits="0123456789xX"
-            android:hint="@string/input_id_number_hint" />
+            android:inputType="phone"
+            android:hint="@string/input_phone_number_hint" />
     </android.support.design.widget.TextInputLayout>
 
     <RelativeLayout
@@ -23,14 +23,14 @@
         android:layout_margin="3dip">
 
         <ProgressBar
-            android:id="@+id/id_progress"
+            android:id="@+id/phone_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/id_result_wrapper"
+            android:id="@+id/phone_result_wrapper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -38,22 +38,29 @@
             android:visibility="gone">
 
             <lic.swifter.box.widget.CanaroTextView
-                android:id="@+id/id_result_location"
+                android:id="@+id/phone_result_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dip" />
 
             <lic.swifter.box.widget.CanaroTextView
-                android:id="@+id/id_result_gender"
+                android:id="@+id/phone_result_company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dip" />
 
             <lic.swifter.box.widget.CanaroTextView
-                android:id="@+id/id_result_birthday"
+                android:id="@+id/phone_result_area_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dip" />
+
+            <lic.swifter.box.widget.CanaroTextView
+                android:id="@+id/phone_result_zip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dip" />
+
         </LinearLayout>
     </RelativeLayout>
 
@@ -63,7 +70,7 @@
         android:background="@color/guillotine_background" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/id_record_list"
+        android:id="@+id/phone_record_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

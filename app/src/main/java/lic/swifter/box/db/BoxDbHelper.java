@@ -36,11 +36,27 @@ public class BoxDbHelper extends SQLiteOpenHelper {
                     BoxContract.IdEntry.COLUMN_NAME_RESULT_SEX + TEXT_TYPE +
                     " )";
 
+    private static final String SQL_CREATE_PHONE_ENTRIES =
+            "CREATE TABLE " + BoxContract.PhoneEntry.TABLE_NAME + " (" +
+                    BoxContract.PhoneEntry._ID + " INTEGER PRIMARY KEY," +
+                    BoxContract.PhoneEntry.COLUMN_NAME_SEARCH_TIME_STAMP + TIME_STAMP_TYPE + COMMA_SEP +
+                    BoxContract.PhoneEntry.COLUMN_NAME_SEARCH_PHONE_NUMBER + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.PhoneEntry.COLUMN_NAME_RESULT_PROVINCE + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.PhoneEntry.COLUMN_NAME_RESULT_CITY + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.PhoneEntry.COLUMN_NAME_RESULT_AREA_CODE + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.PhoneEntry.COLUMN_NAME_RESULT_ZIP + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.PhoneEntry.COLUMN_NAME_RESULT_COMPANY + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.PhoneEntry.COLUMN_NAME_RESULT_CARD + TEXT_TYPE +
+                    " )";
+
     private static final String SQL_DELETE_IP_ENTRIES =
             "DROP TABLE IF EXISTS " + BoxContract.IpEntry.TABLE_NAME;
 
     private static final String SQL_DELETE_ID_ENTRIES =
             "DROP TABLE IF EXISTS " + BoxContract.IdEntry.TABLE_NAME;
+
+    private static final String SQL_DELETE_PHONE_ENTRIES =
+            "DROP TABLE IF EXISTS " + BoxContract.PhoneEntry.TABLE_NAME;
 
     private static BoxDbHelper instance;
 
@@ -66,12 +82,14 @@ public class BoxDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(SQL_CREATE_IP_ENTRIES);
         sqLiteDatabase.execSQL(SQL_CREATE_ID_ENTRIES);
+        sqLiteDatabase.execSQL(SQL_CREATE_PHONE_ENTRIES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL(SQL_DELETE_IP_ENTRIES);
         sqLiteDatabase.execSQL(SQL_DELETE_ID_ENTRIES);
+        sqLiteDatabase.execSQL(SQL_DELETE_PHONE_ENTRIES);
         onCreate(sqLiteDatabase);
     }
 
