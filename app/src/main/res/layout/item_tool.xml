@@ -7,5 +7,8 @@
     <TextView
         android:id="@+id/item_tool_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dip"
+        android:gravity="center"
+        android:textSize="12sp"/>
 </merge>

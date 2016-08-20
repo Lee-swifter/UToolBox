@@ -16,6 +16,7 @@
     <string name="weather_forecast">天气预报</string>
     <string name="mobile_number_attr">手机号查询</string>
     <string name="id_inquiry">身份证查询</string>
+    <string name="qq_num_query">QQ号测吉凶</string>
     <string name="qq_number_query">QQ号码测吉凶</string>
     <string name="jokes_collection">笑话大全</string>
 
@@ -26,5 +27,5 @@
     <string name="input_ip_or_domain">请输入ip地址或域名</string>
     <string name="input_id_number_hint">请输入身份证号</string>
     <string name="input_phone_number_hint">请输入手机号码</string>
-
+    <string name="input_qq_number_hint">请输入QQ号码</string>
 </resources>

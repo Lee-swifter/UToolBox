@@ -6,9 +6,9 @@ package lic.swifter.box.api.model;
 
 public class QQLuck {
 
-    public QQLuchData data;
+    public QQLuckData data;
 
-    public class QQLuchData {
+    public class QQLuckData {
         public String conclusion;
         public String analysis;
     }
