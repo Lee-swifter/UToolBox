@@ -13,7 +13,8 @@
             android:id="@+id/page_joke_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="15sp" />
+            android:lineSpacingExtra="4dip"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/page_joke_time"
