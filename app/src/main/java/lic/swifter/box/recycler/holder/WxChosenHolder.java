@@ -19,7 +19,6 @@ import lic.swifter.box.util.ViewUtil;
 /**
  * Created by cheng on 2016/8/20.
  */
-
 public class WxChosenHolder extends RecyclerView.ViewHolder {
 
     @Bind(R.id.wx_chosen_image)

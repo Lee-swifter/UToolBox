@@ -5,6 +5,7 @@ import java.util.List;
 import lic.swifter.box.api.model.IdResult;
 import lic.swifter.box.api.model.IpLocation;
 import lic.swifter.box.api.model.PhoneResult;
+import lic.swifter.box.api.model.QQLuck;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TodayHistoryResult;
 import lic.swifter.box.api.model.WxChosenWrapper;
@@ -22,6 +23,7 @@ public interface JuheApi {
     String PHONE_KEY = "cb0bad5a58017ce062ffa93108b72f1e";
     String TOH_KEY = "3b06779df8d6f97b66592aca7705beca";
     String WX_KEY = "bcc0719e0ad1eac6402bafa02cc9eea3";
+    String QQ_LUCK_KEY = "d875bba41c2c4ea90d984751a8f0b942";
 
     @GET("ip/ip2addr?key="+IP_KEY)
     Call<Result<IpLocation>> queryIp(@Query("ip") String ip);
@@ -37,4 +39,7 @@ public interface JuheApi {
 
     @GET("weixin/query?key="+WX_KEY+"&ps=50")
     Call<Result<WxChosenWrapper>> queryWxChosen();
+
+    @GET("qqevaluate/qq?key="+QQ_LUCK_KEY)
+    Call<Result<QQLuck>> queryQQLuck(@Query("qq") String qqNumber);
 }

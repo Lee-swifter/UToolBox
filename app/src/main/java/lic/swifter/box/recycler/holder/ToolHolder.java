@@ -13,7 +13,7 @@ public class ToolHolder extends RecyclerView.ViewHolder {
 
     public ToolView view;
 
-    public ToolHolder(View itemView) {
+    private ToolHolder(View itemView) {
         super(itemView);
         if (itemView instanceof ToolView)
             view = (ToolView) itemView;
