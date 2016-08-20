@@ -66,6 +66,7 @@ public class IDQueryFragment extends BaseFragment implements IdQueryView {
     @Override
     public void onDestroyView() {
         ButterKnife.unbind(this);
+        presenter.cancelQuery();
         super.onDestroyView();
     }
 

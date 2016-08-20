@@ -44,11 +44,11 @@ public class TodayHistoryFragment extends BaseFragment implements IView<String, 
         ButterKnife.bind(this, rootView);
 
         presenter = new TodayHistoryPresenter(this);
-        presenter.query("");
+        presenter.query();
         statusText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.query("");
+                presenter.query();
             }
         });
         return rootView;
@@ -56,8 +56,9 @@ public class TodayHistoryFragment extends BaseFragment implements IView<String, 
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
         ButterKnife.unbind(this);
+        presenter.cancelQuery();
+        super.onDestroyView();
     }
 
     @Override

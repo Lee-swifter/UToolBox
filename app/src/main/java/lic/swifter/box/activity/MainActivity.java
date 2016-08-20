@@ -25,6 +25,7 @@ import lic.swifter.box.fragment.IDQueryFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
 import lic.swifter.box.fragment.PhoneQueryFragment;
 import lic.swifter.box.fragment.TodayHistoryFragment;
+import lic.swifter.box.fragment.WxChosenFragment;
 import lic.swifter.box.recycler.adapter.ToolsAdapter;
 import lic.swifter.box.recycler.divider.GridDivider;
 import lic.swifter.box.util.FindUtil;
@@ -140,6 +141,13 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 }
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.today_in_history);
+                break;
+            case WxChosenFragment:
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new WxChosenFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
+                titleText.setText(R.string.wx_carefully_chosen);
                 break;
             default:
                 break;

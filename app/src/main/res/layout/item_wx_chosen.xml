@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dip"
+    android:orientation="horizontal"
+    android:padding="5dip">
+
+    <ImageView
+        android:id="@+id/wx_chosen_image"
+        android:layout_width="120dip"
+        android:layout_height="90dip" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10dip"
+        android:paddingEnd="5dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="5dip"
+        android:paddingStart="10dip"
+        android:paddingTop="10dip">
+
+        <TextView
+            android:id="@+id/wx_chosen_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/wx_chosen_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+</LinearLayout>

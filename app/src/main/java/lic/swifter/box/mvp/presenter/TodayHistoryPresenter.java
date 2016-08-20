@@ -16,22 +16,22 @@ import retrofit2.Response;
  * Created by cheng on 2016/8/19.
  */
 
-public class TodayHistoryPresenter implements NetPresenter<String> {
+public class TodayHistoryPresenter implements NPresenter {
 
     private IView<String, List<TodayHistoryResult>> tohView;
+    private Call<Result<List<TodayHistoryResult>>> call;
 
     public TodayHistoryPresenter(IView<String, List<TodayHistoryResult>> todayHistoryView) {
         this.tohView = todayHistoryView;
     }
 
     @Override
-    public void query(String parameter) {
-        tohView.beforeQuery(parameter);
+    public void query() {
+        tohView.beforeQuery(null);
 
         Calendar calendar = Calendar.getInstance();
         JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.API_JUHEAPI_COM);
-        Call<Result<List<TodayHistoryResult>>> call =
-                juheApi.queryToh(calendar.get(Calendar.MONTH) + 1,
+        call = juheApi.queryToh(calendar.get(Calendar.MONTH) + 1,
                         calendar.get(Calendar.DAY_OF_MONTH));
         call.enqueue(new Callback<Result<List<TodayHistoryResult>>>() {
             @Override
@@ -54,6 +54,13 @@ public class TodayHistoryPresenter implements NetPresenter<String> {
                 tohView.afterQuery(NetQueryType.NET_REQUEST_FAILURE, null);
             }
         });
+    }
+
+    @Override
+    public void cancelQuery() {
+        if(call != null && !call.isCanceled()) {
+            call.cancel();
+        }
     }
 
 }

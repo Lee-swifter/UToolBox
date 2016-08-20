@@ -27,6 +27,7 @@ public class IdQueryPresenter implements NetPresenter<String>, DbPresenter<IdRes
 
     private IdQueryView idQueryView;
     private Result<IdResult> lastResult;
+    private Call<Result<IdResult>> call;
 
     public IdQueryPresenter(IdQueryView idQueryView) {
         this.idQueryView = idQueryView;
@@ -90,7 +91,7 @@ public class IdQueryPresenter implements NetPresenter<String>, DbPresenter<IdRes
             idQueryView.insertLastResult(lastResult.result);
 
         JuheApi juheApi = ApiHelper.getJuhe();
-        Call<Result<IdResult>> call = juheApi.queryId(queryParameter);
+        call = juheApi.queryId(queryParameter);
         call.enqueue(new Callback<Result<IdResult>>() {
             @Override
             public void onResponse(Call<Result<IdResult>> call, Response<Result<IdResult>> response) {
@@ -120,4 +121,12 @@ public class IdQueryPresenter implements NetPresenter<String>, DbPresenter<IdRes
             }
         });
     }
+
+    @Override
+    public void cancelQuery() {
+        if(call != null && !call.isCanceled()) {
+            call.cancel();
+        }
+    }
+
 }

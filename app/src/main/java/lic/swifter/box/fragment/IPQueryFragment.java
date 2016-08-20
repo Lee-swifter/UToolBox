@@ -62,6 +62,7 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
     @Override
     public void onDestroyView() {
         ButterKnife.unbind(this);
+        presenter.cancelQuery();
         super.onDestroyView();
     }
 

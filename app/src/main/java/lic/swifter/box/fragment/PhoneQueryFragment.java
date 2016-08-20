@@ -68,6 +68,7 @@ public class PhoneQueryFragment extends BaseFragment implements PhoneQueryView {
     @Override
     public void onDestroyView() {
         ButterKnife.unbind(this);
+        presenter.cancelQuery();
         super.onDestroyView();
     }
 

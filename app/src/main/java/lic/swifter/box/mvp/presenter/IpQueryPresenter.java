@@ -27,6 +27,7 @@ public class IpQueryPresenter implements NetPresenter<String>, DbPresenter<IpLoc
 
     private IpQueryView ipQueryView;
     private Result<IpLocation> lastResult;
+    private Call<Result<IpLocation>> call;
 
     public IpQueryPresenter(IpQueryView ipQueryView) {
         this.ipQueryView = ipQueryView;
@@ -39,7 +40,7 @@ public class IpQueryPresenter implements NetPresenter<String>, DbPresenter<IpLoc
             ipQueryView.insertLastResult(lastResult.result);
 
         JuheApi juheApi = ApiHelper.getJuhe();
-        Call<Result<IpLocation>> call = juheApi.queryIp(ip);
+        call = juheApi.queryIp(ip);
         call.enqueue(new Callback<Result<IpLocation>>() {
             @Override
             public void onResponse(Call<Result<IpLocation>> call, Response<Result<IpLocation>> response) {
@@ -117,6 +118,13 @@ public class IpQueryPresenter implements NetPresenter<String>, DbPresenter<IpLoc
                 ipQueryView.afterReadResults(ipLocations);
             }
         }.execute();
+    }
+
+    @Override
+    public void cancelQuery() {
+        if(call != null && !call.isCanceled()) {
+            call.cancel();
+        }
     }
 
 }

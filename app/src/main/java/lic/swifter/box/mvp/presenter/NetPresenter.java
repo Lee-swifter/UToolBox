@@ -11,4 +11,6 @@ interface NetPresenter<T> {
      */
     void query(T queryParameter);
 
+    void cancelQuery();
+
 }

@@ -8,5 +8,6 @@ public enum FragmentsFlag {
     IpQueryFragment,
     IdQueryFragment,
     PhoneQueryFragment,
-    TodayHistoryFragment
+    TodayHistoryFragment,
+    WxChosenFragment
 }

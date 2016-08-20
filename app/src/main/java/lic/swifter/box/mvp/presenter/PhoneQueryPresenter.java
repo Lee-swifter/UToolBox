@@ -27,6 +27,7 @@ public class PhoneQueryPresenter implements NetPresenter<String>, DbPresenter<Ph
 
     private Result<PhoneResult> lastRecord;
     private PhoneQueryView phoneQueryView;
+    private Call<Result<PhoneResult>> call;
 
     public PhoneQueryPresenter(PhoneQueryView phoneQueryView) {
         this.phoneQueryView = phoneQueryView;
@@ -97,7 +98,7 @@ public class PhoneQueryPresenter implements NetPresenter<String>, DbPresenter<Ph
             phoneQueryView.insertLastResult(lastRecord.result);
 
         JuheApi juheApi = ApiHelper.getJuhe();
-        Call<Result<PhoneResult>> call = juheApi.queryPhone(queryParameter);
+        call = juheApi.queryPhone(queryParameter);
         call.enqueue(new Callback<Result<PhoneResult>>() {
             @Override
             public void onResponse(Call<Result<PhoneResult>> call, Response<Result<PhoneResult>> response) {
@@ -126,5 +127,12 @@ public class PhoneQueryPresenter implements NetPresenter<String>, DbPresenter<Ph
                 lastRecord = null;
             }
         });
+    }
+
+    @Override
+    public void cancelQuery() {
+        if(call != null && !call.isCanceled()) {
+            call.cancel();
+        }
     }
 }

@@ -35,7 +35,7 @@ public class ToolView extends LinearLayout {
 
         setOrientation(VERTICAL);
         setGravity(Gravity.CENTER);
-        final int padding = DisplayUtil.dip2px(context, 10);
+        final int padding = DisplayUtil.dip2px(context, 6);
         setPadding(padding, padding, padding,padding);
 
         LayoutInflater.from(context).inflate(R.layout.item_tool, this);

@@ -7,7 +7,7 @@ import lic.swifter.box.api.model.IpLocation;
 import lic.swifter.box.api.model.PhoneResult;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TodayHistoryResult;
-import lic.swifter.box.api.model.WxChosen;
+import lic.swifter.box.api.model.WxChosenWrapper;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -35,6 +35,6 @@ public interface JuheApi {
     @GET("japi/toh?key="+TOH_KEY+"&v=1.0")
     Call<Result<List<TodayHistoryResult>>> queryToh(@Query("month") int month, @Query("day") int day);
 
-    @GET("weixin/query?key="+WX_KEY)
-    Call<Result<List<WxChosen>>> queryWxChosen();
+    @GET("weixin/query?key="+WX_KEY+"&ps=50")
+    Call<Result<WxChosenWrapper>> queryWxChosen();
 }
