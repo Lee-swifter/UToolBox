@@ -7,7 +7,7 @@ import lic.swifter.box.api.ApiHelper;
 import lic.swifter.box.api.JuheApi;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TodayHistoryResult;
-import lic.swifter.box.mvp.view.TodayHistoryView;
+import lic.swifter.box.mvp.view.IView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,9 +18,9 @@ import retrofit2.Response;
 
 public class TodayHistoryPresenter implements NetPresenter<String> {
 
-    private TodayHistoryView tohView;
+    private IView<String, List<TodayHistoryResult>> tohView;
 
-    public TodayHistoryPresenter(TodayHistoryView todayHistoryView) {
+    public TodayHistoryPresenter(IView<String, List<TodayHistoryResult>> todayHistoryView) {
         this.tohView = todayHistoryView;
     }
 
@@ -29,7 +29,7 @@ public class TodayHistoryPresenter implements NetPresenter<String> {
         tohView.beforeQuery(parameter);
 
         Calendar calendar = Calendar.getInstance();
-        JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.API_JUHEAPI);
+        JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.API_JUHEAPI_COM);
         Call<Result<List<TodayHistoryResult>>> call =
                 juheApi.queryToh(calendar.get(Calendar.MONTH) + 1,
                         calendar.get(Calendar.DAY_OF_MONTH));

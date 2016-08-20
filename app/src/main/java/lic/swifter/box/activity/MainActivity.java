@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
 
         fragmentMap = new HashMap<>();
         initRecyclerView();
-
     }
 
     private void initRecyclerView() {

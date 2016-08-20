@@ -7,7 +7,7 @@ import lic.swifter.box.mvp.presenter.NetQueryType;
  * MVP中的基本View
  * Created by lic on 16-8-16.
  */
-interface IView<T, S> {
+public interface IView<T, S> {
 
     /**
      * 在开始查询之前的界面操作

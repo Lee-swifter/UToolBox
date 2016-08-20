@@ -8,7 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ApiHelper {
 
-    public static final int API_JUHEAPI = 1;
+    public static final int API_JUHEAPI_COM = 1;
+    public static final int V_JUHE_CN = 2;
 
     public static JuheApi getJuhe() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -22,8 +23,11 @@ public class ApiHelper {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.addConverterFactory(GsonConverterFactory.create());
         switch (type) {
-            case API_JUHEAPI:
+            case API_JUHEAPI_COM:
                 builder.baseUrl("http://api.juheapi.com/");
+                break;
+            case V_JUHE_CN:
+                builder.baseUrl("http://v.juhe.cn/");
                 break;
         }
         return builder.build().create(JuheApi.class);

@@ -19,14 +19,14 @@ import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TodayHistoryResult;
 import lic.swifter.box.mvp.presenter.NetQueryType;
 import lic.swifter.box.mvp.presenter.TodayHistoryPresenter;
-import lic.swifter.box.mvp.view.TodayHistoryView;
+import lic.swifter.box.mvp.view.IView;
 import lic.swifter.box.widget.TodayHistoryPage;
 
 /**
  * Created by cheng on 2016/8/19.
  */
 
-public class TodayHistoryFragment extends BaseFragment implements TodayHistoryView {
+public class TodayHistoryFragment extends BaseFragment implements IView<String, List<TodayHistoryResult>> {
 
     @Bind(R.id.today_history_progress)
     ProgressBar progress;
