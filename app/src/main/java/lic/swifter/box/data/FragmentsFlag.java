@@ -10,5 +10,6 @@ public enum FragmentsFlag {
     PhoneQueryFragment,
     TodayHistoryFragment,
     WxChosenFragment,
-    QQLuckFragment
+    QQLuckFragment,
+    JokesFragment
 }

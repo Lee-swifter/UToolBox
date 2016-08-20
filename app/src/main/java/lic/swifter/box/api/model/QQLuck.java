@@ -8,7 +8,7 @@ public class QQLuck {
 
     public QQLuckData data;
 
-    private class QQLuckData {
+    public class QQLuckData {
         public String conclusion;
         public String analysis;
     }

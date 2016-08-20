@@ -6,9 +6,9 @@ package lic.swifter.box.api.model;
 
 public class JokesWrapper {
 
-    Joke[] data;
+    public Joke[] data;
 
-    private class Joke {
+    public class Joke {
 
         public String content;
         public String hashId;

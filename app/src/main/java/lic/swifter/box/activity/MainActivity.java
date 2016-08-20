@@ -23,6 +23,7 @@ import lic.swifter.box.data.FragmentsFlag;
 import lic.swifter.box.fragment.BaseFragment;
 import lic.swifter.box.fragment.IDQueryFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
+import lic.swifter.box.fragment.JokesFragment;
 import lic.swifter.box.fragment.PhoneQueryFragment;
 import lic.swifter.box.fragment.QQLuckFragment;
 import lic.swifter.box.fragment.TodayHistoryFragment;
@@ -156,6 +157,13 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 }
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.qq_number_query);
+                break;
+            case JokesFragment:  //笑话大全
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new JokesFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
+                titleText.setText(R.string.jokes_collection);
                 break;
             default:
                 break;
