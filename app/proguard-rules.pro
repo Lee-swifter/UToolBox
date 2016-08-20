@@ -28,3 +28,17 @@
 -keepattributes Signature
 # Retain declared checked exceptions for use by a Proxy instance.
 -keepattributes Exceptions
+
+
+########## 以下是为百度统计MTJ添加的混淆内容 ##########
+-keep class com.baidu.kirin.** {*;}
+-keep class com.baidu.mobstat.** {*;}
+-keep class com.baidu.bottom.** {*;}
+
+
+########## 以下是为Glide添加的混淆内容 ##########
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}

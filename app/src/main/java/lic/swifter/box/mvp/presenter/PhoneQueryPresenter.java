@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,6 +96,8 @@ public class PhoneQueryPresenter implements NetPresenter<String>, DbPresenter<Ph
     @Override
     public void query(final String queryParameter) {
         phoneQueryView.beforeQuery(queryParameter);
+        StatService.onEvent(phoneQueryView.getContext(), "phone_query", "pass", 1);
+
         if(lastRecord != null && lastRecord.result != null)
             phoneQueryView.insertLastResult(lastRecord.result);
 

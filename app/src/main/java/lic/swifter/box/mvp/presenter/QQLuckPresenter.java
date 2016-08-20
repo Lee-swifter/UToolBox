@@ -1,5 +1,7 @@
 package lic.swifter.box.mvp.presenter;
 
+import com.baidu.mobstat.StatService;
+
 import lic.swifter.box.api.ApiHelper;
 import lic.swifter.box.api.JuheApi;
 import lic.swifter.box.api.model.QQLuck;
@@ -25,6 +27,7 @@ public class QQLuckPresenter implements NetPresenter<String> {
     @Override
     public void query(String queryParameter) {
         iView.beforeQuery(queryParameter);
+        StatService.onEvent(iView.getContext(), "qq_number_query", "pass", 1);
 
         JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.JAPI_JUHE_CN);
         call = juheApi.queryQQLuck(queryParameter);

@@ -1,5 +1,7 @@
 package lic.swifter.box.mvp.view;
 
+import android.content.Context;
+
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.mvp.presenter.NetQueryType;
 
@@ -18,4 +20,6 @@ public interface IView<T, S> {
      * 查询结束后的操作
      */
     void afterQuery(NetQueryType type, Result<S> response);
+
+    Context getContext();
 }

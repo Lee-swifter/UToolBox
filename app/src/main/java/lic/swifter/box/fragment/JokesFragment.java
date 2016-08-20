@@ -22,7 +22,6 @@ import lic.swifter.box.mvp.view.IView;
 /**
  * Created by cheng on 2016/8/20.
  */
-
 public class JokesFragment extends BaseFragment implements IView<Class<Void>, JokesWrapper> {
 
     @Bind(R.id.jokes_progress)

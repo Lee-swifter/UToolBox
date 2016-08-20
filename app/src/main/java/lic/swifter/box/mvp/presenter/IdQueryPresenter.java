@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,6 +89,8 @@ public class IdQueryPresenter implements NetPresenter<String>, DbPresenter<IdRes
     @Override
     public void query(final String queryParameter) {
         idQueryView.beforeQuery(queryParameter);
+        StatService.onEvent(idQueryView.getContext(), "id_card_query", "pass", 1);
+
         if(lastResult != null && lastResult.result != null)
             idQueryView.insertLastResult(lastResult.result);
 

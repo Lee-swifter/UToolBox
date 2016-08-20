@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.baidu.mobstat.StatService;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
 import java.util.HashMap;
@@ -55,6 +56,18 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
         setContentView(R.layout.activity_main);
 
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        StatService.onResume(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        StatService.onPause(this);
+        super.onPause();
     }
 
     private void initView() {

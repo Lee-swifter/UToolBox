@@ -1,5 +1,7 @@
 package lic.swifter.box.mvp.presenter;
 
+import com.baidu.mobstat.StatService;
+
 import lic.swifter.box.api.ApiHelper;
 import lic.swifter.box.api.JuheApi;
 import lic.swifter.box.api.model.JokesWrapper;
@@ -24,6 +26,8 @@ public class JokesPresenter implements NPresenter {
 
     @Override
     public void query() {
+        StatService.onEvent(iView.getContext(), "jokes_query", "pass", 1);
+
         JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.JAPI_JUHE_CN);
         call = juheApi.queryJokes();
         call.enqueue(new Callback<Result<JokesWrapper>>() {

@@ -14,12 +14,19 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        baidu {
+            manifestPlaceholders = [BAIDU_CHANNEL: "baidu"]
         }
     }
 }
 
 dependencies {
+    compile files('libs/Baidu_Mtj_3.7.4.2.jar')
     compile project(':guillotine')
     compile 'com.android.support:design:23.1.1'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'

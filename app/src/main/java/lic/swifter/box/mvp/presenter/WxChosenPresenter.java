@@ -1,5 +1,7 @@
 package lic.swifter.box.mvp.presenter;
 
+import com.baidu.mobstat.StatService;
+
 import lic.swifter.box.api.ApiHelper;
 import lic.swifter.box.api.JuheApi;
 import lic.swifter.box.api.model.Result;
@@ -25,6 +27,7 @@ public class WxChosenPresenter implements NPresenter {
     @Override
     public void query() {
         iView.beforeQuery(Void.TYPE);
+        StatService.onEvent(iView.getContext(), "wechat_chosen", "pass", 1);
 
         JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.V_JUHE_CN);
         call = juheApi.queryWxChosen();

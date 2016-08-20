@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,8 @@ public class IpQueryPresenter implements NetPresenter<String>, DbPresenter<IpLoc
     @Override
     public void query(final String ip) {
         ipQueryView.beforeQuery(ip);
+        StatService.onEvent(ipQueryView.getContext(), "ip_query", "pass", 1);
+
         if(lastResult != null && lastResult.result != null)
             ipQueryView.insertLastResult(lastResult.result);
 

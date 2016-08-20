@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.baidu.mobstat.StatService;
+
 /**
  * Fragment 基类，使用基类便于处理公共操作
  * Created by lic on 16-7-7.
@@ -18,6 +20,18 @@ public abstract class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+    }
+
+    @Override
+    public void onResume() {
+        StatService.onResume(this);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        StatService.onPause(this);
+        super.onPause();
     }
 
     public void fadeInView(View view) {

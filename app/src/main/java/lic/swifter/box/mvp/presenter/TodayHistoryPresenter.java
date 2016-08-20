@@ -1,5 +1,7 @@
 package lic.swifter.box.mvp.presenter;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -28,6 +30,7 @@ public class TodayHistoryPresenter implements NPresenter {
     @Override
     public void query() {
         tohView.beforeQuery(null);
+        StatService.onEvent(tohView.getContext(), "today_history", "pass", 1);
 
         Calendar calendar = Calendar.getInstance();
         JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.API_JUHEAPI_COM);
