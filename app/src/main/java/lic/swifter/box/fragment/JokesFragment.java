@@ -42,6 +42,12 @@ public class JokesFragment extends BaseFragment implements IView<Class<Void>, Jo
 
         presenter = new JokesPresenter(this);
         presenter.query();
+        status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.query();
+            }
+        });
         return rootView;
     }
 
