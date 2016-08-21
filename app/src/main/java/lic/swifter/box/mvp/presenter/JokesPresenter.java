@@ -35,7 +35,7 @@ public class JokesPresenter implements NPresenter {
             public void onResponse(Call<Result<JokesWrapper>> call, Response<Result<JokesWrapper>> response) {
                 if(response.isSuccessful()) {
                     Result<JokesWrapper> resp = response.body();
-                    if(resp.resultcode == 0) {
+                    if(resp.error_code == 0) {
                         iView.afterQuery(NetQueryType.NET_RESPONSE_SUCCESS, resp);
                     } else
                         iView.afterQuery(NetQueryType.NET_RESPONSE_ERROR_REASON, resp);

@@ -36,7 +36,7 @@ public class QQLuckPresenter implements NetPresenter<String> {
             public void onResponse(Call<Result<QQLuck>> call, Response<Result<QQLuck>> response) {
                 if(response.isSuccessful()) {
                     Result<QQLuck> resp = response.body();
-                    if(resp.resultcode == 0) {
+                    if(resp.error_code == 0) {
                         iView.afterQuery(NetQueryType.NET_RESPONSE_SUCCESS, resp);
                     } else
                         iView.afterQuery(NetQueryType.NET_RESPONSE_ERROR_REASON, resp);

@@ -41,7 +41,7 @@ public class TodayHistoryPresenter implements NPresenter {
             public void onResponse(Call<Result<List<TodayHistoryResult>>> call, Response<Result<List<TodayHistoryResult>>> response) {
                 if(response.isSuccessful()) {
                     Result<List<TodayHistoryResult>> result = response.body();
-                    if(result.resultcode == 0) {
+                    if(result.error_code == 0) {
                         tohView.afterQuery(NetQueryType.NET_RESPONSE_SUCCESS, result);
                     } else {
                         tohView.afterQuery(NetQueryType.NET_RESPONSE_ERROR_REASON, result);

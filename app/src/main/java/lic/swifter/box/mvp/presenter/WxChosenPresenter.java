@@ -36,7 +36,7 @@ public class WxChosenPresenter implements NPresenter {
             public void onResponse(Call<Result<WxChosenWrapper>> call, Response<Result<WxChosenWrapper>> response) {
                 if(response.isSuccessful()) {
                     Result<WxChosenWrapper> resp = response.body();
-                    if(resp.resultcode == 0) {
+                    if(resp.error_code == 0) {
                         iView.afterQuery(NetQueryType.NET_RESPONSE_SUCCESS, resp);
                     } else {
                         iView.afterQuery(NetQueryType.NET_RESPONSE_ERROR_REASON, resp);
