@@ -17,4 +17,31 @@ public class ViewUtil {
         view.setClickable(true);
     }
 
+    public static void fadeInView(View view, int duration) {
+        if(view.isShown())
+            return ;
+
+        view.setAlpha(0f);
+        view.setVisibility(View.VISIBLE);
+        view.animate()
+                .alpha(1f)
+                .setDuration(duration)
+                .setListener(null);
+    }
+
+    public static void fadeOutView(final View view, int duration) {
+        if(!view.isShown())
+            return ;
+
+        view.animate()
+                .alpha(0f)
+                .setDuration(duration)
+                .withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        view.setVisibility(View.GONE);
+                    }
+                });
+    }
+
 }

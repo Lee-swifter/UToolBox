@@ -29,4 +29,10 @@
     <string name="input_id_number_hint">请输入身份证号</string>
     <string name="input_phone_number_hint">请输入手机号码</string>
     <string name="input_qq_number_hint">请输入QQ号码</string>
+
+    <string name="movie_ranking_cn_title">内地电影票房榜</string>
+    <string name="movie_ranking_us_title">北美电影票房榜</string>
+    <string name="movie_ranking_hk_title">香港电影票房榜</string>
+    <string name="movie_ranking_w">周末票房：%1$s</string>
+    <string name="movie_ranking_t">累计票房：%1$s</string>
 </resources>

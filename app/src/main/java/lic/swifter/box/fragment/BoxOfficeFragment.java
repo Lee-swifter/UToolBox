@@ -2,37 +2,64 @@ package lic.swifter.box.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
-import lic.swifter.box.api.model.MovieRank;
-import lic.swifter.box.api.model.Result;
-import lic.swifter.box.mvp.presenter.NetQueryType;
-import lic.swifter.box.mvp.view.IView;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import lic.swifter.box.R;
+import lic.swifter.box.widget.MovieRankingPage;
 
 /**
  * Created by cheng on 2016/8/28.
  */
 
-public class BoxOfficeFragment extends BaseFragment implements IView<String, List<MovieRank>> {
+public class BoxOfficeFragment extends BaseFragment {
+
+    @Bind(R.id.movie_ranking_view_pager)
+    ViewPager viewPager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.page_movie_ranking, container, false);
+        ButterKnife.bind(this, rootView);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        viewPager.setAdapter(new MovieRankingAdapter());
+        return rootView;
     }
 
     @Override
-    public void beforeQuery(String requestParameter) {
-
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
-    @Override
-    public void afterQuery(NetQueryType type, Result<List<MovieRank>> response) {
+    private class MovieRankingAdapter extends PagerAdapter {
+        @Override
+        public int getCount() {
+            return 3;
+        }
 
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View)object);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            MovieRankingPage page = new MovieRankingPage(getContext(), position);
+            container.addView(page);
+            return page;
+        }
     }
+
 }

@@ -29,9 +29,9 @@ public interface JuheApi {
     String JOKE_KEY = "b036bf8e6703c1c6d2560fe4c2b121ea";
     String MOVIE_KEY = "e2f8ea575ba21732fb2ff7a58be66cc3";
 
-    public static final String MOVIE_CN = "CN";
-    public static final String MOVIE_US = "US";
-    public static final String MOVIE_HK = "HK";
+    String MOVIE_CN = "CN";
+    String MOVIE_US = "US";
+    String MOVIE_HK = "HK";
 
     @GET("ip/ip2addr?key="+IP_KEY)
     Call<Result<IpLocation>> queryIp(@Query("ip") String ip);

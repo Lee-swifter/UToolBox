@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dip"
+    android:orientation="horizontal">
+
+    <lic.swifter.box.widget.CanaroTextView
+        android:id="@+id/item_movie_ranking_rid"
+        android:layout_width="100dip"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginStart="10dip"
+        android:orientation="vertical">
+
+        <lic.swifter.box.widget.CanaroTextView
+            android:id="@+id/item_movie_ranking_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:lines="1"
+            android:gravity="start|center_vertical"
+            android:textSize="16sp" />
+
+        <lic.swifter.box.widget.CanaroTextView
+            android:id="@+id/item_movie_ranking_wk"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="end|center_vertical" />
+
+        <lic.swifter.box.widget.CanaroTextView
+            android:id="@+id/item_movie_ranking_w"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_gravity="center" />
+
+        <lic.swifter.box.widget.CanaroTextView
+            android:id="@+id/item_movie_ranking_t"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:gravity="center"
+            android:textSize="20sp"/>
+    </LinearLayout>
+</LinearLayout>
