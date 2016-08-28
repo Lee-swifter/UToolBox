@@ -19,6 +19,7 @@
     <string name="qq_num_query">QQ号测吉凶</string>
     <string name="qq_number_query">QQ号码测吉凶</string>
     <string name="jokes_collection">笑话大全</string>
+    <string name="films_box_office">电影票房</string>
 
     <string name="area_code_string">区号： %1$s</string>
     <string name="zip_string">邮编： %1$s</string>

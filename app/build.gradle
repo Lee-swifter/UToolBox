@@ -9,7 +9,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "0.8.1"
     }
     buildTypes {
         release {
@@ -19,8 +19,16 @@ android {
         }
     }
     productFlavors {
-        baidu {
-            manifestPlaceholders = [BAIDU_CHANNEL: "baidu"]
+        baidu_assistant {
+            manifestPlaceholders = [BAIDU_CHANNEL: "baidu_assistant"]
+        }
+
+        assistant_91 {
+            manifestPlaceholders = [BAIDU_CHANNEL: "91_assistant"]
+        }
+
+        android_market {
+            manifestPlaceholders = [BAIDU_CHANNEL: "android_market"]
         }
     }
 }

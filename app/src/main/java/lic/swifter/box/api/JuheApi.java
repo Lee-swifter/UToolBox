@@ -5,6 +5,7 @@ import java.util.List;
 import lic.swifter.box.api.model.IdResult;
 import lic.swifter.box.api.model.IpLocation;
 import lic.swifter.box.api.model.JokesWrapper;
+import lic.swifter.box.api.model.MovieRank;
 import lic.swifter.box.api.model.PhoneResult;
 import lic.swifter.box.api.model.QQLuck;
 import lic.swifter.box.api.model.Result;
@@ -26,6 +27,11 @@ public interface JuheApi {
     String WX_KEY = "bcc0719e0ad1eac6402bafa02cc9eea3";
     String QQ_LUCK_KEY = "d875bba41c2c4ea90d984751a8f0b942";
     String JOKE_KEY = "b036bf8e6703c1c6d2560fe4c2b121ea";
+    String MOVIE_KEY = "e2f8ea575ba21732fb2ff7a58be66cc3";
+
+    public static final String MOVIE_CN = "CN";
+    public static final String MOVIE_US = "US";
+    public static final String MOVIE_HK = "HK";
 
     @GET("ip/ip2addr?key="+IP_KEY)
     Call<Result<IpLocation>> queryIp(@Query("ip") String ip);
@@ -47,4 +53,7 @@ public interface JuheApi {
 
     @GET("joke/content/text.from?key="+JOKE_KEY+"&page=1&pagesize=20")
     Call<Result<JokesWrapper>> queryJokes();
+
+    @GET("boxoffice/rank.php?key="+MOVIE_KEY)
+    Call<Result<List<MovieRank>>> queryMovieRanking(@Query("area") String area);
 }
