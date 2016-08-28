@@ -22,6 +22,7 @@ import java.util.HashMap;
 import lic.swifter.box.R;
 import lic.swifter.box.data.FragmentsFlag;
 import lic.swifter.box.fragment.BaseFragment;
+import lic.swifter.box.fragment.BoxOfficeFragment;
 import lic.swifter.box.fragment.IDQueryFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
 import lic.swifter.box.fragment.JokesFragment;
@@ -177,6 +178,13 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 }
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.jokes_collection);
+                break;
+            case MovieRankingFragment:  //电影票房
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new BoxOfficeFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
+                titleText.setText(R.string.films_box_office);
                 break;
             default:
                 break;

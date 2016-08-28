@@ -16,7 +16,6 @@ import lic.swifter.box.widget.MovieRankingPage;
 /**
  * Created by cheng on 2016/8/28.
  */
-
 public class BoxOfficeFragment extends BaseFragment {
 
     @Bind(R.id.movie_ranking_view_pager)
@@ -25,9 +24,10 @@ public class BoxOfficeFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.page_movie_ranking, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_movie_ranking, container, false);
         ButterKnife.bind(this, rootView);
 
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(new MovieRankingAdapter());
         return rootView;
     }

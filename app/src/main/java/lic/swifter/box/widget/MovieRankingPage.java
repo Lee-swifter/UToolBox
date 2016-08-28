@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -28,7 +29,6 @@ import lic.swifter.box.util.ViewUtil;
 /**
  * Created by cheng on 2016/8/28.
  */
-
 public class MovieRankingPage extends RelativeLayout implements IView<String, List<MovieRank>> {
 
     @Bind(R.id.page_movie_progress)
@@ -65,11 +65,27 @@ public class MovieRankingPage extends RelativeLayout implements IView<String, Li
         LayoutInflater.from(context).inflate(R.layout.page_movie_ranking, this);
         presenter = new MovieRankingPresenter(this);
         ButterKnife.bind(this);
+
+        status.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (index) {
+                    case 0:
+                        presenter.query(JuheApi.MOVIE_CN);
+                        break;
+                    case 1:
+                        presenter.query(JuheApi.MOVIE_US);
+                        break;
+                    case 2:
+                        presenter.query(JuheApi.MOVIE_HK);
+                        break;
+                }
+            }
+        });
     }
 
     @Override
     protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
         switch (index) {
             case 0:
                 movieTitle.setText(R.string.movie_ranking_cn_title);
@@ -84,13 +100,14 @@ public class MovieRankingPage extends RelativeLayout implements IView<String, Li
                 presenter.query(JuheApi.MOVIE_HK);
                 break;
         }
+        super.onAttachedToWindow();
     }
 
     @Override
     protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
         ButterKnife.unbind(this);
         presenter.cancelQuery();
+        super.onDetachedFromWindow();
     }
 
     @Override
@@ -112,6 +129,26 @@ public class MovieRankingPage extends RelativeLayout implements IView<String, Li
                 ViewUtil.fadeOutView(status, duration);
                 ViewUtil.fadeInView(rankingWrapper, duration);
                 break;
+            case NET_RESPONSE_ERROR_REASON:
+                status.setText(response.reason);
+                setViewWhenError();
+                break;
+            case NET_RESPONSE_ERROR:
+                status.setText(R.string.response_error);
+                setViewWhenError();
+                break;
+            case NET_REQUEST_FAILURE:
+                status.setText(R.string.net_failure);
+                setViewWhenError();
+                break;
+            default:
+                break;
         }
+    }
+
+    private void setViewWhenError() {
+        ViewUtil.fadeOutView(progress, duration);
+        ViewUtil.fadeInView(status, duration);
+        ViewUtil.fadeOutView(rankingWrapper, duration);
     }
 }

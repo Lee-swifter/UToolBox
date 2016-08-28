@@ -25,12 +25,17 @@
             android:id="@+id/page_movie_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
+            android:layout_margin="10dip"
+            android:textSize="23sp"
             android:gravity="center_horizontal"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dip"
+            android:background="@color/guillotine_background" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/movie_ranking_recycler_view"
-            android:layout_marginTop="20dip"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
