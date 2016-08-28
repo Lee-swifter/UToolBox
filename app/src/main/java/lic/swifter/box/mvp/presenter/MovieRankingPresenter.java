@@ -1,5 +1,7 @@
 package lic.swifter.box.mvp.presenter;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.List;
 
 import lic.swifter.box.api.ApiHelper;
@@ -27,6 +29,7 @@ public class MovieRankingPresenter implements NetPresenter<String> {
     @Override
     public void query(String queryParameter) {
         iView.beforeQuery(queryParameter);
+        StatService.onEvent(iView.getContext(), "movie_ranking_query", queryParameter, 1);
 
         JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.V_JUHE_CN);
         call = juheApi.queryMovieRanking(queryParameter);
