@@ -12,5 +12,6 @@ public enum FragmentsFlag {
     WxChosenFragment,
     QQLuckFragment,
     JokesFragment,
-    MovieRankingFragment
+    MovieRankingFragment,
+    TopNewsFragment
 }

@@ -28,6 +28,7 @@ public interface JuheApi {
     String QQ_LUCK_KEY = "d875bba41c2c4ea90d984751a8f0b942";
     String JOKE_KEY = "b036bf8e6703c1c6d2560fe4c2b121ea";
     String MOVIE_KEY = "e2f8ea575ba21732fb2ff7a58be66cc3";
+    String TOP_NEWS_KEY = "5878230b3640a8c96776db219e90dfcb";
 
     String MOVIE_CN = "CN";
     String MOVIE_US = "US";
