@@ -29,6 +29,7 @@ public class BoxOfficeFragment extends BaseFragment {
 
         viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(new MovieRankingAdapter());
+
         return rootView;
     }
 
