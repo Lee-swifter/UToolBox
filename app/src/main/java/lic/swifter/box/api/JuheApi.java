@@ -10,6 +10,7 @@ import lic.swifter.box.api.model.PhoneResult;
 import lic.swifter.box.api.model.QQLuck;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TodayHistoryResult;
+import lic.swifter.box.api.model.TopNewsWrapper;
 import lic.swifter.box.api.model.WxChosenWrapper;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -57,4 +58,12 @@ public interface JuheApi {
 
     @GET("boxoffice/rank.php?key="+MOVIE_KEY)
     Call<Result<List<MovieRank>>> queryMovieRanking(@Query("area") String area);
+
+    /**
+     * 查询新闻接口
+     * @param type top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
+     * @return 聚合数据
+     */
+    @GET("toutiao/index?key="+TOP_NEWS_KEY)
+    Call<Result<TopNewsWrapper>> queryNews(@Query("type") String type);
 }
