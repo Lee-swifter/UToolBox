@@ -6,6 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -18,8 +20,13 @@ import lic.swifter.box.mvp.view.IView;
 
 public class TopNewsFragment extends BaseFragment implements IView<String, TopNewsWrapper> {
 
+
     @Bind(R.id.fragment_top_news_view_pager)
     ViewPager viewPager;
+    @Bind(R.id.fragment_top_news_progress)
+    ProgressBar progress;
+    @Bind(R.id.fragment_top_news_status_text)
+    TextView status;
     private NewsPresenter presenter;
 
     @Nullable
