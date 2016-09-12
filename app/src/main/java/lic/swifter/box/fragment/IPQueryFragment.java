@@ -77,8 +77,8 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
 
                     presenter.query(searchString);
 
-                    InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if(imm != null)
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null)
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
                     return true;

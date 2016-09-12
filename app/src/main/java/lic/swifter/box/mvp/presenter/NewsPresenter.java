@@ -1,5 +1,6 @@
 package lic.swifter.box.mvp.presenter;
-/*
+
+/**
  * Copyright (C) 2015, Lee-swifter
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +17,8 @@ package lic.swifter.box.mvp.presenter;
  *
  * Created by cheng on 2016/9/2.
  */
+
+import com.baidu.mobstat.StatService;
 
 import lic.swifter.box.api.ApiHelper;
 import lic.swifter.box.api.JuheApi;
@@ -37,7 +40,7 @@ public class NewsPresenter implements NetPresenter<String> {
 
     @Override
     public void query(String queryParameter) {
-        //TODO: add mtj event code;
+        StatService.onEvent(iView.getContext(), "news_query", "pass", 1);
         iView.beforeQuery(queryParameter);
 
         JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.V_JUHE_CN);
