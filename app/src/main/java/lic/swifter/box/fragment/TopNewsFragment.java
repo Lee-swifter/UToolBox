@@ -20,7 +20,6 @@ import lic.swifter.box.mvp.view.IView;
 
 public class TopNewsFragment extends BaseFragment implements IView<String, TopNewsWrapper> {
 
-
     @Bind(R.id.fragment_top_news_view_pager)
     ViewPager viewPager;
     @Bind(R.id.fragment_top_news_progress)
@@ -47,12 +46,23 @@ public class TopNewsFragment extends BaseFragment implements IView<String, TopNe
 
     @Override
     public void beforeQuery(String requestParameter) {
-
+        fadeOutView(viewPager);
+        fadeOutView(status);
+        fadeInView(progress);
     }
 
     @Override
     public void afterQuery(NetQueryType type, Result<TopNewsWrapper> response) {
-
+        switch (type) {
+            case NET_RESPONSE_SUCCESS:
+                break;
+            case NET_RESPONSE_ERROR_REASON:
+                break;
+            case NET_RESPONSE_ERROR:
+                break;
+            case NET_REQUEST_FAILURE:
+                break;
+        }
     }
 
 }
