@@ -17,6 +17,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
+ * 聚合API接口及api-key定义
  * Created by lic on 16-8-1.
  */
 public interface JuheApi {
