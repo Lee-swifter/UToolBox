@@ -37,7 +37,7 @@ import lic.swifter.box.util.FindUtil;
 import lic.swifter.box.util.ToastUtil;
 
 
-public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnItemClickListener, TopNewsFragment.OnNewsTypeChangedListener {
 
     private static final int RIPPLE_DURATION = 250;
     private static final int TIME_EXIT = 2000;
@@ -125,6 +125,11 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
 
         currentFlag = flag;
         changeFragment(currentFlag);
+    }
+
+    @Override
+    public void onNewsTypeChanged(CharSequence newsType) {
+        titleText.setText(newsType);
     }
 
     private void changeFragment(FragmentsFlag flag) {

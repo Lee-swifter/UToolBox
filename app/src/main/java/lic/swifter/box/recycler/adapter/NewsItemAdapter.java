@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.TopNewsWrapper;
 import lic.swifter.box.recycler.holder.NewsItemHolder;
@@ -33,9 +31,9 @@ import lic.swifter.box.recycler.holder.NewsItemHolder;
 public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemHolder> {
 
     private Context context;
-    private List<TopNewsWrapper.News> newsList;
+    private TopNewsWrapper.News[] newsList;
 
-    public NewsItemAdapter(Context context, List<TopNewsWrapper.News> list) {
+    public NewsItemAdapter(Context context, TopNewsWrapper.News[] list) {
         this.context = context;
         newsList = list;
     }
@@ -48,11 +46,11 @@ public class NewsItemAdapter extends RecyclerView.Adapter<NewsItemHolder> {
 
     @Override
     public void onBindViewHolder(NewsItemHolder holder, int position) {
-        holder.setData(context, newsList.get(position));
+        holder.setData(context, newsList[position]);
     }
 
     @Override
     public int getItemCount() {
-        return newsList.size();
+        return newsList.length;
     }
 }

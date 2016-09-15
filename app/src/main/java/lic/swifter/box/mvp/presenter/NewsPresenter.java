@@ -50,7 +50,7 @@ public class NewsPresenter implements NetPresenter<String> {
             public void onResponse(Call<Result<TopNewsWrapper>> call, Response<Result<TopNewsWrapper>> response) {
                 if(response.isSuccessful()) {
                     Result<TopNewsWrapper> resp = response.body();
-                    if(resp.resultcode == 200) {
+                    if(resp.error_code == 0) {
                         iView.afterQuery(NetQueryType.NET_RESPONSE_SUCCESS, resp);
                     } else
                         iView.afterQuery(NetQueryType.NET_RESPONSE_ERROR_REASON, resp);

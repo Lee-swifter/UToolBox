@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import lic.swifter.box.R;
+import lic.swifter.box.api.JuheApi;
+import lic.swifter.box.widget.NewsPage;
 
 public class TopNewsFragment extends BaseFragment {
 
@@ -76,16 +78,48 @@ public class TopNewsFragment extends BaseFragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            return super.instantiateItem(container, position);
+            NewsPage page = new NewsPage(getContext());
+            switch (position) {
+                case 0:
+                    page.setType(JuheApi.NEWS_TOP);
+                    break;
+                case 1:
+                    page.setType(JuheApi.NEWS_SHEHUI);
+                    break;
+                case 2:
+                    page.setType(JuheApi.NEWS_GUONEI);
+                    break;
+                case 3:
+                    page.setType(JuheApi.NEWS_GUOJI);
+                    break;
+                case 4:
+                    page.setType(JuheApi.NEWS_YULE);
+                    break;
+                case 5:
+                    page.setType(JuheApi.NEWS_TIYU);
+                    break;
+                case 6:
+                    page.setType(JuheApi.NEWS_JUNSHI);
+                    break;
+                case 7:
+                    page.setType(JuheApi.NEWS_KEJI);
+                    break;
+                case 8:
+                    page.setType(JuheApi.NEWS_CAIJING);
+                    break;
+                case 9:
+                    page.setType(JuheApi.NEWS_SHISHANG);
+                    break;
+                default:
+                    break;
+            }
+            container.addView(page);
+            return page;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            switch (position) {
-                case 0:
-                    
-            }
-            super.destroyItem(container, position, object);
+            container.removeView((View)object);
         }
 
         @Override

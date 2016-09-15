@@ -1,9 +1,11 @@
 package lic.swifter.box.widget;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,6 +19,8 @@ import lic.swifter.box.api.model.TopNewsWrapper;
 import lic.swifter.box.mvp.presenter.NetQueryType;
 import lic.swifter.box.mvp.presenter.NewsPresenter;
 import lic.swifter.box.mvp.view.IView;
+import lic.swifter.box.recycler.adapter.NewsItemAdapter;
+import lic.swifter.box.recycler.divider.GridDivider;
 import lic.swifter.box.util.ViewUtil;
 
 /*
@@ -69,6 +73,12 @@ public class NewsPage extends FrameLayout implements IView<String, TopNewsWrappe
     public void setType(@JuheApi.NewsType String type) {
         this.type = type;
         presenter.query(this.type);
+        statusText.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.query(NewsPage.this.type);
+            }
+        });
     }
 
     @Override
@@ -83,11 +93,32 @@ public class NewsPage extends FrameLayout implements IView<String, TopNewsWrappe
         switch (type) {
             case NET_RESPONSE_SUCCESS:
                 ViewUtil.fadeOutView(progress, duration);
-                ViewUtil.fadeInView(statusText, duration);
+                ViewUtil.fadeOutView(statusText, duration);
                 ViewUtil.fadeInView(recyclerView, duration);
 
-
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerView.addItemDecoration(new GridDivider(getContext(), LinearLayoutManager.HORIZONTAL));
+                recyclerView.setAdapter(new NewsItemAdapter(getContext(), response.result.data));
+                break;
+            case NET_RESPONSE_ERROR_REASON:
+                changeViewsWhenNetError();
+                statusText.setText(response.reason);
+                break;
+            case NET_RESPONSE_ERROR:
+                changeViewsWhenNetError();
+                statusText.setText(R.string.response_error);
+                break;
+            case NET_REQUEST_FAILURE:
+                changeViewsWhenNetError();
+                statusText.setText(R.string.net_failure);
+                break;
         }
+    }
+
+    private void changeViewsWhenNetError() {
+        ViewUtil.fadeOutView(progress, duration);
+        ViewUtil.fadeInView(statusText, duration);
+        ViewUtil.fadeOutView(recyclerView, duration);
     }
 
 }

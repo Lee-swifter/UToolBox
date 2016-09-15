@@ -57,9 +57,15 @@ public class NewsItemHolder extends RecyclerView.ViewHolder {
     public void setData(final Context context, final TopNewsWrapper.News news) {
         titleText.setText(news.title);
         authorTimeView.setText(news.author_name + " "+ news.date);
-        Glide.with(context).load(news.thumbnail_pic_s).into(firstImageView);
-        Glide.with(context).load(news.thumbnail_pic_s02).into(secondImageView);
-        Glide.with(context).load(news.thumbnail_pic_s03).into(thirdImageView);
+
+        String[] images = new String[]{news.thumbnail_pic_s,news.thumbnail_pic_s02,news.thumbnail_pic_s03};
+
+        if(images[0] != null)
+            Glide.with(context).load(images[0]).into(firstImageView);
+        if(images[1] != null && !images[1].equals(images[0]))
+            Glide.with(context).load(images[1]).into(secondImageView);
+        if(images[2] != null && !images[2].equals(images[0]) && !images[2].equals(images[1]))
+            Glide.with(context).load(images[2]).into(thirdImageView);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
