@@ -29,6 +29,7 @@ import lic.swifter.box.fragment.JokesFragment;
 import lic.swifter.box.fragment.PhoneQueryFragment;
 import lic.swifter.box.fragment.QQLuckFragment;
 import lic.swifter.box.fragment.TodayHistoryFragment;
+import lic.swifter.box.fragment.TopNewsFragment;
 import lic.swifter.box.fragment.WxChosenFragment;
 import lic.swifter.box.recycler.adapter.ToolsAdapter;
 import lic.swifter.box.recycler.divider.GridDivider;
@@ -185,6 +186,13 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 }
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.films_box_office);
+                break;
+            case TopNewsFragment:  //新闻头条
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new TopNewsFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
+                titleText.setText(R.string.top_news);
                 break;
             default:
                 break;

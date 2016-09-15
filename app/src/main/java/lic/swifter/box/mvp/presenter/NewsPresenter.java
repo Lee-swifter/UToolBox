@@ -39,8 +39,8 @@ public class NewsPresenter implements NetPresenter<String> {
     }
 
     @Override
-    public void query(String queryParameter) {
-        StatService.onEvent(iView.getContext(), "news_query", "pass", 1);
+    public void query(@JuheApi.NewsType String queryParameter) {
+        StatService.onEvent(iView.getContext(), "news_query", queryParameter, 1);
         iView.beforeQuery(queryParameter);
 
         JuheApi juheApi = ApiHelper.getJuhe(ApiHelper.V_JUHE_CN);

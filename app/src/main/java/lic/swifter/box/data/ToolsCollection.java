@@ -5,7 +5,6 @@ import lic.swifter.box.R;
 /**
  * Created by cheng on 2016/8/16.
  */
-
 public class ToolsCollection {
     public static ToolData[] tools = new ToolData[]{
             new ToolData(R.drawable.ip_icon, R.string.ip, FragmentsFlag.IpQueryFragment),
@@ -15,6 +14,7 @@ public class ToolsCollection {
             new ToolData(R.drawable.wx_carefully_chosen_icon, R.string.wx_carefully_chosen, FragmentsFlag.WxChosenFragment),
             new ToolData(R.drawable.qq_number_query_icon, R.string.qq_num_query, FragmentsFlag.QQLuckFragment),
             new ToolData(R.drawable.jokes_collection_icon, R.string.jokes_collection, FragmentsFlag.JokesFragment),
-            new ToolData(R.drawable.films_box_office_icon, R.string.films_box_office, FragmentsFlag.MovieRankingFragment)
+            new ToolData(R.drawable.films_box_office_icon, R.string.films_box_office, FragmentsFlag.MovieRankingFragment),
+            new ToolData(R.drawable.top_news_icon, R.string.top_news, FragmentsFlag.TopNewsFragment)
     };
 }

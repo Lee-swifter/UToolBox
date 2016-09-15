@@ -36,4 +36,7 @@
     <string name="movie_ranking_hk_title">香港电影票房榜</string>
     <string name="movie_ranking_w">周末票房：%1$s</string>
     <string name="movie_ranking_t">累计票房：%1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

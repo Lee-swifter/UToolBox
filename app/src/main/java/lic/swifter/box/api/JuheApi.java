@@ -1,5 +1,9 @@
 package lic.swifter.box.api;
 
+import android.support.annotation.StringDef;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 
 import lic.swifter.box.api.model.IdResult;
@@ -36,6 +40,21 @@ public interface JuheApi {
     String MOVIE_US = "US";
     String MOVIE_HK = "HK";
 
+    String NEWS_TOP = "top";
+    String NEWS_SHEHUI = "shehui";
+    String NEWS_GUONEI = "guonei";
+    String NEWS_GUOJI = "guoji";
+    String NEWS_YULE = "yule";
+    String NEWS_TIYU = "tiyu";
+    String NEWS_JUNSHI = "junshi";
+    String NEWS_KEJI = "keji";
+    String NEWS_CAIJING = "caijing";
+    String NEWS_SHISHANG = "shishang";
+
+    @StringDef({NEWS_TOP, NEWS_SHEHUI, NEWS_GUONEI, NEWS_GUOJI, NEWS_YULE, NEWS_TIYU, NEWS_JUNSHI, NEWS_KEJI, NEWS_CAIJING, NEWS_SHISHANG})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface NewsType{}
+
     @GET("ip/ip2addr?key="+IP_KEY)
     Call<Result<IpLocation>> queryIp(@Query("ip") String ip);
 
@@ -66,5 +85,5 @@ public interface JuheApi {
      * @return 聚合数据
      */
     @GET("toutiao/index?key="+TOP_NEWS_KEY)
-    Call<Result<TopNewsWrapper>> queryNews(@Query("type") String type);
+    Call<Result<TopNewsWrapper>> queryNews(@Query("type") @NewsType String type);
 }
