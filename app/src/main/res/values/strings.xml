@@ -5,6 +5,7 @@
 
     <string name="response_error">数据返回异常</string>
     <string name="net_failure">网络错误，请检查网络连接</string>
+    <string name="ensure">确定</string>
 
     <string name="ip">IP查询</string>
     <string name="today_history">历史上今天</string>
@@ -21,6 +22,7 @@
     <string name="jokes_collection">笑话大全</string>
     <string name="films_box_office">电影票房</string>
     <string name="top_news">新闻头条</string>
+    <string name="tv_list_table">电视节目表</string>
 
     <string name="area_code_string">区号： %1$s</string>
     <string name="zip_string">邮编： %1$s</string>
@@ -37,6 +39,7 @@
     <string name="movie_ranking_w">周末票房：%1$s</string>
     <string name="movie_ranking_t">累计票房：%1$s</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="click_to_retry">%1$s, 点击重试</string>
+    <string name="channel">频道</string>
+    <string name="data_analyze_error">数据解析异常</string>
 </resources>

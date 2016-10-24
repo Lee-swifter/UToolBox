@@ -15,6 +15,7 @@ public class ToolsCollection {
             new ToolData(R.drawable.qq_number_query_icon, R.string.qq_num_query, FragmentsFlag.QQLuckFragment),
             new ToolData(R.drawable.jokes_collection_icon, R.string.jokes_collection, FragmentsFlag.JokesFragment),
             new ToolData(R.drawable.films_box_office_icon, R.string.films_box_office, FragmentsFlag.MovieRankingFragment),
-            new ToolData(R.drawable.top_news_icon, R.string.top_news, FragmentsFlag.TopNewsFragment)
+            new ToolData(R.drawable.top_news_icon, R.string.top_news, FragmentsFlag.TopNewsFragment),
+            new ToolData(R.drawable.tv_list_icon, R.string.tv_list_table, FragmentsFlag.TvTableFragment)
     };
 }

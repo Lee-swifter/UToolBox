@@ -13,5 +13,6 @@ public enum FragmentsFlag {
     QQLuckFragment,
     JokesFragment,
     MovieRankingFragment,
-    TopNewsFragment
+    TopNewsFragment,
+    TvTableFragment
 }

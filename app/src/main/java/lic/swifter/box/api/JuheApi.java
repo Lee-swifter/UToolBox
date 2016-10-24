@@ -15,6 +15,7 @@ import lic.swifter.box.api.model.QQLuck;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TodayHistoryResult;
 import lic.swifter.box.api.model.TopNewsWrapper;
+import lic.swifter.box.api.model.TvCategory;
 import lic.swifter.box.api.model.WxChosenWrapper;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -35,6 +36,7 @@ public interface JuheApi {
     String JOKE_KEY = "b036bf8e6703c1c6d2560fe4c2b121ea";
     String MOVIE_KEY = "e2f8ea575ba21732fb2ff7a58be66cc3";
     String TOP_NEWS_KEY = "5878230b3640a8c96776db219e90dfcb";
+    String TV_TABLE_KEY = "206ccf92e1b0005fe6efead1dca99d0c";
 
     String MOVIE_CN = "CN";
     String MOVIE_US = "US";
@@ -86,4 +88,8 @@ public interface JuheApi {
      */
     @GET("toutiao/index?key="+TOP_NEWS_KEY)
     Call<Result<TopNewsWrapper>> queryNews(@Query("type") @NewsType String type);
+
+
+    @GET("tv/getCategory?key="+TV_TABLE_KEY)
+    Call<Result<List<TvCategory>>> queryTvCategory();
 }

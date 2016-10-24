@@ -30,6 +30,7 @@ import lic.swifter.box.fragment.PhoneQueryFragment;
 import lic.swifter.box.fragment.QQLuckFragment;
 import lic.swifter.box.fragment.TodayHistoryFragment;
 import lic.swifter.box.fragment.TopNewsFragment;
+import lic.swifter.box.fragment.TvTableFragment;
 import lic.swifter.box.fragment.WxChosenFragment;
 import lic.swifter.box.recycler.adapter.ToolsAdapter;
 import lic.swifter.box.recycler.divider.GridDivider;
@@ -199,6 +200,12 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.top_news);
                 break;
+            case TvTableFragment:   //电视节目表
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new TvTableFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
+                titleText.setText(R.string.tv_list_table);
             default:
                 break;
         }

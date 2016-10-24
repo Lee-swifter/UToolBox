@@ -36,7 +36,7 @@ public class TopNewsFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.commen_single_view_pager, container, false);
+        View rootView = inflater.inflate(R.layout.common_single_view_pager, container, false);
         ButterKnife.bind(this, rootView);
         setupViewPager();
         return rootView;

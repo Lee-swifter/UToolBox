@@ -26,6 +26,7 @@ public class GridDivider extends RecyclerView.ItemDecoration {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         mDivider = a.getDrawable(0);
         a.recycle();
+        mOrientation = LinearLayoutManager.HORIZONTAL;
     }
 
     public GridDivider(Context context, int orientation) {

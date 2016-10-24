@@ -35,6 +35,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void fadeInView(View view) {
+        if(view.isShown())
+            return ;
+
         view.setAlpha(0f);
         view.setVisibility(View.VISIBLE);
         view.animate()
