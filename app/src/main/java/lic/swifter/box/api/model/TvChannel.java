@@ -1,4 +1,8 @@
 package lic.swifter.box.api.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /*
  * Copyright (C) 2015, Lee-swifter
  *
@@ -17,27 +21,29 @@ package lic.swifter.box.api.model;
  * Created by cheng on 2016/10/24.
  */
 
-import android.os.Parcel;
-import android.os.Parcelable;
+public class TvChannel implements Parcelable {
 
-public class TvCategory implements Parcelable{
-    public int id;
-    public String name;
+    public String channelName;
+    public int pId;
+    public String rel;
+    public String url;
 
-    private TvCategory(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
+    private TvChannel(Parcel in) {
+        channelName = in.readString();
+        pId = in.readInt();
+        rel = in.readString();
+        url = in.readString();
     }
 
-    public static final Creator<TvCategory> CREATOR = new Creator<TvCategory>() {
+    public static final Creator<TvChannel> CREATOR = new Creator<TvChannel>() {
         @Override
-        public TvCategory createFromParcel(Parcel in) {
-            return new TvCategory(in);
+        public TvChannel createFromParcel(Parcel in) {
+            return new TvChannel(in);
         }
 
         @Override
-        public TvCategory[] newArray(int size) {
-            return new TvCategory[size];
+        public TvChannel[] newArray(int size) {
+            return new TvChannel[size];
         }
     };
 
@@ -48,7 +54,9 @@ public class TvCategory implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(name);
+        dest.writeString(channelName);
+        dest.writeInt(pId);
+        dest.writeString(rel);
+        dest.writeString(url);
     }
 }
