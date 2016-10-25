@@ -32,7 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.TvChannelActivity"></activity>
+        <activity android:name=".activity.TvChannelActivity" />
+        <activity android:name=".activity.TvProgramActivity" />
     </application>
 
 </manifest>

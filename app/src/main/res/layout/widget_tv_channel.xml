@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="5dip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+        <lic.swifter.box.widget.CanaroTextView
+            android:id="@+id/widget_channel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:textSize="16sp"/>
+
+        <lic.swifter.box.widget.CanaroTextView
+            android:id="@+id/widget_channel_rel"
+            android:layout_marginTop="5dip"
+            android:layout_width="wrap_content"
+            android:lines="1"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/widget_channel_live_button"
+        android:layout_width="100dip"
+        android:layout_height="match_parent"
+        android:text="@string/live"
+        android:textSize="16sp"
+        android:background="@android:color/holo_green_light"/>
+
+</merge>

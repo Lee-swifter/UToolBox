@@ -7,6 +7,8 @@
     <string name="net_failure">网络错误，请检查网络连接</string>
     <string name="ensure">确定</string>
 
+    <string name="live">直播</string>
+
     <string name="ip">IP查询</string>
     <string name="today_history">历史上今天</string>
     <string name="today_in_history">历史上的今天</string>
