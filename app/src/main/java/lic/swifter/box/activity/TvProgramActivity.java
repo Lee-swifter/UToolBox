@@ -24,12 +24,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.baidu.mobstat.StatService;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,9 +43,13 @@ import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TvChannel;
 import lic.swifter.box.api.model.TvProgram;
 import lic.swifter.box.mvp.presenter.NetQueryType;
+import lic.swifter.box.mvp.presenter.TvProgramPresenter;
 import lic.swifter.box.mvp.view.IView;
+import lic.swifter.box.recycler.adapter.TvProgramAdapter;
+import lic.swifter.box.recycler.divider.GridDivider;
+import lic.swifter.box.util.ViewUtil;
 
-public class TvProgramActivity extends AppCompatActivity implements IView<String, TvProgram> {
+public class TvProgramActivity extends AppCompatActivity implements IView<String, List<TvProgram>> {
 
     public static final String TV_CHANNEL_INTENT = "TvProgramActivity.TV_CHANNEL_INTENT";
 
@@ -55,6 +64,7 @@ public class TvProgramActivity extends AppCompatActivity implements IView<String
 
     private TvChannel channel;
     private int mShortAnimationDuration;
+    private TvProgramPresenter presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,11 +91,13 @@ public class TvProgramActivity extends AppCompatActivity implements IView<String
         }
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        presenter = new TvProgramPresenter(this);
+        presenter.query(channel.rel);
 
         status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: refresh data.
+                presenter.query(channel.rel);
             }
         });
 
@@ -114,13 +126,55 @@ public class TvProgramActivity extends AppCompatActivity implements IView<String
     }
 
     @Override
-    public void beforeQuery(String requestParameter) {
-
+    protected void onResume() {
+        StatService.onResume(this);
+        super.onResume();
     }
 
     @Override
-    public void afterQuery(NetQueryType type, Result<TvProgram> response) {
+    protected void onPause() {
+        StatService.onPause(this);
+        super.onPause();
+    }
 
+    @Override
+    public void beforeQuery(String requestParameter) {
+        ViewUtil.fadeInView(progress, mShortAnimationDuration);
+        ViewUtil.fadeOutView(recycler, mShortAnimationDuration);
+        ViewUtil.fadeOutView(status, mShortAnimationDuration);
+    }
+
+    private void showStatus() {
+        ViewUtil.fadeOutView(progress, mShortAnimationDuration);
+        ViewUtil.fadeOutView(recycler, mShortAnimationDuration);
+        ViewUtil.fadeInView(status, mShortAnimationDuration);
+    }
+
+    @Override
+    public void afterQuery(NetQueryType type, Result<List<TvProgram>> response) {
+        switch (type) {
+            case NET_REQUEST_FAILURE:
+                showStatus();
+                status.setText(R.string.net_failure);
+                break;
+            case NET_RESPONSE_SUCCESS:
+                ViewUtil.fadeOutView(progress, mShortAnimationDuration);
+                ViewUtil.fadeInView(recycler, mShortAnimationDuration);
+                ViewUtil.fadeOutView(status, mShortAnimationDuration);
+
+                recycler.setLayoutManager(new LinearLayoutManager(this));
+                recycler.addItemDecoration(new GridDivider(this));
+                recycler.setAdapter(new TvProgramAdapter(response.result));
+                break;
+            case NET_RESPONSE_ERROR:
+                showStatus();
+                status.setText(R.string.response_error);
+                break;
+            case NET_RESPONSE_ERROR_REASON:
+                showStatus();
+                status.setText(response.reason);
+                break;
+        }
     }
 
     @Override

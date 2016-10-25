@@ -17,6 +17,7 @@ import lic.swifter.box.api.model.TodayHistoryResult;
 import lic.swifter.box.api.model.TopNewsWrapper;
 import lic.swifter.box.api.model.TvCategory;
 import lic.swifter.box.api.model.TvChannel;
+import lic.swifter.box.api.model.TvProgram;
 import lic.swifter.box.api.model.WxChosenWrapper;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -96,4 +97,7 @@ public interface JuheApi {
 
     @GET("tv/getChannel?key="+TV_TABLE_KEY)
     Call<Result<List<TvChannel>>> queryTvChannel(@Query("pId") int id);
+
+    @GET("tv/getProgram?key="+TV_TABLE_KEY)
+    Call<Result<List<TvProgram>>> queryTvProgram(@Query("code") String code);
 }
