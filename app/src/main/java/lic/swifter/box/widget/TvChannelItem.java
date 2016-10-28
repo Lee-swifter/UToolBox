@@ -48,7 +48,6 @@ public class TvChannelItem extends LinearLayout {
     private boolean touchMode;
     private boolean slide;
     private int lastScrollX;
-    private int restoreScrollX;
 
     public TvChannelItem(Context context) {
         super(context, null);
@@ -75,20 +74,22 @@ public class TvChannelItem extends LinearLayout {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                //记录按下的位置
                 downX = event.getRawX();
                 downY = event.getRawY();
-                lastScrollX = getScrollX();
                 break;
             case MotionEvent.ACTION_MOVE:
                 float nowX = event.getRawX();
                 float nowY = event.getRawY();
 
+                //判断用户是上下滑动还是左右滑动
                 if (!touchMode && (Math.abs(nowX - downX) > touchSlop || Math.abs(nowY - downY) > touchSlop)) {
-                    touchMode = true;
+                    touchMode = true;   //一旦该变量被置为true，则滑动方向确定
                     if (Math.abs(nowX - downX) > touchSlop && Math.abs(nowY - downY) <= touchSlop) {
-                        slide = true;
-                        getParent().requestDisallowInterceptTouchEvent(true);
+                        slide = true;   //此时认为是左右滑动
+                        getParent().requestDisallowInterceptTouchEvent(true);   //请求父控件不要拦截触摸事件
 
+                        //一下代码避免出发点击事件
                         MotionEvent cancelEvent = MotionEvent.obtain(event);
                         cancelEvent.setAction(MotionEvent.ACTION_CANCEL | (event.getActionIndex() << MotionEvent.ACTION_POINTER_INDEX_SHIFT));
                         onTouchEvent(cancelEvent);
@@ -102,13 +103,13 @@ public class TvChannelItem extends LinearLayout {
                     else if (diffX > button.getWidth())
                         diffX = (diffX - button.getWidth()) / 3 + button.getWidth();
 
-                    scrollTo((int) diffX, 0);
+                    scrollTo((int) diffX, 0);   //滑动处理
                 }
 
                 break;
             case MotionEvent.ACTION_UP:
-                if (slide) {
-                    ValueAnimator animator;
+                if (slide) {    //如果是左右滑动，那么松手时需要自动滑到指定位置
+                    ValueAnimator animator;     //使用的是ValueAnimator，而非Scroller
                     if (getScrollX() > button.getWidth() / 2) {
                         animator = ValueAnimator.ofInt(getScrollX(), button.getWidth());
                     } else {
@@ -123,7 +124,7 @@ public class TvChannelItem extends LinearLayout {
                     animator.start();
                     slide = false;
                 }
-                touchMode = false;
+                touchMode = false;  //重置变量
                 break;
         }
 
