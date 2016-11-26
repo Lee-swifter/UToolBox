@@ -3,9 +3,6 @@ package lic.swifter.box.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by lic on 16-8-1.
- */
 public class ApiHelper {
 
     public static final int API_JUHEAPI_COM = 1;
