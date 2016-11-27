@@ -21,5 +21,9 @@ public interface IView<T, S> {
      */
     void afterQuery(NetQueryType type, Result<S> response);
 
+    /**
+     * 返回上下文
+     * @return 上下文
+     */
     Context getContext();
 }
