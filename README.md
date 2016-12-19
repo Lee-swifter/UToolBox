@@ -1,8 +1,8 @@
 # 生活工具箱
 
-一个工具箱应用，目前包括了IP查询、历史上的今天、身份证查询、微信精选、手机号码查询、QQ号查询、笑话大全这七项，未来将加入更多内容。
+一个工具箱应用，目前包括了IP查询、历史上的今天、身份证查询、微信精选、手机号码查询、QQ号查询、笑话大全、电影票房查询、新闻头条、电视节目表这九项，未来将会加入更多内容。
 
-代码使用了[Yalantis](https://github.com/Yalantis)的[GuillotineMenu](https://github.com/Yalantis/GuillotineMenu-Android)项目，使用的接口是[聚合数据](https://www.juhe.cn/)。使用MVP结构。
+本项目使用了[Yalantis](https://github.com/Yalantis)的[GuillotineMenu](https://github.com/Yalantis/GuillotineMenu-Android)项目，数据接口由[聚合数据](https://www.juhe.cn/)提供。代码采用MVP结构。
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-GuillotineMenu-green.svg?style=flat)](https://android-arsenal.com/details/1/1995)
 
