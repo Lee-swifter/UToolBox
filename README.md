@@ -6,7 +6,7 @@
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-GuillotineMenu-green.svg?style=flat)](https://android-arsenal.com/details/1/1995)
 
-[![Juhe API](https://www.juhe.cn/themes/v4/public/images/logo.png)](https://www.juhe.cn/) 
+[![Juhe API](./documents/logo_juhe.jpg)](https://www.juhe.cn/) 
 
 ##下载地址
 
