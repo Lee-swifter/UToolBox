@@ -6,4 +6,6 @@
 
     <color name="guillotine_background">#444153</color>
     <color name="guillotine_background_dark">#383547</color>
+
+    <color name="web_view_close_pressed_color">#33000000</color>
 </resources>

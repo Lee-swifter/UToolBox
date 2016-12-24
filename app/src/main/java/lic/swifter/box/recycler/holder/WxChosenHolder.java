@@ -2,7 +2,6 @@ package lic.swifter.box.recycler.holder;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +12,7 @@ import com.bumptech.glide.Glide;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import lic.swifter.box.R;
+import lic.swifter.box.activity.WebViewActivity;
 import lic.swifter.box.api.model.WxChosen;
 import lic.swifter.box.util.ViewUtil;
 
@@ -43,8 +43,9 @@ public class WxChosenHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse(data.url);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra(WebViewActivity.INTENT_URL, data.url);
+                intent.putExtra(WebViewActivity.INTENT_TITLE, data.title);
                 context.startActivity(intent);
             }
         });

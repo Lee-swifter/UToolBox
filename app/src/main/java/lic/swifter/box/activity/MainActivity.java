@@ -37,7 +37,6 @@ import lic.swifter.box.recycler.divider.GridDivider;
 import lic.swifter.box.util.FindUtil;
 import lic.swifter.box.util.ToastUtil;
 
-
 public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnItemClickListener, TopNewsFragment.OnNewsTypeChangedListener {
 
     private static final int RIPPLE_DURATION = 250;

@@ -3,7 +3,6 @@ package lic.swifter.box.widget;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.activity.TvProgramActivity;
+import lic.swifter.box.activity.WebViewActivity;
 import lic.swifter.box.api.model.TvChannel;
 
 /*
@@ -139,8 +139,9 @@ public class TvChannelItem extends LinearLayout {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse(channel.url);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                intent.putExtra(WebViewActivity.INTENT_URL, channel.url);
+                intent.putExtra(WebViewActivity.INTENT_TITLE, channel.channelName);
                 getContext().startActivity(intent);
             }
         });
