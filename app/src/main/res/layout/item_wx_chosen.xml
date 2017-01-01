@@ -20,14 +20,14 @@
         android:paddingStart="10dip"
         android:paddingTop="10dip">
 
-        <TextView
+        <lic.swifter.box.widget.CanaroTextView
             android:id="@+id/wx_chosen_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:textSize="16sp"/>
 
-        <TextView
+        <lic.swifter.box.widget.CanaroTextView
             android:id="@+id/wx_chosen_source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

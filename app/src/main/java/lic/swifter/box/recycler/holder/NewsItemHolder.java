@@ -3,6 +3,7 @@ package lic.swifter.box.recycler.holder;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,15 +37,11 @@ import lic.swifter.box.util.ViewUtil;
 
 public class NewsItemHolder extends RecyclerView.ViewHolder {
 
+    @Bind(R.id.item_news_image)
+    ImageView firstImageView;
     @Bind(R.id.item_news_title)
     TextView titleText;
-    @Bind(R.id.item_news_image_1)
-    ImageView firstImageView;
-    @Bind(R.id.item_news_image_2)
-    ImageView secondImageView;
-    @Bind(R.id.item_news_image_3)
-    ImageView thirdImageView;
-    @Bind(R.id.item_news_author_time)
+    @Bind(R.id.item_news_source)
     TextView authorTimeView;
 
     public NewsItemHolder(View itemView) {
@@ -58,14 +55,8 @@ public class NewsItemHolder extends RecyclerView.ViewHolder {
         titleText.setText(news.title);
         authorTimeView.setText(news.author_name + " "+ news.date);
 
-        String[] images = new String[]{news.thumbnail_pic_s,news.thumbnail_pic_s02,news.thumbnail_pic_s03};
-
-        if(images[0] != null)
-            Glide.with(context).load(images[0]).into(firstImageView);
-        if(images[1] != null && !images[1].equals(images[0]))
-            Glide.with(context).load(images[1]).into(secondImageView);
-        if(images[2] != null && !images[2].equals(images[0]) && !images[2].equals(images[1]))
-            Glide.with(context).load(images[2]).into(thirdImageView);
+        if(!TextUtils.isEmpty(news.thumbnail_pic_s))
+            Glide.with(context).load(news.thumbnail_pic_s).into(firstImageView);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

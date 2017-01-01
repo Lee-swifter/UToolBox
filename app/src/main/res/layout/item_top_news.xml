@@ -1,52 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="13dip">
+    android:layout_height="106dip"
+    android:padding="7dip">
 
-    <lic.swifter.box.widget.CanaroTextView
-        android:id="@+id/item_news_title"
+    <ImageView
+        android:id="@+id/item_news_image"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="120dip"
+        android:layout_height="90dip" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        android:layout_toLeftOf="@id/item_news_image"
+        android:layout_toStartOf="@id/item_news_image"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dip"
+        android:layout_marginEnd="10dip"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dip"
-        android:layout_marginTop="5dip"
-        android:orientation="horizontal">
+        <lic.swifter.box.widget.CanaroTextView
+            android:id="@+id/item_news_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:maxLines="2"
+            android:textSize="15sp"/>
 
-        <ImageView
-            android:id="@+id/item_news_image_1"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerCrop" />
+        <lic.swifter.box.widget.CanaroTextView
+            android:id="@+id/item_news_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/item_news_image_2"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dip"
-            android:layout_marginStart="5dip"
-            android:layout_weight="1"
-            android:scaleType="centerCrop" />
 
-        <ImageView
-            android:id="@+id/item_news_image_3"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dip"
-            android:layout_marginStart="5dip"
-            android:layout_weight="1"
-            android:scaleType="centerCrop" />
-    </LinearLayout>
-
-    <lic.swifter.box.widget.CanaroTextView
-        android:id="@+id/item_news_author_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dip"
-        android:gravity="end" />
-</LinearLayout>
+</RelativeLayout>

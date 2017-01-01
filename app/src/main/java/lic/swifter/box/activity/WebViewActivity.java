@@ -15,6 +15,8 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.baidu.mobstat.StatService;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import lic.swifter.box.R;
@@ -123,6 +125,18 @@ public class WebViewActivity extends AppCompatActivity {
         outState.putString(INTENT_URL, originalUrl);
         outState.putString(INTENT_TITLE, originalTitle);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onResume() {
+        StatService.onResume(this);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        StatService.onPause(this);
+        super.onPause();
     }
 
     @Override
