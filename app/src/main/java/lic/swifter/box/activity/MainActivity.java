@@ -109,6 +109,11 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
 
     @Override
     public void onBackPressed() {
+        if(guillo.closed) {
+            guillo.open();
+            return ;
+        }
+
         if (exitTimeStamp + TIME_EXIT > System.currentTimeMillis())
             super.onBackPressed();
         else {

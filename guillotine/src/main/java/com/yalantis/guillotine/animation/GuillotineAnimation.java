@@ -34,6 +34,7 @@ public class GuillotineAnimation {
 
     private boolean isOpening;
     private boolean isClosing;
+    public boolean closed;
 
     private GuillotineAnimation(GuillotineBuilder builder) {
         this.mActionBarView = builder.actionBarView;
@@ -58,12 +59,14 @@ public class GuillotineAnimation {
     public void open() {
         if (!isOpening) {
             mOpeningAnimation.start();
+            closed = false;
         }
     }
 
     public void close() {
         if (!isClosing) {
             mClosingAnimation.start();
+            closed = true;
         }
 
     }
