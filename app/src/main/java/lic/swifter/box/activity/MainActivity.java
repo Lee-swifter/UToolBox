@@ -26,6 +26,7 @@ import lic.swifter.box.fragment.BoxOfficeFragment;
 import lic.swifter.box.fragment.IDQueryFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
 import lic.swifter.box.fragment.JokesFragment;
+import lic.swifter.box.fragment.MobileInfoFragment;
 import lic.swifter.box.fragment.PhoneQueryFragment;
 import lic.swifter.box.fragment.QQLuckFragment;
 import lic.swifter.box.fragment.TodayHistoryFragment;
@@ -210,6 +211,14 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 }
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.tv_list_table);
+                break;
+            case MobileInfoFragment:    //本机信息
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new MobileInfoFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
+                titleText.setText(R.string.mobile_info);
+                break;
             default:
                 break;
         }

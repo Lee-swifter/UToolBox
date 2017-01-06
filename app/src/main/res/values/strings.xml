@@ -25,6 +25,7 @@
     <string name="films_box_office">电影票房</string>
     <string name="top_news">新闻头条</string>
     <string name="tv_list_table">电视节目表</string>
+    <string name="mobile_info">本机信息</string>
 
     <string name="area_code_string">区号： %1$s</string>
     <string name="zip_string">邮编： %1$s</string>
