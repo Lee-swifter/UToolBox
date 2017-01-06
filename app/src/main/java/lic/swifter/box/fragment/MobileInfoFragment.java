@@ -21,12 +21,28 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import lic.swifter.box.R;
 
 public class MobileInfoFragment extends BaseFragment {
+
+    @Bind(R.id.fragment_mobile_info_list)
+    ListView listView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View rootView = inflater.inflate(R.layout.fragment_mobile_info, container, false);
+        ButterKnife.bind(this, rootView);
+
+        setupList();
+        return rootView;
+    }
+
+    private void setupList() {
+
     }
 }
