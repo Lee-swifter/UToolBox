@@ -10,6 +10,7 @@
 
 ##下载地址
 
+点击图标进入下载页面：
 [![](app/src/main/res/mipmap-xhdpi/ic_launcher.png)](http://fir.im/tobox)
 
 ## License
