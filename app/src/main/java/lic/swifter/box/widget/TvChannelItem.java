@@ -77,6 +77,7 @@ public class TvChannelItem extends LinearLayout {
                 //记录按下的位置
                 downX = event.getRawX();
                 downY = event.getRawY();
+                lastScrollX = getScrollX();
                 break;
             case MotionEvent.ACTION_MOVE:
                 float nowX = event.getRawX();
