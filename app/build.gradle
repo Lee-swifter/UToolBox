@@ -8,8 +8,8 @@ android {
         applicationId "lic.swifter.box"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 7
-        versionName "0.8.7.1"
+        versionCode 8
+        versionName "0.8.8"
     }
     buildTypes {
         release {
