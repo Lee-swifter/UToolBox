@@ -26,12 +26,12 @@ public interface FontConvertView {
     /**
      * 在开始查询之前的界面操作
      */
-    void beforeQuery(int type, String text);
+    void onStartQuery(int type, String text);
 
     /**
      * 查询结束后的操作
      */
-    void afterQuery(NetQueryType type, FontConversion response);
+    void onQueryResult(int type, NetQueryType netType, FontConversion response);
 
     /**
      * 返回上下文

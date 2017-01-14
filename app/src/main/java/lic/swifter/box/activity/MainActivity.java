@@ -225,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                     fragmentMap.put(flag, new FontConvertFragment());
                 }
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
+                titleText.setText(R.string.font_convert_title);
                 break;
             default:
                 break;

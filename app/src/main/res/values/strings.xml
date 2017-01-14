@@ -28,6 +28,8 @@
     <string name="mobile_info">本机信息</string>
     <string name="font_convert">字体转换</string>
 
+    <string name="font_convert_title">简/繁/火星字体转换</string>
+
     <string name="area_code_string">区号： %1$s</string>
     <string name="zip_string">邮编： %1$s</string>
     <string name="date_format_string">%1$d年%2$d月%3$d日</string>
@@ -51,4 +53,6 @@
     <string name="text_traditional_chinese">繁体：</string>
     <string name="text_leetspeak">火星文：</string>
     <string name="text_copy">复制</string>
+    <string name="text_copy_to_clipboard">内容已复制到剪贴板</string>
+
 </resources>
