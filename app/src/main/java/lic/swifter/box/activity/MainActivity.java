@@ -23,6 +23,7 @@ import lic.swifter.box.R;
 import lic.swifter.box.data.FragmentsFlag;
 import lic.swifter.box.fragment.BaseFragment;
 import lic.swifter.box.fragment.BoxOfficeFragment;
+import lic.swifter.box.fragment.FontConvertFragment;
 import lic.swifter.box.fragment.IDQueryFragment;
 import lic.swifter.box.fragment.IPQueryFragment;
 import lic.swifter.box.fragment.JokesFragment;
@@ -218,6 +219,12 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 }
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.mobile_info);
+                break;
+            case FontConvertFragment:   //简繁火星字体转换
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new FontConvertFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 break;
             default:
                 break;

@@ -17,6 +17,7 @@ public class ToolsCollection {
             new ToolData(R.drawable.films_box_office_icon, R.string.films_box_office, FragmentsFlag.MovieRankingFragment),
             new ToolData(R.drawable.top_news_icon, R.string.top_news, FragmentsFlag.TopNewsFragment),
             new ToolData(R.drawable.tv_list_icon, R.string.tv_list_table, FragmentsFlag.TvTableFragment),
-            new ToolData(R.drawable.mobile_number_attr_icon,R.string.mobile_info, FragmentsFlag.MobileInfoFragment)
+            new ToolData(R.drawable.mobile_number_attr_icon,R.string.mobile_info, FragmentsFlag.MobileInfoFragment),
+            new ToolData(R.drawable.font_convert_icon, R.string.font_convert, FragmentsFlag.FontConvertFragment)
     };
 }

@@ -6,6 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 
+import lic.swifter.box.api.model.FontConversion;
 import lic.swifter.box.api.model.IdResult;
 import lic.swifter.box.api.model.IpLocation;
 import lic.swifter.box.api.model.JokesWrapper;
@@ -39,6 +40,7 @@ public interface JuheApi {
     String MOVIE_KEY = "e2f8ea575ba21732fb2ff7a58be66cc3";
     String TOP_NEWS_KEY = "5878230b3640a8c96776db219e90dfcb";
     String TV_TABLE_KEY = "206ccf92e1b0005fe6efead1dca99d0c";
+    String FONT_CONVERSION_KEY = "6eb92dacc06677e0b2864b57bcbc90d7";
 
     String MOVIE_CN = "CN";
     String MOVIE_US = "US";
@@ -100,4 +102,7 @@ public interface JuheApi {
 
     @GET("tv/getProgram?key="+TV_TABLE_KEY)
     Call<Result<List<TvProgram>>> queryTvProgram(@Query("code") String code);
+
+    @GET("charconvert/change.from?key="+FONT_CONVERSION_KEY)
+    Call<FontConversion> fontConvert(@Query("type") int type, @Query("text") String text);
 }

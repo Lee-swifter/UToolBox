@@ -15,5 +15,6 @@ public enum FragmentsFlag {
     MovieRankingFragment,
     TopNewsFragment,
     TvTableFragment,
-    MobileInfoFragment
+    MobileInfoFragment,
+    FontConvertFragment
 }

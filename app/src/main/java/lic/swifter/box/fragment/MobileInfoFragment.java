@@ -25,6 +25,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.baidu.mobstat.StatService;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -76,6 +78,7 @@ public class MobileInfoFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_mobile_info, container, false);
         ButterKnife.bind(this, rootView);
 
+        StatService.onEvent(getContext(), "local_info", "pass", 1);
         listView.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, properties));
         return rootView;
     }

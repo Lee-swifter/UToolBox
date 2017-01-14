@@ -24,6 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.List;
 
 import lic.swifter.box.R;
@@ -54,6 +56,8 @@ public class TvCategoryAdapter extends RecyclerView.Adapter<TvViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StatService.onEvent(context, "tv_query_2", "pass", 1);
+
                 Intent intent = new Intent(context, TvChannelActivity.class);
                 intent.putExtra(TvChannelActivity.TV_CATEGORY_INTENT, list.get(holder.getAdapterPosition()));
                 context.startActivity(intent);

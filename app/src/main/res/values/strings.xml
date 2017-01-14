@@ -26,6 +26,7 @@
     <string name="top_news">新闻头条</string>
     <string name="tv_list_table">电视节目表</string>
     <string name="mobile_info">本机信息</string>
+    <string name="font_convert">字体转换</string>
 
     <string name="area_code_string">区号： %1$s</string>
     <string name="zip_string">邮编： %1$s</string>
@@ -45,4 +46,9 @@
     <string name="click_to_retry">%1$s, 点击重试</string>
     <string name="channel">频道</string>
     <string name="data_analyze_error">数据解析异常</string>
+    <string name="input_text_for_convert">输入要进行转换的文字</string>
+    <string name="text_convert">转换</string>
+    <string name="text_traditional_chinese">繁体：</string>
+    <string name="text_leetspeak">火星文：</string>
+    <string name="text_copy">复制</string>
 </resources>

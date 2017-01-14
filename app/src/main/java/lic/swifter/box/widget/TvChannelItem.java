@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.baidu.mobstat.StatService;
+
 import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.activity.TvProgramActivity;
@@ -140,6 +142,8 @@ public class TvChannelItem extends LinearLayout {
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                StatService.onEvent(getContext(), "tv_query_live", "pass", 1);
+
                 Intent intent = new Intent(getContext(), WebViewActivity.class);
                 intent.putExtra(WebViewActivity.INTENT_URL, channel.url);
                 intent.putExtra(WebViewActivity.INTENT_TITLE, channel.channelName);
@@ -150,6 +154,8 @@ public class TvChannelItem extends LinearLayout {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                StatService.onEvent(getContext(), "tv_query_3", "pass", 1);
+
                 Intent intent = new Intent(getContext(), TvProgramActivity.class);
                 intent.putExtra(TvProgramActivity.TV_CHANNEL_INTENT, channel);
                 getContext().startActivity(intent);

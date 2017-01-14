@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.baidu.mobstat.StatService;
+
 import java.util.List;
 
 import butterknife.Bind;
@@ -44,6 +46,8 @@ public class TvTableFragment extends BaseFragment implements IView<Void, List<Tv
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.common_recycler_status, container, false);
         ButterKnife.bind(this, rootView);
+
+        StatService.onEvent(getContext(), "tv_query_1", "pass", 1);
         status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
