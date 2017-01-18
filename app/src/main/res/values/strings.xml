@@ -27,6 +27,7 @@
     <string name="tv_list_table">电视节目表</string>
     <string name="mobile_info">本机信息</string>
     <string name="font_convert">字体转换</string>
+    <string name="baidu_weight">百度权重</string>
 
     <string name="font_convert_title">简/繁/火星字体转换</string>
 

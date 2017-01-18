@@ -227,6 +227,9 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.font_convert_title);
                 break;
+            case BaiduWeightFragment:
+                //TODO:
+                break;
             default:
                 break;
         }
