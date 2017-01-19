@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dip">
+
+        <EditText
+            android:id="@+id/web_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:hint="@string/input_id_number_hint" />
+    </android.support.design.widget.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dip"
+        android:layout_margin="3dip">
+
+        <ProgressBar
+            android:id="@+id/weight_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/weight_result_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <lic.swifter.box.widget.CanaroTextView
+                android:id="@+id/weight_query_site"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dip" />
+
+            <lic.swifter.box.widget.CanaroTextView
+                android:id="@+id/weight_result_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dip" />
+
+            <lic.swifter.box.widget.CanaroTextView
+                android:id="@+id/weight_result_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="@color/guillotine_background" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/weight_record_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

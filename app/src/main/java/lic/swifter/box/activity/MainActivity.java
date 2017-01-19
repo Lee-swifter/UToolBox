@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 import lic.swifter.box.R;
 import lic.swifter.box.data.FragmentsFlag;
+import lic.swifter.box.fragment.BaiduWeightFragment;
 import lic.swifter.box.fragment.BaseFragment;
 import lic.swifter.box.fragment.BoxOfficeFragment;
 import lic.swifter.box.fragment.FontConvertFragment;
@@ -227,8 +228,12 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.font_convert_title);
                 break;
-            case BaiduWeightFragment:
-                //TODO:
+            case BaiduWeightFragment:   //百度权重
+                if(fragmentMap.get(flag) == null) {
+                    fragmentMap.put(flag, new BaiduWeightFragment());
+                }
+                transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
+                titleText.setText(R.string.baidu_weight_query);
                 break;
             default:
                 break;

@@ -29,6 +29,7 @@
     <string name="font_convert">字体转换</string>
     <string name="baidu_weight">百度权重</string>
 
+    <string name="baidu_weight_query">百度权重查询</string>
     <string name="font_convert_title">简/繁/火星字体转换</string>
 
     <string name="area_code_string">区号： %1$s</string>
