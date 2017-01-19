@@ -6,6 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 
+import lic.swifter.box.api.model.BaiduWeight;
 import lic.swifter.box.api.model.FontConversion;
 import lic.swifter.box.api.model.IdResult;
 import lic.swifter.box.api.model.IpLocation;
@@ -41,6 +42,7 @@ public interface JuheApi {
     String TOP_NEWS_KEY = "5878230b3640a8c96776db219e90dfcb";
     String TV_TABLE_KEY = "206ccf92e1b0005fe6efead1dca99d0c";
     String FONT_CONVERSION_KEY = "6eb92dacc06677e0b2864b57bcbc90d7";
+    String BAIDU_WEIGHT_KEY = "808d36d8b10eaa86e0ef04e1be82850e";
 
     String MOVIE_CN = "CN";
     String MOVIE_US = "US";
@@ -93,7 +95,6 @@ public interface JuheApi {
     @GET("toutiao/index?key="+TOP_NEWS_KEY)
     Call<Result<TopNewsWrapper>> queryNews(@Query("type") @NewsType String type);
 
-
     @GET("tv/getCategory?key="+TV_TABLE_KEY)
     Call<Result<List<TvCategory>>> queryTvCategory();
 
@@ -105,4 +106,7 @@ public interface JuheApi {
 
     @GET("charconvert/change.from?key="+FONT_CONVERSION_KEY)
     Call<FontConversion> fontConvert(@Query("type") int type, @Query("text") String text);
+
+    @GET("baiduWeight/index?key="+BAIDU_WEIGHT_KEY)
+    Call<Result<BaiduWeight>> queryBaiduWeight(@Query("domain") String domain);
 }

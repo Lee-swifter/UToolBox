@@ -38,4 +38,13 @@ public final class BoxContract {
         public static final String COLUMN_NAME_RESULT_COMPANY = "result_company";
         public static final String COLUMN_NAME_RESULT_CARD = "result_card";
     }
+
+    public static abstract class BaiduWeightEntry implements BaseColumns {
+        public static final String TABLE_NAME = "baidu_weight_table";
+        public static final String COLUMN_NAME_SEARCH_TIME_STAMP = "search_time_stamp";
+        public static final String COLUMN_NAME_SEARCH_WEBSITE = "search_website";
+        public static final String COLUMN_NAME_RESULT_WEIGHT = "result_weight";
+        public static final String COLUMN_NAME_RESULT_WEIGHT_FROM = "result_weight_from";
+        public static final String COLUMN_NAME_RESULT_WEIGHT_TO = "result_weight_to";
+    }
 }

@@ -12,7 +12,7 @@ import lic.swifter.box.api.model.IdResult;
 import lic.swifter.box.recycler.holder.IdResultHolder;
 
 /**
- * Created by cheng on 2016/8/19.
+ * Created by cheng on 2016/8/19.3
  */
 
 public class IdResultAdapter extends RecyclerView.Adapter<IdResultHolder> {

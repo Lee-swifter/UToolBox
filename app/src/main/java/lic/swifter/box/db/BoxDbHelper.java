@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class BoxDbHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;      //from 0.8.9
     private static final String DATABASE_NAME = "box.db";
 
     private static final String TEXT_TYPE = " TEXT";
@@ -49,6 +49,16 @@ public class BoxDbHelper extends SQLiteOpenHelper {
                     BoxContract.PhoneEntry.COLUMN_NAME_RESULT_CARD + TEXT_TYPE +
                     " )";
 
+    private static final String SQL_CREATE_WEIGHT_ENTRIES =
+            "CREATE TABLE " + BoxContract.BaiduWeightEntry.TABLE_NAME + " (" +
+                    BoxContract.BaiduWeightEntry._ID + " INTEGER PRIMARY KEY," +
+                    BoxContract.BaiduWeightEntry.COLUMN_NAME_SEARCH_TIME_STAMP + TIME_STAMP_TYPE + COMMA_SEP +
+                    BoxContract.BaiduWeightEntry.COLUMN_NAME_SEARCH_WEBSITE + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.BaiduWeightEntry.COLUMN_NAME_RESULT_WEIGHT + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.BaiduWeightEntry.COLUMN_NAME_RESULT_WEIGHT_FROM + TEXT_TYPE + COMMA_SEP +
+                    BoxContract.BaiduWeightEntry.COLUMN_NAME_RESULT_WEIGHT_TO + TEXT_TYPE +
+                    " )";
+
     private static final String SQL_DELETE_IP_ENTRIES =
             "DROP TABLE IF EXISTS " + BoxContract.IpEntry.TABLE_NAME;
 
@@ -57,6 +67,9 @@ public class BoxDbHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_PHONE_ENTRIES =
             "DROP TABLE IF EXISTS " + BoxContract.PhoneEntry.TABLE_NAME;
+
+    private static final String SQL_DELETE_WEIGHT_ENTRIES =
+            "DROP TABLE IF EXISTS " + BoxContract.BaiduWeightEntry.TABLE_NAME;
 
     private static BoxDbHelper instance;
 
@@ -83,17 +96,25 @@ public class BoxDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(SQL_CREATE_IP_ENTRIES);
         sqLiteDatabase.execSQL(SQL_CREATE_ID_ENTRIES);
         sqLiteDatabase.execSQL(SQL_CREATE_PHONE_ENTRIES);
+        sqLiteDatabase.execSQL(SQL_CREATE_WEIGHT_ENTRIES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        sqLiteDatabase.execSQL(SQL_DELETE_IP_ENTRIES);
-        sqLiteDatabase.execSQL(SQL_DELETE_ID_ENTRIES);
-        sqLiteDatabase.execSQL(SQL_DELETE_PHONE_ENTRIES);
-        onCreate(sqLiteDatabase);
+        switch (oldVersion) {
+            case 1:     //before 0.8.9
+                sqLiteDatabase.execSQL(SQL_CREATE_WEIGHT_ENTRIES);
+                break;
+            case 2:     //from 0.8.9
+                break;
+        }
     }
 
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        onUpgrade(db, oldVersion, newVersion);
+        db.execSQL(SQL_DELETE_IP_ENTRIES);
+        db.execSQL(SQL_DELETE_ID_ENTRIES);
+        db.execSQL(SQL_DELETE_PHONE_ENTRIES);
+        db.execSQL(SQL_DELETE_WEIGHT_ENTRIES);
+        onCreate(db);
     }
 }

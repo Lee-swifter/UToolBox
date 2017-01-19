@@ -116,7 +116,7 @@ public class NewsPage extends FrameLayout implements IView<String, TopNewsWrappe
     }
 
     private void changeViewsWhenNetError() {
-        ViewUtil.fadeOutView(progress, duration);
+        progress.setVisibility(View.GONE);
         ViewUtil.fadeInView(statusText, duration);
         ViewUtil.fadeOutView(recyclerView, duration);
     }
