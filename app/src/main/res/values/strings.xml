@@ -30,6 +30,10 @@
     <string name="baidu_weight">百度权重</string>
 
     <string name="baidu_weight_query">百度权重查询</string>
+    <string name="baidu_weight_result">百度权重：%1$s</string>
+    <string name="baidu_weight_range_result">权重范围：%1$s &#8212; %2$s</string>
+    <string name="baidu_weight_result_item">权重等级：%1$s</string>
+    <string name="baidu_weight_range_result_item">%1$s &#8212; %2$s</string>
     <string name="font_convert_title">简/繁/火星字体转换</string>
 
     <string name="area_code_string">区号： %1$s</string>
@@ -38,6 +42,7 @@
 
     <string name="input_ip_or_domain">请输入ip地址或域名</string>
     <string name="input_id_number_hint">请输入身份证号</string>
+    <string name="input_website_for_weight">请输入要查询的网址</string>
     <string name="input_phone_number_hint">请输入手机号码</string>
     <string name="input_qq_number_hint">请输入QQ号码</string>
 

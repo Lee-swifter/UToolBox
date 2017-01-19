@@ -42,7 +42,7 @@ public interface JuheApi {
     String TOP_NEWS_KEY = "5878230b3640a8c96776db219e90dfcb";
     String TV_TABLE_KEY = "206ccf92e1b0005fe6efead1dca99d0c";
     String FONT_CONVERSION_KEY = "6eb92dacc06677e0b2864b57bcbc90d7";
-    String BAIDU_WEIGHT_KEY = "808d36d8b10eaa86e0ef04e1be82850e";
+    String BAIDU_WEIGHT_KEY = "e165589242feee202b2cf1fb6afcf0e3";
 
     String MOVIE_CN = "CN";
     String MOVIE_US = "US";
