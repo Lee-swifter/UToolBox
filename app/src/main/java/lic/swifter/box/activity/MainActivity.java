@@ -235,6 +235,8 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
                 transaction.replace(R.id.fragment_place_holder, fragmentMap.get(flag));
                 titleText.setText(R.string.baidu_weight_query);
                 break;
+            case WebsiteSecurityFragment:   //网站安全查询
+                break;
             default:
                 break;
         }

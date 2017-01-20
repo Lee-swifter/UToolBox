@@ -28,6 +28,7 @@
     <string name="mobile_info">本机信息</string>
     <string name="font_convert">字体转换</string>
     <string name="baidu_weight">百度权重</string>
+    <string name="website_security">网站安全查询</string>
 
     <string name="baidu_weight_query">百度权重查询</string>
     <string name="baidu_weight_result">百度权重：%1$s</string>

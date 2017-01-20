@@ -17,5 +17,6 @@ public enum FragmentsFlag {
     TvTableFragment,
     MobileInfoFragment,
     FontConvertFragment,
-    BaiduWeightFragment
+    BaiduWeightFragment,
+    WebsiteSecurityFragment
 }
