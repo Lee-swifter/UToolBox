@@ -35,6 +35,7 @@
     <string name="baidu_weight_range_result">权重范围：%1$s &#8212; %2$s</string>
     <string name="baidu_weight_result_item">权重等级：%1$s</string>
     <string name="baidu_weight_range_result_item">%1$s &#8212; %2$s</string>
+    <string name="about_baidu_weight">关于百度权重</string>
     <string name="font_convert_title">简/繁/火星字体转换</string>
 
     <string name="area_code_string">区号： %1$s</string>
