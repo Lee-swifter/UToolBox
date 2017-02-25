@@ -19,6 +19,7 @@ package lic.swifter.box.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,6 +96,7 @@ public class WebsiteSecurityFragment extends BaseFragment implements IView<Strin
                     if (imm != null)
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
+                    loadingProgress.requestFocus();
                     return true;
                 }
                 return false;
@@ -104,9 +106,9 @@ public class WebsiteSecurityFragment extends BaseFragment implements IView<Strin
 
     @Override
     public void beforeQuery(String requestParameter) {
-        fadeInView(loadingProgress);
-        fadeOutView(loadingStatus);
-        fadeOutView(resultContent);
+        loadingProgress.setVisibility(View.VISIBLE);
+        loadingStatus.setVisibility(View.INVISIBLE);
+        resultContent.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -115,20 +117,28 @@ public class WebsiteSecurityFragment extends BaseFragment implements IView<Strin
             case NET_RESPONSE_SUCCESS:
 
                 message.setText(response.result.msg);
-                messageTime.setText(response.result.scantime);
+                if (!TextUtils.isEmpty(response.result.scantime))
+                    messageTime.setText(response.result.scantime);
 
-                scoreResult.setText(response.result.data.score.msg);
-                trojanResult.setText(response.result.data.guama.msg);
-                fakeResult.setText(response.result.data.xujia.msg);
-                distrotResult.setText(response.result.data.cuangai.msg);
-                noteResult.setText(response.result.data.pangzhu.msg);
-                violationResult.setText(response.result.data.violation.msg);
-                googleResult.setText(response.result.data.google.msg);
+                if (response.result.data.score != null && !TextUtils.isEmpty(response.result.data.score.msg))
+                    scoreResult.setText(response.result.data.score.msg);
+                if(response.result.data.guama != null && !TextUtils.isEmpty(response.result.data.guama.msg))
+                    trojanResult.setText(response.result.data.guama.msg);
+                if (response.result.data.xujia != null && !TextUtils.isEmpty(response.result.data.xujia.msg))
+                    fakeResult.setText(response.result.data.xujia.msg);
+                if (response.result.data.cuangai != null && !TextUtils.isEmpty(response.result.data.cuangai.msg))
+                    distrotResult.setText(response.result.data.cuangai.msg);
+                if (response.result.data.pangzhu != null && !TextUtils.isEmpty(response.result.data.pangzhu.msg))
+                    noteResult.setText(response.result.data.pangzhu.msg);
+                if (response.result.data.violation != null && !TextUtils.isEmpty(response.result.data.violation.msg))
+                    violationResult.setText(response.result.data.violation.msg);
+                if (response.result.data.google != null && !TextUtils.isEmpty(response.result.data.google.msg))
+                    googleResult.setText(response.result.data.google.msg);
                 bugResult.setText(generateBugString(response.result.data.loudong));
 
-                fadeInView(resultContent);
-                fadeOutView(loadingProgress);
-                fadeOutView(loadingStatus);
+                resultContent.setVisibility(View.VISIBLE);
+                loadingProgress.setVisibility(View.INVISIBLE);
+                loadingStatus.setVisibility(View.INVISIBLE);
                 break;
             case NET_RESPONSE_ERROR_REASON:
                 loadingStatus.setText(response.reason);
@@ -163,7 +173,7 @@ public class WebsiteSecurityFragment extends BaseFragment implements IView<Strin
 
     private void onFailure() {
         loadingStatus.setVisibility(View.VISIBLE);
-        loadingProgress.setVisibility(View.GONE);
-        resultContent.setVisibility(View.GONE);
+        loadingProgress.setVisibility(View.INVISIBLE);
+        resultContent.setVisibility(View.INVISIBLE);
     }
 }

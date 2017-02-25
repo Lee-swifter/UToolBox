@@ -37,9 +37,10 @@
             android:layout_height="match_parent"
             android:visibility="gone">
             <LinearLayout
-                android:layout_margin="3dip"
+                android:layout_margin="5dip"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <lic.swifter.box.widget.CanaroTextView
                     android:id="@+id/result_summary_message"
                     android:layout_width="wrap_content"
@@ -57,90 +58,114 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/website_security_score"
-                    android:layout_margin="2dip"/>
+                    android:layout_margin="5dip"/>
                 <lic.swifter.box.widget.CanaroTextView
                     android:id="@+id/website_security_score_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_margin="2dip"/>
+                    android:textSize="19sp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginStart="10dip"
+                    android:text="@string/website_security_default_result"
+                    />
                 <lic.swifter.box.widget.CanaroTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/website_security_bug"
-                    android:layout_margin="2dip"/>
+                    android:layout_margin="5dip"/>
                 <lic.swifter.box.widget.CanaroTextView
                     android:id="@+id/website_security_bug_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_margin="2dip"/>
+                    android:textSize="19sp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginStart="10dip"
+                    android:text="@string/website_security_default_result"
+                    />
                 <lic.swifter.box.widget.CanaroTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/website_security_trojan"
-                    android:layout_margin="2dip"/>
+                    android:layout_margin="5dip"/>
                 <lic.swifter.box.widget.CanaroTextView
                     android:id="@+id/website_security_trojan_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_margin="2dip"/>
+                    android:textSize="19sp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginStart="10dip"
+                    android:text="@string/website_security_default_result"
+                    />
                 <lic.swifter.box.widget.CanaroTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/website_security_distrot"
-                    android:layout_margin="2dip"/>
+                    android:layout_margin="5dip"/>
                 <lic.swifter.box.widget.CanaroTextView
                     android:id="@+id/website_security_distrot_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_margin="2dip"/>
+                    android:textSize="19sp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginStart="10dip"
+                    android:text="@string/website_security_default_result"
+                    />
                 <lic.swifter.box.widget.CanaroTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/website_security_fake"
-                    android:layout_margin="2dip"/>
+                    android:layout_margin="5dip"/>
                 <lic.swifter.box.widget.CanaroTextView
                     android:id="@+id/website_security_fake_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_margin="2dip"/>
+                    android:textSize="19sp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginStart="10dip"
+                    android:text="@string/website_security_default_result"
+                    />
                 <lic.swifter.box.widget.CanaroTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/website_security_side_note"
-                    android:layout_margin="2dip"/>
+                    android:layout_margin="5dip"/>
                 <lic.swifter.box.widget.CanaroTextView
                     android:id="@+id/website_security_note_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_margin="2dip"/>
+                    android:textSize="19sp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginStart="10dip"
+                    android:text="@string/website_security_default_result"
+                    />
                 <lic.swifter.box.widget.CanaroTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/website_security_violation"
-                    android:layout_margin="2dip"/>
+                    android:layout_margin="5dip"/>
                 <lic.swifter.box.widget.CanaroTextView
                     android:id="@+id/website_security_violation_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_margin="2dip"/>
+                    android:textSize="19sp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginStart="10dip"
+                    android:text="@string/website_security_default_result"
+                    />
                 <lic.swifter.box.widget.CanaroTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/website_security_google"
-                    android:layout_margin="2dip"/>
+                    android:layout_margin="5dip"/>
                 <lic.swifter.box.widget.CanaroTextView
                     android:id="@+id/website_security_google_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:layout_margin="2dip"/>
+                    android:textSize="19sp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginStart="10dip"
+                    android:text="@string/website_security_default_result"
+                    />
             </LinearLayout>
         </ScrollView>
     </FrameLayout>

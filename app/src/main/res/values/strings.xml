@@ -64,18 +64,19 @@
     <string name="text_copy">复制</string>
     <string name="text_copy_to_clipboard">内容已复制到剪贴板</string>
 
-    <string name="website_security_bug">漏洞:</string>
-    <string name="website_security_trojan">挂马:</string>
-    <string name="website_security_fake">虚假</string>
-    <string name="website_security_distrot">篡改:</string>
-    <string name="website_security_side_note">旁注:</string>
-    <string name="website_security_score">分数:</string>
-    <string name="website_security_violation">违规:</string>
-    <string name="website_security_google">Google屏蔽:</string>
+    <string name="website_security_bug">漏洞信息:</string>
+    <string name="website_security_trojan">挂马信息:</string>
+    <string name="website_security_fake">虚假信息:</string>
+    <string name="website_security_distrot">篡改信息:</string>
+    <string name="website_security_side_note">旁注信息:</string>
+    <string name="website_security_score">分数信息:</string>
+    <string name="website_security_violation">违规信息:</string>
+    <string name="website_security_google">Google屏蔽信息:</string>
     <string name="website_security_high_bug">高危漏洞</string>
     <string name="website_security_mid_bug">严重漏洞</string>
     <string name="website_security_low_bug">警告漏洞</string>
     <string name="website_security_info_bug">提醒漏洞</string>
     <string name="website_security_bug_parse">高危漏洞:%1$s, 严重漏洞:%2$s, 警告漏洞:%3$s, 提醒漏洞:%4$s</string>
+    <string name="website_security_default_result">无</string>
 
 </resources>
