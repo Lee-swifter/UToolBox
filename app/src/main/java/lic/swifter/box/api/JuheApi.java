@@ -15,6 +15,7 @@ import lic.swifter.box.api.model.MovieRank;
 import lic.swifter.box.api.model.PhoneResult;
 import lic.swifter.box.api.model.QQLuck;
 import lic.swifter.box.api.model.Result;
+import lic.swifter.box.api.model.SiteSecurity;
 import lic.swifter.box.api.model.TodayHistoryResult;
 import lic.swifter.box.api.model.TopNewsWrapper;
 import lic.swifter.box.api.model.TvCategory;
@@ -110,4 +111,7 @@ public interface JuheApi {
 
     @GET("baiduWeight/index?key="+BAIDU_WEIGHT_KEY)
     Call<Result<BaiduWeight>> queryBaiduWeight(@Query("domain") String domain);
+
+    @GET("webscan/?key="+WEBSITE_SECURITY_KEY)
+    Call<Result<SiteSecurity>> querySiteSecurity(@Query("domain") String domain);
 }

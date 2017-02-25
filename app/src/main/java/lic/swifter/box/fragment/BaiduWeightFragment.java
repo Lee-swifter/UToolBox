@@ -49,7 +49,7 @@ import lic.swifter.box.recycler.adapter.BaiduWeightAdapter;
 import lic.swifter.box.recycler.divider.GridDivider;
 import lic.swifter.box.widget.CanaroTextView;
 
-public class BaiduWeightFragment extends BaseFragment implements BaiduWeightView{
+public class BaiduWeightFragment extends BaseFragment implements BaiduWeightView {
 
     @Bind(R.id.web_input_text)
     EditText inputText;
