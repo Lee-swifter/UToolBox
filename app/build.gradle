@@ -8,8 +8,8 @@ android {
         applicationId "lic.swifter.box"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 9
-        versionName "0.8.9"
+        versionCode 10
+        versionName "0.8.10"
     }
     buildTypes {
         release {
@@ -29,6 +29,18 @@ android {
 
         android_market {
             manifestPlaceholders = [BAIDU_CHANNEL: "android_market"]
+        }
+
+        xiaomi {
+            manifestPlaceholders = [BAIDU_CHANNEL: "xiaomi"]
+        }
+
+        qq {
+            manifestPlaceholders = [BAIDU_CHANNEL: "qq"]
+        }
+
+        z_360 {
+            manifestPlaceholders = [BAIDU_CHANNEL: "z360"]
         }
     }
 }

@@ -165,7 +165,7 @@
                     android:layout_marginLeft="10dip"
                     android:layout_marginStart="10dip"
                     android:text="@string/website_security_default_result"
-                    />
+                    android:layout_marginBottom="5dip"/>
             </LinearLayout>
         </ScrollView>
     </FrameLayout>
