@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements ToolsAdapter.OnIt
 
     private long exitTimeStamp;
 
-    public static int screenWidth;
-    public static int screenHeight;
+    public static int screenWidth;  //屏幕宽度
+    public static int screenHeight; //屏幕高度
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
