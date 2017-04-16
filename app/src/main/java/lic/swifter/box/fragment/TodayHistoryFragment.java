@@ -23,6 +23,7 @@ import lic.swifter.box.mvp.view.IView;
 import lic.swifter.box.widget.TodayHistoryPage;
 
 /**
+ *
  * Created by cheng on 2016/8/19.
  */
 
@@ -51,6 +52,7 @@ public class TodayHistoryFragment extends BaseFragment implements IView<String, 
                 presenter.query();
             }
         });
+
         return rootView;
     }
 

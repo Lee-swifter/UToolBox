@@ -42,6 +42,10 @@ android {
         z_360 {
             manifestPlaceholders = [BAIDU_CHANNEL: "z360"]
         }
+
+        tencent {
+            manifestPlaceholders = [BAIDU_CHANNEL: "tencent"]
+        }
     }
 }
 
