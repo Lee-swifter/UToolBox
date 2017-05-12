@@ -14,7 +14,7 @@ package lic.swifter.box.activity;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Created by cheng on 2016/10/25.
+ * Created by Lee-swifter on 2016/10/25.
  */
 
 import android.content.Context;
@@ -72,22 +72,22 @@ public class TvProgramActivity extends AppCompatActivity implements IView<String
         setContentView(R.layout.activity_tv_program);
         ButterKnife.bind(this);
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             channel = savedInstanceState.getParcelable(TV_CHANNEL_INTENT);
         } else {
             channel = getIntent().getParcelableExtra(TV_CHANNEL_INTENT);
         }
 
-        if(channel == null) {
-                new AlertDialog.Builder(this).setMessage(R.string.data_analyze_error)
-                        .setCancelable(false).setPositiveButton(R.string.ensure,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                TvProgramActivity.this.finish();
-                            }
-                        }).show();
-                return;
+        if (channel == null) {
+            new AlertDialog.Builder(this).setMessage(R.string.data_analyze_error)
+                    .setCancelable(false).setPositiveButton(R.string.ensure,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            TvProgramActivity.this.finish();
+                        }
+                    }).show();
+            return;
         }
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
