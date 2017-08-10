@@ -34,7 +34,7 @@
         </activity>
         <activity android:name=".activity.TvChannelActivity" />
         <activity android:name=".activity.TvProgramActivity" />
-        <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.WebViewActivity" />
     </application>
 
 </manifest>
