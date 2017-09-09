@@ -3,6 +3,8 @@ package lic.swifter.box.util;
 import android.content.Context;
 
 /**
+ * 关于显示的工具类，提供单位转换
+ *
  * Created by lic on 16-7-7.
  */
 public class DisplayUtil {
