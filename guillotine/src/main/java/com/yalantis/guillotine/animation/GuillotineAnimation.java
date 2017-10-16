@@ -27,7 +27,6 @@ public class GuillotineAnimation {
     private final ObjectAnimator mOpeningAnimation;
     private final ObjectAnimator mClosingAnimation;
     private final GuillotineListener mListener;
-    private final boolean mIsRightToLeftLayout;
     private final TimeInterpolator mInterpolator;
     private final View mActionBarView;
     private final long mDelay;
@@ -42,7 +41,6 @@ public class GuillotineAnimation {
         this.mGuillotineView = builder.guillotineView;
         this.mDuration = builder.duration > 0 ? builder.duration : DEFAULT_DURATION;
         this.mDelay = builder.startDelay;
-        this.mIsRightToLeftLayout = builder.isRightToLeftLayout;
         this.mInterpolator = builder.interpolator == null ? new GuillotineInterpolator() : builder.interpolator;
         setUpOpeningView(builder.openingView);
         setUpClosingView(builder.closingView);
@@ -52,8 +50,6 @@ public class GuillotineAnimation {
             mGuillotineView.setRotation(GUILLOTINE_CLOSED_ANGLE);
             mGuillotineView.setVisibility(View.INVISIBLE);
         }
-        //TODO handle right-to-left layouts
-        //TODO handle landscape orientation
     }
 
     public void open() {
@@ -210,7 +206,6 @@ public class GuillotineAnimation {
         private GuillotineListener guillotineListener;
         private long duration;
         private long startDelay;
-        private boolean isRightToLeftLayout;
         private TimeInterpolator interpolator;
         private boolean isClosedOnStart;
 
@@ -237,11 +232,6 @@ public class GuillotineAnimation {
 
         public GuillotineBuilder setStartDelay(long startDelay) {
             this.startDelay = startDelay;
-            return this;
-        }
-
-        public GuillotineBuilder setRightToLeftLayout(boolean isRightToLeftLayout) {
-            this.isRightToLeftLayout = isRightToLeftLayout;
             return this;
         }
 
