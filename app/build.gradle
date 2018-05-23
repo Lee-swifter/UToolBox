@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '27.0.1'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "lic.swifter.box"
@@ -51,11 +51,11 @@ android {
 }
 
 dependencies {
-    compile project(':guillotine')
-    compile files('libs/Baidu_Mtj_3.7.6.1.jar')
-    compile 'com.android.support:design:25.4.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.github.bumptech.glide:glide:4.2.0'
+    implementation project(':guillotine')
+    implementation files('libs/Baidu_Mtj_3.7.6.1.jar')
+    implementation 'com.android.support:design:25.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.github.bumptech.glide:glide:4.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
 }
