@@ -1,7 +1,9 @@
 package lic.swifter.box.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,8 +19,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.PhoneResult;
 import lic.swifter.box.api.model.Result;
@@ -34,21 +34,13 @@ import lic.swifter.box.recycler.divider.GridDivider;
 
 public class PhoneQueryFragment extends BaseFragment implements PhoneQueryView {
 
-    @Bind(R.id.phone_input_text)
     EditText inputEdit;
-    @Bind(R.id.phone_result_wrapper)
     LinearLayout resultWrapper;
-    @Bind(R.id.phone_result_location)
     TextView resultLocation;
-    @Bind(R.id.phone_result_company)
     TextView resultCompany;
-    @Bind(R.id.phone_result_area_code)
     TextView resultAreaCode;
-    @Bind(R.id.phone_result_zip)
     TextView resultZip;
-    @Bind(R.id.phone_progress)
     ProgressBar progressBar;
-    @Bind(R.id.phone_record_list)
     RecyclerView recyclerView;
 
     private PhoneResultAdapter adapter;
@@ -56,9 +48,18 @@ public class PhoneQueryFragment extends BaseFragment implements PhoneQueryView {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_phone_query, container, false);
-        ButterKnife.bind(this, rootView);
+
+        inputEdit = rootView.findViewById(R.id.phone_input_text);
+        resultWrapper = rootView.findViewById(R.id.phone_result_wrapper);
+        resultLocation = rootView.findViewById(R.id.phone_result_location);
+        resultCompany = rootView.findViewById(R.id.phone_result_company);
+        resultAreaCode = rootView.findViewById(R.id.phone_result_area_code);
+        resultZip = rootView.findViewById(R.id.phone_result_zip);
+        progressBar = rootView.findViewById(R.id.phone_progress);
+        recyclerView = rootView.findViewById(R.id.phone_record_list);
+
         presenter = new PhoneQueryPresenter(this);
 
         initView();
@@ -67,7 +68,6 @@ public class PhoneQueryFragment extends BaseFragment implements PhoneQueryView {
 
     @Override
     public void onDestroyView() {
-        ButterKnife.unbind(this);
         presenter.cancelQuery();
         super.onDestroyView();
     }
@@ -83,6 +83,8 @@ public class PhoneQueryFragment extends BaseFragment implements PhoneQueryView {
 
                     presenter.query(searchString);
 
+                    if(getContext() == null)
+                        return false;
                     InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     if(imm != null)
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -110,6 +112,7 @@ public class PhoneQueryFragment extends BaseFragment implements PhoneQueryView {
     public void afterReadResults(List<PhoneResult> resultList) {
         adapter = new PhoneResultAdapter(resultList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        if(getContext() != null)
         recyclerView.addItemDecoration(new GridDivider(getContext(), LinearLayoutManager.HORIZONTAL));
         recyclerView.setAdapter(adapter);
     }
@@ -120,6 +123,7 @@ public class PhoneQueryFragment extends BaseFragment implements PhoneQueryView {
         fadeOutView(resultWrapper);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void afterQuery(NetQueryType type, Result<PhoneResult> response) {
         switch (type) {

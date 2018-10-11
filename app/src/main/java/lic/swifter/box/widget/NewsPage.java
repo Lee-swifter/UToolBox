@@ -10,8 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.JuheApi;
 import lic.swifter.box.api.model.Result;
@@ -43,11 +41,8 @@ import lic.swifter.box.util.ViewUtil;
 
 public class NewsPage extends FrameLayout implements IView<String, TopNewsWrapper> {
 
-    @Bind(R.id.page_news_progress)
     ProgressBar progress;
-    @Bind(R.id.page_news_status_text)
     TextView statusText;
-    @Bind(R.id.page_news_recycler_view)
     RecyclerView recyclerView;
 
     private String type;
@@ -66,7 +61,11 @@ public class NewsPage extends FrameLayout implements IView<String, TopNewsWrappe
         super(context, attrs, defStyleAttr);
         duration = getResources().getInteger(android.R.integer.config_shortAnimTime);
         LayoutInflater.from(context).inflate(R.layout.page_news, this);
-        ButterKnife.bind(this);
+
+        progress = findViewById(R.id.page_news_progress);
+        statusText = findViewById(R.id.page_news_status_text);
+        recyclerView = findViewById(R.id.page_news_recycler_view);
+
         presenter = new NewsPresenter(this);
     }
 

@@ -18,6 +18,7 @@ package lic.swifter.box.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,8 +38,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.BaiduWeight;
 import lic.swifter.box.api.model.Result;
@@ -51,19 +50,12 @@ import lic.swifter.box.widget.CanaroTextView;
 
 public class BaiduWeightFragment extends BaseFragment implements BaiduWeightView {
 
-    @Bind(R.id.web_input_text)
     EditText inputText;
-    @Bind(R.id.weight_progress)
     ProgressBar progressBar;
-    @Bind(R.id.weight_query_site)
     CanaroTextView resultSite;
-    @Bind(R.id.weight_result_weight)
     CanaroTextView resultWeight;
-    @Bind(R.id.weight_result_range)
     CanaroTextView resultRange;
-    @Bind(R.id.weight_result_wrapper)
     LinearLayout resultWrapper;
-    @Bind(R.id.weight_record_list)
     RecyclerView recyclerView;
 
     private BaiduWeightPresenter presenter;
@@ -77,9 +69,15 @@ public class BaiduWeightFragment extends BaseFragment implements BaiduWeightView
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_baidu_weight, container, false);
-        ButterKnife.bind(this, rootView);
+        inputText = rootView.findViewById(R.id.web_input_text);
+        progressBar = rootView.findViewById(R.id.weight_progress);
+        resultSite = rootView.findViewById(R.id.weight_query_site);
+        resultWeight = rootView.findViewById(R.id.weight_result_weight);
+        resultRange = rootView.findViewById(R.id.weight_result_range);
+        resultWrapper = rootView.findViewById(R.id.weight_result_wrapper);
+        recyclerView = rootView.findViewById(R.id.weight_record_list);
 
         presenter = new BaiduWeightPresenter(this);
         initView();
@@ -97,8 +95,12 @@ public class BaiduWeightFragment extends BaseFragment implements BaiduWeightView
 
                     presenter.query(searchString);
 
-                    InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if(imm != null)
+                    Context context = getContext();
+                    if (context == null)
+                        return false;
+
+                    InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null)
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
                     return true;
@@ -121,7 +123,7 @@ public class BaiduWeightFragment extends BaseFragment implements BaiduWeightView
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.baidu_weight_option_1) {
+        if (item.getItemId() == R.id.baidu_weight_option_1) {
             Toast.makeText(getContext(), R.string.baidu_weight, Toast.LENGTH_LONG).show();
             return true;
         }
@@ -130,7 +132,6 @@ public class BaiduWeightFragment extends BaseFragment implements BaiduWeightView
 
     @Override
     public void onDestroyView() {
-        ButterKnife.unbind(this);
         presenter.cancelQuery();
         super.onDestroyView();
     }
@@ -192,7 +193,8 @@ public class BaiduWeightFragment extends BaseFragment implements BaiduWeightView
     public void afterReadResults(List<BaiduWeight> resultList) {
         adapter = new BaiduWeightAdapter(getContext(), resultList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new GridDivider(getContext(), LinearLayoutManager.HORIZONTAL));
+        if (getContext() != null)
+            recyclerView.addItemDecoration(new GridDivider(getContext(), LinearLayoutManager.HORIZONTAL));
         recyclerView.setAdapter(adapter);
         recyclerView.scrollToPosition(0);
     }

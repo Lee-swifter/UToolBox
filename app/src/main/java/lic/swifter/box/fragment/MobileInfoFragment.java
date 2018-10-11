@@ -18,6 +18,7 @@ package lic.swifter.box.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,37 +32,34 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.activity.MainActivity;
 
 public class MobileInfoFragment extends BaseFragment {
 
-    @Bind(R.id.fragment_mobile_info_list)
     ListView listView;
 
-    DateFormat sdf= SimpleDateFormat.getDateInstance();
+    DateFormat sdf = SimpleDateFormat.getDateInstance();
     String buildTime = sdf.format(new Date(Build.TIME));
 
     String[] properties = new String[]{
-            "手机品牌："+Build.BRAND,
-            "手机型号："+Build.MODEL,
-            "Android版本："+Build.VERSION.RELEASE+" ("+Build.VERSION.SDK_INT+")",
-            "屏幕分辨率："+ MainActivity.screenWidth+" * "+MainActivity.screenHeight,
-            "主板："+ Build.BOARD,
-            "设备参数："+Build.DEVICE,
-            "显示屏参数："+Build.DISPLAY,
-            "硬件制造商："+Build.MANUFACTURER,
-            "硬件名："+Build.HARDWARE,
-            "手机产品名："+Build.PRODUCT,
-            "当前开发代号："+Build.VERSION.CODENAME,
-            "源码控制版本号："+Build.VERSION.INCREMENTAL,
-            "编译时间："+buildTime,
-            "描述标签："+Build.TAGS,
-            "系统名称："+System.getProperty("os.name"),
-            "系统架构："+System.getProperty("os.arch"),
-            "系统版本："+System.getProperty("os.version"),
+            "手机品牌：" + Build.BRAND,
+            "手机型号：" + Build.MODEL,
+            "Android版本：" + Build.VERSION.RELEASE + " (" + Build.VERSION.SDK_INT + ")",
+            "屏幕分辨率：" + MainActivity.screenWidth + " * " + MainActivity.screenHeight,
+            "主板：" + Build.BOARD,
+            "设备参数：" + Build.DEVICE,
+            "显示屏参数：" + Build.DISPLAY,
+            "硬件制造商：" + Build.MANUFACTURER,
+            "硬件名：" + Build.HARDWARE,
+            "手机产品名：" + Build.PRODUCT,
+            "当前开发代号：" + Build.VERSION.CODENAME,
+            "源码控制版本号：" + Build.VERSION.INCREMENTAL,
+            "编译时间：" + buildTime,
+            "描述标签：" + Build.TAGS,
+            "系统名称：" + System.getProperty("os.name"),
+            "系统架构：" + System.getProperty("os.arch"),
+            "系统版本：" + System.getProperty("os.version"),
 
 //            "Home属性："+System.getProperty("os.home"),
 //            "Name属性："+System.getProperty("os.name"),
@@ -77,12 +75,13 @@ public class MobileInfoFragment extends BaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_mobile_info, container, false);
-        ButterKnife.bind(this, rootView);
+        listView = rootView.findViewById(R.id.fragment_mobile_info_list);
 
         StatService.onEvent(getContext(), "local_info", "pass", 1);
-        listView.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, properties));
+        if (getContext() != null)
+            listView.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, properties));
         return rootView;
     }
 }

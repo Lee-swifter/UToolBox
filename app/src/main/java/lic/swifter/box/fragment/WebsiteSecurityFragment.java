@@ -18,6 +18,7 @@ package lic.swifter.box.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -29,8 +30,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.SiteSecurity;
@@ -41,42 +40,43 @@ import lic.swifter.box.widget.CanaroTextView;
 
 public class WebsiteSecurityFragment extends BaseFragment implements IView<String, SiteSecurity> {
 
-    @Bind(R.id.website_input_text)
     EditText inputText;
-    @Bind(R.id.website_security_loading_status)
     CanaroTextView loadingStatus;
-    @Bind(R.id.website_security_loading_progress)
     ProgressBar loadingProgress;
-    @Bind(R.id.result_summary_message)
     CanaroTextView message;
-    @Bind(R.id.result_summary_message_time)
     CanaroTextView messageTime;
-    @Bind(R.id.website_security_score_result)
     CanaroTextView scoreResult;
-    @Bind(R.id.website_security_bug_result)
     CanaroTextView bugResult;
-    @Bind(R.id.website_security_trojan_result)
     CanaroTextView trojanResult;
-    @Bind(R.id.website_security_distrot_result)
     CanaroTextView distrotResult;
-    @Bind(R.id.website_security_fake_result)
     CanaroTextView fakeResult;
-    @Bind(R.id.website_security_note_result)
     CanaroTextView noteResult;
-    @Bind(R.id.website_security_violation_result)
     CanaroTextView violationResult;
-    @Bind(R.id.website_security_google_result)
     CanaroTextView googleResult;
-    @Bind(R.id.website_security_result_content)
     ScrollView resultContent;
 
     WebsiteSecurityPresenter presenter;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_website_security, container, false);
-        ButterKnife.bind(this, rootView);
+
+        inputText = rootView.findViewById(R.id.website_input_text);
+        loadingStatus = rootView.findViewById(R.id.website_security_loading_status);
+        loadingProgress = rootView.findViewById(R.id.website_security_loading_progress);
+        message = rootView.findViewById(R.id.result_summary_message);
+        messageTime = rootView.findViewById(R.id.result_summary_message_time);
+        scoreResult = rootView.findViewById(R.id.website_security_score_result);
+        bugResult = rootView.findViewById(R.id.website_security_bug_result);
+        trojanResult = rootView.findViewById(R.id.website_security_trojan_result);
+        distrotResult = rootView.findViewById(R.id.website_security_distrot_result);
+        fakeResult = rootView.findViewById(R.id.website_security_fake_result);
+        noteResult = rootView.findViewById(R.id.website_security_note_result);
+        violationResult = rootView.findViewById(R.id.website_security_violation_result);
+        googleResult = rootView.findViewById(R.id.website_security_google_result);
+        resultContent = rootView.findViewById(R.id.website_security_result_content);
+
         presenter = new WebsiteSecurityPresenter(this);
 
         initViews();
@@ -91,6 +91,9 @@ public class WebsiteSecurityFragment extends BaseFragment implements IView<Strin
                     String searchString = inputText.getText().toString();
 
                     presenter.query(searchString);
+
+                    if(getContext() == null)
+                        return false;
 
                     InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     if (imm != null)
@@ -168,7 +171,6 @@ public class WebsiteSecurityFragment extends BaseFragment implements IView<Strin
     public void onDestroyView() {
         super.onDestroyView();
         presenter.cancelQuery();
-        ButterKnife.unbind(this);
     }
 
     private void onFailure() {

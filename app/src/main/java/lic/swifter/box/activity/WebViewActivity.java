@@ -18,8 +18,6 @@ import android.widget.ProgressBar;
 
 import com.baidu.mobstat.StatService;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 
 public class WebViewActivity extends AppCompatActivity {
@@ -29,13 +27,9 @@ public class WebViewActivity extends AppCompatActivity {
 
     private static final String NET_EASY_URL = "http://www.163.com";
 
-    @Bind(R.id.web_view_close)
     ImageView closeImage;
-    @Bind(R.id.web_view_toolbar)
     Toolbar toolbar;
-    @Bind(R.id.activity_web_view)
     WebView webView;
-    @Bind(R.id.web_view_progress)
     ProgressBar progressBar;
 
     private String originalUrl;
@@ -45,7 +39,10 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
-        ButterKnife.bind(this);
+        closeImage = findViewById(R.id.web_view_close);
+        toolbar = findViewById(R.id.web_view_toolbar);
+        webView = findViewById(R.id.activity_web_view);
+        progressBar = findViewById(R.id.web_view_progress);
 
         if (savedInstanceState != null) {
             originalUrl = savedInstanceState.getString(INTENT_URL);

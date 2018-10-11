@@ -3,7 +3,6 @@ package lic.swifter.box.recycler.holder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.TvChannel;
 import lic.swifter.box.util.ViewUtil;
@@ -33,7 +32,7 @@ public class TvChannelHolder extends RecyclerView.ViewHolder {
     public TvChannelHolder(View itemView) {
         super(itemView);
         ViewUtil.waveView(itemView);
-        channelItem = ButterKnife.findById(itemView, R.id.item_tv_channel);
+        channelItem = itemView.findViewById(R.id.item_tv_channel);
     }
 
     public void setChannel(TvChannel channel) {

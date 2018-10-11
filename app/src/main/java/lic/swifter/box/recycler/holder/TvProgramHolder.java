@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 
 /*
@@ -33,8 +32,8 @@ public class TvProgramHolder extends RecyclerView.ViewHolder {
     public TvProgramHolder(View itemView) {
         super(itemView);
 
-        time = ButterKnife.findById(itemView, R.id.tv_program_time);
-        title = ButterKnife.findById(itemView, R.id.tv_program_title);
+        time = itemView.findViewById(R.id.tv_program_time);
+        title = itemView.findViewById(R.id.tv_program_title);
     }
 
 }

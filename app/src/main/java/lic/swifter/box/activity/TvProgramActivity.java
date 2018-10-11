@@ -36,8 +36,6 @@ import com.baidu.mobstat.StatService;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TvChannel;
@@ -53,13 +51,9 @@ public class TvProgramActivity extends AppCompatActivity implements IView<String
 
     public static final String TV_CHANNEL_INTENT = "TvProgramActivity.TV_CHANNEL_INTENT";
 
-    @Bind(R.id.category_toolbar)
     Toolbar toolbar;
-    @Bind(R.id.common_recycler_view)
     RecyclerView recycler;
-    @Bind(R.id.common_center_progress)
     ProgressBar progress;
-    @Bind(R.id.common_center_status_text)
     TextView status;
 
     private TvChannel channel;
@@ -70,7 +64,10 @@ public class TvProgramActivity extends AppCompatActivity implements IView<String
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tv_program);
-        ButterKnife.bind(this);
+        toolbar = findViewById(R.id.category_toolbar);
+        recycler = findViewById(R.id.common_recycler_view);
+        progress = findViewById(R.id.common_center_progress);
+        status = findViewById(R.id.common_center_status_text);
 
         if (savedInstanceState != null) {
             channel = savedInstanceState.getParcelable(TV_CHANNEL_INTENT);

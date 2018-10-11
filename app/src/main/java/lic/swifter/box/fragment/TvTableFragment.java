@@ -2,6 +2,7 @@ package lic.swifter.box.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +15,6 @@ import com.baidu.mobstat.StatService;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TvCategory;
@@ -32,20 +31,19 @@ import lic.swifter.box.recycler.divider.GridDivider;
  */
 public class TvTableFragment extends BaseFragment implements IView<Void, List<TvCategory>> {
 
-    @Bind(R.id.common_recycler_view)
     RecyclerView recycler;
-    @Bind(R.id.common_center_progress)
     ProgressBar progress;
-    @Bind(R.id.common_center_status_text)
     TextView status;
 
     private TvPresenter presenter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.common_recycler_status, container, false);
-        ButterKnife.bind(this, rootView);
+        recycler = rootView.findViewById(R.id.common_recycler_view);
+        progress = rootView.findViewById(R.id.common_center_progress);
+        status = rootView.findViewById(R.id.common_center_status_text);
 
         StatService.onEvent(getContext(), "tv_query_1", "pass", 1);
         status.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +57,6 @@ public class TvTableFragment extends BaseFragment implements IView<Void, List<Tv
         presenter.query();
 
         return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        ButterKnife.unbind(this);
-        super.onDestroyView();
     }
 
     @Override
@@ -83,6 +75,7 @@ public class TvTableFragment extends BaseFragment implements IView<Void, List<Tv
                 fadeOutView(status);
 
                 recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                if(getContext() != null)
                 recycler.addItemDecoration(new GridDivider(getContext()));
                 recycler.setAdapter(new TvCategoryAdapter(getContext(), response.result));
                 break;

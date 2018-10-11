@@ -2,6 +2,7 @@ package lic.swifter.box.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,8 +18,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.IdResult;
 import lic.swifter.box.api.model.Result;
@@ -34,19 +33,12 @@ import lic.swifter.box.recycler.divider.GridDivider;
 
 public class IDQueryFragment extends BaseFragment implements IdQueryView {
 
-    @Bind(R.id.id_input_text)
     EditText inputEdit;
-    @Bind(R.id.id_result_wrapper)
     LinearLayout resultWrapper;
-    @Bind(R.id.id_result_location)
     TextView resultLocation;
-    @Bind(R.id.id_result_gender)
     TextView resultGender;
-    @Bind(R.id.id_result_birthday)
     TextView resultBirthday;
-    @Bind(R.id.id_progress)
     ProgressBar progressBar;
-    @Bind(R.id.id_record_list)
     RecyclerView recyclerView;
 
     private IdQueryPresenter presenter;
@@ -54,9 +46,17 @@ public class IDQueryFragment extends BaseFragment implements IdQueryView {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_id_query, container, false);
-        ButterKnife.bind(this, rootView);
+
+        inputEdit = rootView.findViewById(R.id.id_input_text);
+        resultWrapper = rootView.findViewById(R.id.id_result_wrapper);
+        resultLocation = rootView.findViewById(R.id.id_result_location);
+        resultGender = rootView.findViewById(R.id.id_result_gender);
+        resultBirthday = rootView.findViewById(R.id.id_result_birthday);
+        progressBar = rootView.findViewById(R.id.id_progress);
+        recyclerView = rootView.findViewById(R.id.id_record_list);
+
         presenter = new IdQueryPresenter(this);
 
         initView();
@@ -65,7 +65,6 @@ public class IDQueryFragment extends BaseFragment implements IdQueryView {
 
     @Override
     public void onDestroyView() {
-        ButterKnife.unbind(this);
         presenter.cancelQuery();
         super.onDestroyView();
     }
@@ -80,9 +79,11 @@ public class IDQueryFragment extends BaseFragment implements IdQueryView {
                     String searchString = inputEdit.getText().toString();
 
                     presenter.query(searchString);
+                    if (getContext() == null)
+                        return false;
 
-                    InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if(imm != null)
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null)
                         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
                     return true;
@@ -147,7 +148,8 @@ public class IDQueryFragment extends BaseFragment implements IdQueryView {
     public void afterReadResults(List<IdResult> resultList) {
         adapter = new IdResultAdapter(resultList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new GridDivider(getContext(), LinearLayoutManager.HORIZONTAL));
+        if (getContext() != null)
+            recyclerView.addItemDecoration(new GridDivider(getContext(), LinearLayoutManager.HORIZONTAL));
         recyclerView.setAdapter(adapter);
     }
 }

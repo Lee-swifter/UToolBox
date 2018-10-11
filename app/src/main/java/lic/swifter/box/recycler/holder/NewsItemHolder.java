@@ -1,5 +1,6 @@
 package lic.swifter.box.recycler.holder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.activity.WebViewActivity;
 import lic.swifter.box.api.model.TopNewsWrapper;
@@ -37,20 +36,20 @@ import lic.swifter.box.util.ViewUtil;
 
 public class NewsItemHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.item_news_image)
     ImageView firstImageView;
-    @Bind(R.id.item_news_title)
     TextView titleText;
-    @Bind(R.id.item_news_source)
     TextView authorTimeView;
 
     public NewsItemHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        firstImageView = itemView.findViewById(R.id.item_news_image);
+        titleText = itemView.findViewById(R.id.item_news_title);
+        authorTimeView = itemView.findViewById(R.id.item_news_source);
 
         ViewUtil.waveView(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     public void setData(final Context context, final TopNewsWrapper.News news) {
         titleText.setText(news.title);
         authorTimeView.setText(news.author_name + " "+ news.date);

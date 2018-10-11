@@ -39,8 +39,8 @@ public class ToolView extends LinearLayout {
         setPadding(padding, padding, padding,padding);
 
         LayoutInflater.from(context).inflate(R.layout.item_tool, this);
-        image = (ImageView) findViewById(R.id.item_tool_image);
-        text = (TextView) findViewById(R.id.item_tool_name);
+        image = findViewById(R.id.item_tool_image);
+        text = findViewById(R.id.item_tool_name);
 
         TypedValue typedValue = new TypedValue();
         getContext().getTheme().resolveAttribute(R.attr.selectableItemBackground, typedValue, true);

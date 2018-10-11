@@ -4,8 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.IdResult;
 import lic.swifter.box.util.ViewUtil;
@@ -16,18 +14,17 @@ import lic.swifter.box.util.ViewUtil;
 
 public class IdResultHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.item_id_number)
     TextView idNumberText;
-    @Bind(R.id.item_id_result_area)
     TextView resultArea;
-    @Bind(R.id.item_id_result_sex)
     TextView resultSex;
-    @Bind(R.id.item_id_result_birthday)
     TextView resultBirthday;
 
     public IdResultHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        idNumberText = itemView.findViewById(R.id.item_id_number);
+        resultArea = itemView.findViewById(R.id.item_id_result_area);
+        resultSex = itemView.findViewById(R.id.item_id_result_sex);
+        resultBirthday = itemView.findViewById(R.id.item_id_result_birthday);
 
         ViewUtil.waveView(itemView);
     }

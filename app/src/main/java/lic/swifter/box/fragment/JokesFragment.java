@@ -1,6 +1,7 @@
 package lic.swifter.box.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.JokesWrapper;
 import lic.swifter.box.api.model.Result;
@@ -24,20 +23,19 @@ import lic.swifter.box.mvp.view.IView;
  */
 public class JokesFragment extends BaseFragment implements IView<Class<Void>, JokesWrapper> {
 
-    @Bind(R.id.jokes_progress)
     ProgressBar progress;
-    @Bind(R.id.jokes_status)
     TextView status;
-    @Bind(R.id.jokes_view_pager)
     ViewPager viewPager;
 
     private JokesPresenter presenter;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_jokes, container, false);
-        ButterKnife.bind(this, rootView);
+        progress = rootView.findViewById(R.id.jokes_progress);
+        status = rootView.findViewById(R.id.jokes_status);
+        viewPager = rootView.findViewById(R.id.jokes_view_pager);
 
         presenter = new JokesPresenter(this);
         presenter.query();
@@ -52,7 +50,6 @@ public class JokesFragment extends BaseFragment implements IView<Class<Void>, Jo
 
     @Override
     public void onDestroyView() {
-        ButterKnife.unbind(this);
         presenter.cancelQuery();
         super.onDestroyView();
     }
@@ -111,12 +108,13 @@ public class JokesFragment extends BaseFragment implements IView<Class<Void>, Jo
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view == object;
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        @NonNull
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
             View rootView = LayoutInflater.from(getContext()).inflate(R.layout.page_joke, container, false);
             ((TextView)rootView.findViewById(R.id.page_joke_content)).setText(list[position].content);
             ((TextView)rootView.findViewById(R.id.page_joke_time)).setText(list[position].updatetime);
@@ -125,7 +123,7 @@ public class JokesFragment extends BaseFragment implements IView<Class<Void>, Jo
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(@NonNull ViewGroup container, int position,@NonNull  Object object) {
             container.removeView((View)object);
         }
     }

@@ -2,6 +2,7 @@ package lic.swifter.box.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -9,15 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.JuheApi;
 import lic.swifter.box.widget.NewsPage;
 
 public class TopNewsFragment extends BaseFragment {
 
-    @Bind(R.id.single_view_pager)
     ViewPager viewPager;
     private NewsPagerAdapter adapter;
     private OnNewsTypeChangedListener listener;
@@ -35,17 +33,11 @@ public class TopNewsFragment extends BaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.common_single_view_pager, container, false);
-        ButterKnife.bind(this, rootView);
+        viewPager = rootView.findViewById(R.id.single_view_pager);
         setupViewPager();
         return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        ButterKnife.unbind(this);
-        super.onDestroyView();
     }
 
     private void setupViewPager() {
@@ -72,12 +64,13 @@ public class TopNewsFragment extends BaseFragment {
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NonNull View view,@NonNull Object object) {
             return view == object;
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        @NonNull
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
             NewsPage page = new NewsPage(getContext());
             switch (position) {
                 case 0:
@@ -118,7 +111,7 @@ public class TopNewsFragment extends BaseFragment {
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(@NonNull ViewGroup container, int position,@NonNull Object object) {
             container.removeView((View)object);
         }
 

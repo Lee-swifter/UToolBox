@@ -5,8 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.BaiduWeight;
 import lic.swifter.box.util.ViewUtil;
@@ -30,16 +28,15 @@ import lic.swifter.box.util.ViewUtil;
 
 public class BaiduWeightHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.item_weight_search_data)
-    TextView searchText;
-    @Bind(R.id.item_weight_result)
-    TextView resultWeight;
-    @Bind(R.id.item_weight_result_range)
-    TextView resultRange;
+    private TextView searchText;
+    private TextView resultWeight;
+    private TextView resultRange;
 
     public BaiduWeightHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        searchText = itemView.findViewById(R.id.item_weight_search_data);
+        resultWeight = itemView.findViewById(R.id.item_weight_result);
+        resultRange = itemView.findViewById(R.id.item_weight_result_range);
 
         ViewUtil.waveView(itemView);
     }

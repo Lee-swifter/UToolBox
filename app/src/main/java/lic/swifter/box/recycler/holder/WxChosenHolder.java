@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.activity.WebViewActivity;
 import lic.swifter.box.api.model.WxChosen;
@@ -21,16 +19,15 @@ import lic.swifter.box.util.ViewUtil;
  */
 public class WxChosenHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.wx_chosen_image)
     ImageView imageView;
-    @Bind(R.id.wx_chosen_title)
     TextView titleText;
-    @Bind(R.id.wx_chosen_source)
     TextView sourceText;
 
     public WxChosenHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        imageView = itemView.findViewById(R.id.wx_chosen_image);
+        titleText = itemView.findViewById(R.id.wx_chosen_title);
+        sourceText = itemView.findViewById(R.id.wx_chosen_source);
 
         ViewUtil.waveView(itemView);
     }

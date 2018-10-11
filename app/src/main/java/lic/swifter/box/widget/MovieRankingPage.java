@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.JuheApi;
 import lic.swifter.box.api.model.MovieRank;
@@ -31,15 +29,10 @@ import lic.swifter.box.util.ViewUtil;
  */
 public class MovieRankingPage extends RelativeLayout implements IView<String, List<MovieRank>> {
 
-    @Bind(R.id.page_movie_progress)
     ProgressBar progress;
-    @Bind(R.id.page_movie_status)
     TextView status;
-    @Bind(R.id.movie_ranking_wrapper)
     LinearLayout rankingWrapper;
-    @Bind(R.id.page_movie_title)
     CanaroTextView movieTitle;
-    @Bind(R.id.movie_ranking_recycler_view)
     RecyclerView recyclerView;
 
     private int index;
@@ -64,7 +57,12 @@ public class MovieRankingPage extends RelativeLayout implements IView<String, Li
         duration = getResources().getInteger(android.R.integer.config_shortAnimTime);
         LayoutInflater.from(context).inflate(R.layout.page_movie_ranking, this);
         presenter = new MovieRankingPresenter(this);
-        ButterKnife.bind(this);
+
+        progress = findViewById(R.id.page_movie_progress);
+        status = findViewById(R.id.page_movie_status);
+        rankingWrapper = findViewById(R.id.movie_ranking_wrapper);
+        movieTitle = findViewById(R.id.page_movie_title);
+        recyclerView = findViewById(R.id.movie_ranking_recycler_view);
 
         status.setOnClickListener(new OnClickListener() {
             @Override
@@ -105,7 +103,6 @@ public class MovieRankingPage extends RelativeLayout implements IView<String, Li
 
     @Override
     protected void onDetachedFromWindow() {
-        ButterKnife.unbind(this);
         presenter.cancelQuery();
         super.onDetachedFromWindow();
     }

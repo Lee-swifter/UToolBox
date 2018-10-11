@@ -2,6 +2,7 @@ package lic.swifter.box.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -12,8 +13,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.QQLuck;
 import lic.swifter.box.api.model.Result;
@@ -27,32 +26,25 @@ import lic.swifter.box.mvp.view.IView;
 
 public class QQLuckFragment extends BaseFragment implements IView<String, QQLuck> {
 
-    @Bind(R.id.qq_input_text)
     EditText inputText;
-    @Bind(R.id.qq_result_conclusion)
     TextView conclusion;
-    @Bind(R.id.qq_result_analysis)
     TextView analysis;
-    @Bind(R.id.qq_result_progress)
     ProgressBar progressBar;
 
     private QQLuckPresenter presenter;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_qq_luck, container, false);
-        ButterKnife.bind(this, rootView);
+        inputText = rootView.findViewById(R.id.qq_input_text);
+        conclusion = rootView.findViewById(R.id.qq_result_conclusion);
+        analysis = rootView.findViewById(R.id.qq_result_analysis);
+        progressBar = rootView.findViewById(R.id.qq_result_progress);
 
         presenter = new QQLuckPresenter(this);
         initView();
         return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     private void initView() {
@@ -63,6 +55,9 @@ public class QQLuckFragment extends BaseFragment implements IView<String, QQLuck
                     String searchString = inputText.getText().toString();
 
                     presenter.query(searchString);
+
+                    if(getContext() == null)
+                        return false;
 
                     InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     if(imm != null)

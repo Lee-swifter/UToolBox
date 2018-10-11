@@ -2,6 +2,7 @@ package lic.swifter.box.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -15,8 +16,6 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.IpLocation;
 import lic.swifter.box.api.model.Result;
@@ -29,30 +28,28 @@ import lic.swifter.box.widget.CanaroTextView;
 
 public class IPQueryFragment extends BaseFragment implements IpQueryView {
 
-    @Bind(R.id.ip_input_text)
     EditText inputEditText;
-    @Bind(R.id.ip_progress)
     ProgressBar progress;
-    @Bind(R.id.ip_result_area)
     CanaroTextView resultAreaText;
-    @Bind(R.id.ip_result_location)
     CanaroTextView resultLocationText;
-    @Bind(R.id.ip_result_wrapper)
     LinearLayout resultWrapper;
-    @Bind(R.id.ip_record_list)
     RecyclerView recyclerView;
 
     private IpResultAdapter adapter;
     private IpQueryPresenter presenter;
 
-    public IPQueryFragment() {
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_ip_query, container, false);
-        ButterKnife.bind(this, rootView);
+
+        inputEditText = rootView.findViewById(R.id.ip_input_text);
+        progress = rootView.findViewById(R.id.ip_progress);
+        resultAreaText = rootView.findViewById(R.id.ip_result_area);
+        resultLocationText = rootView.findViewById(R.id.ip_result_location);
+        resultWrapper = rootView.findViewById(R.id.ip_result_wrapper);
+        recyclerView = rootView.findViewById(R.id.ip_record_list);
+
         presenter = new IpQueryPresenter(this);
 
         initView();
@@ -61,7 +58,6 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
 
     @Override
     public void onDestroyView() {
-        ButterKnife.unbind(this);
         presenter.cancelQuery();
         super.onDestroyView();
     }
@@ -76,6 +72,8 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
                     String searchString = inputEditText.getText().toString();
 
                     presenter.query(searchString);
+                    if (getContext() == null)
+                        return false;
 
                     InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     if (imm != null)
@@ -134,7 +132,8 @@ public class IPQueryFragment extends BaseFragment implements IpQueryView {
     @Override
     public void afterReadResults(List<IpLocation> resultList) {
         adapter = new IpResultAdapter(resultList);
-        recyclerView.addItemDecoration(new GridDivider(getContext(), LinearLayoutManager.HORIZONTAL));
+        if (getContext() != null)
+            recyclerView.addItemDecoration(new GridDivider(getContext(), LinearLayoutManager.HORIZONTAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }

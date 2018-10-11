@@ -1,6 +1,7 @@
 package lic.swifter.box.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.WxChosenWrapper;
@@ -27,20 +26,20 @@ import lic.swifter.box.recycler.divider.GridDivider;
 
 public class WxChosenFragment extends BaseFragment implements IView<Class<Void>, WxChosenWrapper>{
 
-    @Bind(R.id.wx_progress_bar)
     ProgressBar progressBar;
-    @Bind(R.id.wx_status_text)
     TextView statusText;
-    @Bind(R.id.wx_content_recycler)
     RecyclerView recycler;
 
     private WxChosenPresenter presenter;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_wechat_chosen, container, false);
-        ButterKnife.bind(this, rootView);
+        progressBar = rootView.findViewById(R.id.wx_progress_bar);
+        statusText = rootView.findViewById(R.id.wx_status_text);
+        recycler = rootView.findViewById(R.id.wx_content_recycler);
+
 
         presenter = new WxChosenPresenter(this);
         presenter.query();
@@ -55,7 +54,6 @@ public class WxChosenFragment extends BaseFragment implements IView<Class<Void>,
 
     @Override
     public void onDestroyView() {
-        ButterKnife.unbind(this);
         presenter.cancelQuery();
         super.onDestroyView();
     }
@@ -72,6 +70,7 @@ public class WxChosenFragment extends BaseFragment implements IView<Class<Void>,
         switch (type) {
             case NET_RESPONSE_SUCCESS:
                 recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                if(getContext() != null)
                 recycler.addItemDecoration(new GridDivider(getContext(), LinearLayoutManager.HORIZONTAL));
                 recycler.setAdapter(new WxChosenAdapter(getContext(), response.result));
 

@@ -1,6 +1,7 @@
 package lic.swifter.box.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -8,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.widget.MovieRankingPage;
 
@@ -18,14 +17,13 @@ import lic.swifter.box.widget.MovieRankingPage;
  */
 public class BoxOfficeFragment extends BaseFragment {
 
-    @Bind(R.id.movie_ranking_view_pager)
     ViewPager viewPager;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movie_ranking, container, false);
-        ButterKnife.bind(this, rootView);
+        viewPager = rootView.findViewById(R.id.movie_ranking_view_pager);
 
         viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(new MovieRankingAdapter());
@@ -36,7 +34,6 @@ public class BoxOfficeFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     private class MovieRankingAdapter extends PagerAdapter {
@@ -46,17 +43,18 @@ public class BoxOfficeFragment extends BaseFragment {
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view == object;
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(@NonNull ViewGroup container, int position,@NonNull Object object) {
             container.removeView((View)object);
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        @NonNull
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
             MovieRankingPage page = new MovieRankingPage(getContext(), position);
             container.addView(page);
             return page;

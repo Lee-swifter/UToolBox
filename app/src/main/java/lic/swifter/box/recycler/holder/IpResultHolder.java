@@ -4,8 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.IpLocation;
 import lic.swifter.box.util.ViewUtil;
@@ -15,16 +13,15 @@ import lic.swifter.box.util.ViewUtil;
  */
 public class IpResultHolder extends RecyclerView.ViewHolder {
 
-    @Bind(R.id.item_ip_search_data)
     TextView searchDataTextView;
-    @Bind(R.id.item_ip_result_area)
     TextView resultAreaTextView;
-    @Bind(R.id.item_ip_result_location)
     TextView resultLocationTextView;
 
     public IpResultHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        searchDataTextView = itemView.findViewById(R.id.item_ip_search_data);
+        resultAreaTextView = itemView.findViewById(R.id.item_ip_result_area);
+        resultLocationTextView = itemView.findViewById(R.id.item_ip_result_location);
 
         ViewUtil.waveView(itemView);
     }

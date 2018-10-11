@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.TodayHistoryResult;
 
@@ -20,13 +18,9 @@ import lic.swifter.box.api.model.TodayHistoryResult;
 
 public class TodayHistoryPage extends ScrollView {
 
-    @Bind(R.id.page_today_title)
     TextView title;
-    @Bind(R.id.page_today_lunar_date)
     TextView lunarDate;
-    @Bind(R.id.page_today_content)
     TextView content;
-    @Bind(R.id.page_today_image)
     ImageView imageView;
 
     public TodayHistoryPage(Context context) {
@@ -41,7 +35,11 @@ public class TodayHistoryPage extends ScrollView {
         super(context, attrs, defStyleAttr);
 
         LayoutInflater.from(context).inflate(R.layout.page_today_in_history, this);
-        ButterKnife.bind(this);
+
+        title = findViewById(R.id.page_today_title);
+        lunarDate = findViewById(R.id.page_today_lunar_date);
+        content = findViewById(R.id.page_today_content);
+        imageView = findViewById(R.id.page_today_image);
     }
 
     public void setData(Context context, TodayHistoryResult data) {

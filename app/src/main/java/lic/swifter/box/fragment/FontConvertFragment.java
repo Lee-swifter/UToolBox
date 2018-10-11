@@ -20,8 +20,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +34,6 @@ import android.widget.Toast;
 
 import com.baidu.mobstat.StatService;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.FontConversion;
 import lic.swifter.box.mvp.presenter.FontConvertPresenter;
@@ -44,34 +42,34 @@ import lic.swifter.box.mvp.view.FontConvertView;
 
 public class FontConvertFragment extends BaseFragment implements FontConvertView{
 
-    @Bind(R.id.input_edit_text)
     EditText editText;
-    @Bind(R.id.button_convert)
     Button convertButton;
-    @Bind(R.id.convert_progress)
     ProgressBar progressBar;
 
-    @Bind(R.id.traditional_result_wrapper)
     LinearLayout traditionalWrapper;
-    @Bind(R.id.traditional_copy)
     Button traditionalCopy;
-    @Bind(R.id.traditional_chinese_result)
     TextView traditionalResult;
 
-    @Bind(R.id.leetspeak_result_wrapper)
     LinearLayout leetspeakWrapper;
-    @Bind(R.id.leetspeak_copy)
     Button leetspeakCopy;
-    @Bind(R.id.leetspeak_result)
     TextView leetspeakResult;
 
     private FontConvertPresenter presenter;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_font_convert, container, false);
-        ButterKnife.bind(this, rootView);
+
+        editText = rootView.findViewById(R.id.input_edit_text);
+        convertButton = rootView.findViewById(R.id.button_convert);
+        progressBar = rootView.findViewById(R.id.convert_progress);
+        traditionalWrapper = rootView.findViewById(R.id.traditional_result_wrapper);
+        traditionalCopy = rootView.findViewById(R.id.traditional_copy);
+        traditionalResult = rootView.findViewById(R.id.traditional_chinese_result);
+        leetspeakWrapper = rootView.findViewById(R.id.leetspeak_result_wrapper);
+        leetspeakCopy = rootView.findViewById(R.id.leetspeak_copy);
+        leetspeakResult = rootView.findViewById(R.id.leetspeak_result);
 
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +94,11 @@ public class FontConvertFragment extends BaseFragment implements FontConvertView
             @Override
             public void onClick(View v) {
                 ClipData clipData = ClipData.newPlainText("text", traditionalResult.getText().toString());
+                if(getContext() == null)
+                    return;
                 ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                if(cm == null)
+                    return ;
                 cm.setPrimaryClip(clipData);
 
                 Toast.makeText(getContext(), R.string.text_copy_to_clipboard, Toast.LENGTH_SHORT).show();
@@ -107,7 +109,11 @@ public class FontConvertFragment extends BaseFragment implements FontConvertView
             @Override
             public void onClick(View v) {
                 ClipData clipData = ClipData.newPlainText("text", leetspeakResult.getText().toString());
+                if(getContext() == null)
+                    return;
                 ClipboardManager cm = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                if(cm == null)
+                    return ;
                 cm.setPrimaryClip(clipData);
 
                 Toast.makeText(getContext(), R.string.text_copy_to_clipboard, Toast.LENGTH_SHORT).show();
@@ -125,7 +131,6 @@ public class FontConvertFragment extends BaseFragment implements FontConvertView
 
     @Override
     public void onQueryResult(int type, NetQueryType netType, FontConversion response) {
-        Log.i("swifter", "response : "+response.outstr+ "; type : "+type);
 
         if(!convertButton.isShown()) {
             convertButton.setVisibility(View.VISIBLE);

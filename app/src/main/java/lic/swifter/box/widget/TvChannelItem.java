@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.baidu.mobstat.StatService;
 
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.activity.TvProgramActivity;
 import lic.swifter.box.activity.WebViewActivity;
@@ -65,9 +64,9 @@ public class TvChannelItem extends LinearLayout {
         setOrientation(HORIZONTAL);
 
         LayoutInflater.from(context).inflate(R.layout.widget_tv_channel, this);
-        name = ButterKnife.findById(this, R.id.widget_channel_name);
-        url = ButterKnife.findById(this, R.id.widget_channel_rel);
-        button = ButterKnife.findById(this, R.id.widget_channel_live_button);
+        name = findViewById(R.id.widget_channel_name);
+        url = findViewById(R.id.widget_channel_rel);
+        button = findViewById(R.id.widget_channel_live_button);
 
         touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }

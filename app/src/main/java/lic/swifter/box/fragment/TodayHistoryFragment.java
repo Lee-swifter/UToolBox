@@ -1,6 +1,7 @@
 package lic.swifter.box.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -12,8 +13,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import lic.swifter.box.R;
 import lic.swifter.box.api.model.Result;
 import lic.swifter.box.api.model.TodayHistoryResult;
@@ -29,20 +28,19 @@ import lic.swifter.box.widget.TodayHistoryPage;
 
 public class TodayHistoryFragment extends BaseFragment implements IView<String, List<TodayHistoryResult>> {
 
-    @Bind(R.id.today_history_progress)
     ProgressBar progress;
-    @Bind(R.id.today_history_text)
     TextView statusText;
-    @Bind(R.id.today_history_view_pager)
     ViewPager viewPager;
 
     TodayHistoryPresenter presenter;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_today_history, container, false);
-        ButterKnife.bind(this, rootView);
+        progress = rootView.findViewById(R.id.today_history_progress);
+        statusText = rootView.findViewById(R.id.today_history_text);
+        viewPager = rootView.findViewById(R.id.today_history_view_pager);
 
         presenter = new TodayHistoryPresenter(this);
         presenter.query();
@@ -58,7 +56,6 @@ public class TodayHistoryFragment extends BaseFragment implements IView<String, 
 
     @Override
     public void onDestroyView() {
-        ButterKnife.unbind(this);
         presenter.cancelQuery();
         super.onDestroyView();
     }
@@ -112,12 +109,13 @@ public class TodayHistoryFragment extends BaseFragment implements IView<String, 
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NonNull View view,@NonNull Object object) {
             return view == object;
         }
 
         @Override
-        public Object instantiateItem(ViewGroup container, int position) {
+        @NonNull
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
             TodayHistoryPage page = new TodayHistoryPage(getContext());
             page.setData(getContext(), list.get(position));
             container.addView(page);
@@ -125,7 +123,7 @@ public class TodayHistoryFragment extends BaseFragment implements IView<String, 
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
+        public void destroyItem(@NonNull ViewGroup container, int position,@NonNull Object object) {
             container.removeView((View)object);
         }
     }
